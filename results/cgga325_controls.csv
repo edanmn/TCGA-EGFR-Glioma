@@ -1,0 +1,4 @@
+"cohort","EGFR_grade_r","n","p_vs_TCGA","IDH_HR","gradeIV_HR"
+"TCGA (reference)",0.185,826,NA,NA,NA
+"CGGA-693",-0.033,422,0.00024,0.226,8.5
+"CGGA-325",-0.097,229,0.000156,0.216,8.57

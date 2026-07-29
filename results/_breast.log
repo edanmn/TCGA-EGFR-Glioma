@@ -1,0 +1,11 @@
+TCGA-BRCA (discovery): n=622 events=67 | METABRIC (replication): n=1688 events=996
+shared genes: 15579 
+computing discovery (TCGA-BRCA)...
+There were 50 or more warnings (use warnings() to see the first 50)
+computing replication (METABRIC)...
+
+=== BREAST generalization: positive-control concordance predicts replication (AUC) ===
+                  pair n_prognostic replic_rate AUC_ER AUC_basal AUC_effectsize
+ TCGA-BRCA -> METABRIC           59       0.254  0.598     0.474           0.53
+
+(baseline: discovery effect-size |beta| AUC=0.530)

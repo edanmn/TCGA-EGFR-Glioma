@@ -1,0 +1,95 @@
+2026-07-25 22:32:16.330025 caching file sra.recount_project.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/sra/metadata/sra.recount_project.MD.gz'
+
+2026-07-25 22:32:18.338051 caching file gtex.recount_project.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/gtex/metadata/gtex.recount_project.MD.gz'
+
+2026-07-25 22:32:19.633179 caching file tcga.recount_project.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/tcga/metadata/tcga.recount_project.MD.gz'
+
+2026-07-25 22:32:21.027859 caching file ANSWER_ALS.recount_project.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/ANSWER_ALS/metadata/ANSWER_ALS.recount_project.MD.gz'
+
+2026-07-25 22:32:22.536246 caching file TARGET_ALS.recount_project.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/TARGET_ALS/metadata/TARGET_ALS.recount_project.MD.gz'
+
+2026-07-25 22:32:23.969771 caching file ega.recount_project.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/ega/metadata/ega.recount_project.MD.gz'
+
+2026-07-25 22:32:25.262943 caching file LIBD.recount_project.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/LIBD/metadata/LIBD.recount_project.MD.gz'
+
+2026-07-25 22:32:27.613806 downloading and reading the metadata.
+2026-07-25 22:32:28.034403 caching file tcga.tcga.LGG.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/tcga/metadata/GG/LGG/tcga.tcga.LGG.MD.gz'
+
+2026-07-25 22:32:29.709007 caching file tcga.recount_project.LGG.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/tcga/metadata/GG/LGG/tcga.recount_project.LGG.MD.gz'
+
+2026-07-25 22:32:30.960343 caching file tcga.recount_qc.LGG.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/tcga/metadata/GG/LGG/tcga.recount_qc.LGG.MD.gz'
+
+2026-07-25 22:32:32.492668 caching file tcga.recount_seq_qc.LGG.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/tcga/metadata/GG/LGG/tcga.recount_seq_qc.LGG.MD.gz'
+
+2026-07-25 22:32:33.940442 downloading and reading the feature information.
+2026-07-25 22:32:34.418037 caching file human.gene_sums.G026.gtf.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/annotations/gene_sums/human.gene_sums.G026.gtf.gz'
+
+2026-07-25 22:32:35.61931 downloading and reading the counts: 532 samples across 63856 features.
+2026-07-25 22:32:36.119935 caching file tcga.gene_sums.LGG.G026.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/tcga/gene_sums/GG/LGG/tcga.gene_sums.LGG.G026.gz'
+
+2026-07-25 22:32:39.625717 constructing the RangedSummarizedExperiment (rse) object.
+
+==== TCGA-LGG (recount3): n=509 events=125 matched ====
+EGFR by grade (positive control, expect rising):
+  II  III   IV 
+7.89 8.41   NA 
+EGFR by IDH (expect WT>Mutant):
+    WT Mutant 
+  8.92   7.99 
+2026-07-25 22:32:42.882753 caching file sra.recount_project.MD.gz.
+2026-07-25 22:32:43.332447 caching file gtex.recount_project.MD.gz.
+2026-07-25 22:32:43.733982 caching file tcga.recount_project.MD.gz.
+2026-07-25 22:32:44.246133 caching file ANSWER_ALS.recount_project.MD.gz.
+2026-07-25 22:32:44.756865 caching file TARGET_ALS.recount_project.MD.gz.
+2026-07-25 22:32:45.20455 caching file ega.recount_project.MD.gz.
+2026-07-25 22:32:45.596224 caching file LIBD.recount_project.MD.gz.
+2026-07-25 22:32:46.661553 downloading and reading the metadata.
+2026-07-25 22:32:47.118956 caching file tcga.tcga.GBM.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/tcga/metadata/BM/GBM/tcga.tcga.GBM.MD.gz'
+
+2026-07-25 22:32:48.650268 caching file tcga.recount_project.GBM.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/tcga/metadata/BM/GBM/tcga.recount_project.GBM.MD.gz'
+
+2026-07-25 22:32:50.262591 caching file tcga.recount_qc.GBM.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/tcga/metadata/BM/GBM/tcga.recount_qc.GBM.MD.gz'
+
+2026-07-25 22:32:51.722071 caching file tcga.recount_seq_qc.GBM.MD.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/tcga/metadata/BM/GBM/tcga.recount_seq_qc.GBM.MD.gz'
+
+2026-07-25 22:32:53.368076 downloading and reading the feature information.
+2026-07-25 22:32:53.728089 caching file human.gene_sums.G026.gtf.gz.
+2026-07-25 22:32:53.979175 downloading and reading the counts: 175 samples across 63856 features.
+2026-07-25 22:32:54.382662 caching file tcga.gene_sums.GBM.G026.gz.
+adding rname 'http://duffel.rail.bio/recount3/human/data_sources/tcga/gene_sums/BM/GBM/tcga.gene_sums.GBM.G026.gz'
+
+2026-07-25 22:32:56.637965 constructing the RangedSummarizedExperiment (rse) object.
+
+==== TCGA-GBM (recount3): n=154 events=122 matched ====
+EGFR by grade (positive control, expect rising):
+  II  III   IV 
+  NA   NA 9.03 
+EGFR by IDH (expect WT>Mutant):
+    WT Mutant 
+  9.20   7.63 
+
+=== recount3 (Monorail raw-read reprocessing) EGFR Cox, per SD ===
+   cohort             model    HR CI_low CI_high        p   n events
+ TCGA-LGG     1. unadjusted 1.540  1.250   1.890 4.02e-05 509    125
+ TCGA-LGG     2. +age+grade 1.270  1.040   1.550 2.11e-02 452    106
+ TCGA-LGG 3. +age+grade+IDH 1.110  0.940   1.310 2.20e-01 450    105
+ TCGA-GBM     1. unadjusted 0.906  0.755   1.090 2.89e-01 154    122
+ TCGA-GBM           2. +age 0.853  0.712   1.020 8.42e-02 154    122
+ TCGA-GBM 3. +age+grade+IDH 0.813  0.677   0.977 2.71e-02 150    120

@@ -1,0 +1,146 @@
+Ignoring unknown labels:
+• colour : "Strata"
+Ignoring unknown labels:
+• colour : "Strata"
+Ignoring unknown labels:
+• colour : "Strata"
+
+=== Kaplan-Meier / log-rank summary ===
+   cohort gene n_low n_high events median_surv_low_days median_surv_high_days
+ TCGA-LGG EGFR   256    255    125                 2988                  2282
+ TCGA-GBM EGFR   141    141    227                  399                   448
+  LGG+GBM EGFR   397    396    352                 1491                   883
+ logrank_p
+   0.04040
+   0.99000
+   0.00485
+
+Figures written to figures/, summary to results/km_logrank_summary.csv
+
+====  TCGA-LGG  ====
+Call:
+coxph(formula = fml, data = df)
+
+  n= 454, number of events= 106 
+   (57 observations deleted due to missingness)
+
+               coef exp(coef) se(coef)     z Pr(>|z|)    
+EGFR       0.168134  1.183096 0.063619 2.643  0.00822 ** 
+age        0.054210  1.055706 0.008235 6.583 4.62e-11 ***
+grade_fIII 1.025319  2.787986 0.222161 4.615 3.93e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+           exp(coef) exp(-coef) lower .95 upper .95
+EGFR           1.183     0.8452     1.044     1.340
+age            1.056     0.9472     1.039     1.073
+grade_fIII     2.788     0.3587     1.804     4.309
+
+Concordance= 0.786  (se = 0.026 )
+Likelihood ratio test= 84.82  on 3 df,   p=<2e-16
+Wald test            = 80.06  on 3 df,   p=<2e-16
+Score (logrank) test = 87.52  on 3 df,   p=<2e-16
+
+
+====  TCGA-GBM  ====
+Call:
+coxph(formula = fml, data = df)
+
+  n= 282, number of events= 227 
+
+          coef exp(coef)  se(coef)      z Pr(>|z|)    
+EGFR -0.049324  0.951872  0.027024 -1.825    0.068 .  
+age   0.028913  1.029335  0.005355  5.400 6.68e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+     exp(coef) exp(-coef) lower .95 upper .95
+EGFR    0.9519     1.0506    0.9028     1.004
+age     1.0293     0.9715    1.0186     1.040
+
+Concordance= 0.623  (se = 0.022 )
+Likelihood ratio test= 31.09  on 2 df,   p=2e-07
+Wald test            = 29.99  on 2 df,   p=3e-07
+Score (logrank) test = 30.18  on 2 df,   p=3e-07
+
+
+====  LGG+GBM  ====
+Call:
+coxph(formula = fml, data = df)
+
+  n= 736, number of events= 333 
+   (57 observations deleted due to missingness)
+
+                coef exp(coef)  se(coef)      z Pr(>|z|)    
+EGFR       -0.027936  0.972450  0.024581 -1.137    0.256    
+age         0.036747  1.037431  0.004554  8.069 7.12e-16 ***
+grade_fIII  0.995118  2.705043  0.216101  4.605 4.13e-06 ***
+grade_fIV   2.213237  9.145275  0.210078 10.535  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+           exp(coef) exp(-coef) lower .95 upper .95
+EGFR          0.9725     1.0283    0.9267     1.020
+age           1.0374     0.9639    1.0282     1.047
+grade_fIII    2.7050     0.3697    1.7710     4.132
+grade_fIV     9.1453     0.1093    6.0587    13.804
+
+Concordance= 0.82  (se = 0.01 )
+Likelihood ratio test= 396.2  on 4 df,   p=<2e-16
+Wald test            = 327.8  on 4 df,   p=<2e-16
+Score (logrank) test = 437.4  on 4 df,   p=<2e-16
+
+
+=== Cox HR summary (EGFR term) ===
+   cohort               model term    HR CI_low CI_high        p   n events
+ TCGA-LGG          univariate EGFR 1.340  1.180    1.52 6.85e-06 511    125
+ TCGA-LGG adjusted(age+grade) EGFR 1.180  1.040    1.34 8.22e-03 454    106
+ TCGA-GBM          univariate EGFR 0.984  0.933    1.04 5.52e-01 282    227
+ TCGA-GBM       adjusted(age) EGFR 0.952  0.903    1.00 6.80e-02 282    227
+  LGG+GBM          univariate EGFR 1.160  1.100    1.23 1.98e-07 793    352
+  LGG+GBM adjusted(age+grade) EGFR 0.972  0.927    1.02 2.56e-01 736    333
+
+Summary written to results/cox_EGFR_summary.csv
+Read HR as hazard per 1-unit increase in log2(TPM+1) EGFR; HR>1 = worse survival.
+
+====  TCGA-LGG  (age-adjusted, BH-corrected) ====
+   gene    HR        p     p_BH   n events
+    RB1 2.100 1.59e-06 1.59e-05 511    125
+   IDH1 1.690 1.73e-04 8.67e-04 511    125
+   EGFR 1.220 1.06e-03 3.54e-03 511    125
+   TP53 1.470 2.08e-03 5.20e-03 511    125
+ PIK3R1 0.727 6.26e-03 1.25e-02 511    125
+   PTEN 0.584 1.70e-02 2.83e-02 511    125
+ CDKN2A 0.868 6.10e-02 8.72e-02 511    125
+ PIK3CA 1.200 1.69e-01 2.12e-01 511    125
+ PDGFRA 0.928 1.98e-01 2.20e-01 511    125
+    NF1 0.840 2.22e-01 2.22e-01 511    125
+
+====  TCGA-GBM  (age-adjusted, BH-corrected) ====
+   gene    HR     p  p_BH   n events
+   EGFR 0.952 0.068 0.680 282    227
+ CDKN2A 0.969 0.274 0.912 282    227
+   TP53 0.932 0.238 0.912 282    227
+ PDGFRA 1.000 0.962 0.970 282    227
+   PTEN 0.994 0.936 0.970 282    227
+    NF1 1.010 0.941 0.970 282    227
+ PIK3CA 0.978 0.763 0.970 282    227
+ PIK3R1 1.030 0.705 0.970 282    227
+    RB1 0.998 0.970 0.970 282    227
+   IDH1 1.040 0.606 0.970 282    227
+
+====  LGG+GBM  (age-adjusted, BH-corrected) ====
+   gene    HR        p     p_BH   n events
+ PIK3R1 0.711 7.97e-12 7.97e-11 793    352
+   PTEN 0.700 4.58e-08 2.29e-07 793    352
+   IDH1 1.460 1.72e-07 5.75e-07 793    352
+    NF1 0.772 5.59e-05 1.40e-04 793    352
+ PDGFRA 0.893 1.65e-04 3.30e-04 793    352
+ CDKN2A 0.938 3.66e-02 6.10e-02 793    352
+   EGFR 1.040 1.89e-01 2.70e-01 793    352
+ PIK3CA 0.954 4.97e-01 6.21e-01 793    352
+   TP53 0.973 6.31e-01 7.01e-01 793    352
+    RB1 0.998 9.76e-01 9.76e-01 793    352
+
+Full screen written to results/pathway_screen.csv
+Significant after FDR: p_BH < 0.05.

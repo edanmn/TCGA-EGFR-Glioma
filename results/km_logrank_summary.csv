@@ -1,0 +1,4 @@
+"cohort","gene","n_low","n_high","events","median_surv_low_days","median_surv_high_days","logrank_p"
+"TCGA-LGG","EGFR",256,255,125,2988,2282,0.0404
+"TCGA-GBM","EGFR",141,141,227,399,448,0.99
+"LGG+GBM","EGFR",397,396,352,1491,883,0.00485

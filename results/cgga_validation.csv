@@ -1,0 +1,7 @@
+"cohort","model","HR","CI_low","CI_high","p","C_index","n","events"
+"CGGA LGr(II/III)","1. unadjusted",1.17,0.938,1.46,0.164,0.52,271,99
+"CGGA LGr(II/III)","2. + age + grade",1.19,0.958,1.48,0.115,0.624,270,99
+"CGGA LGr(II/III)","3. + age + grade + IDH",1.44,1.17,1.76,0.00046,0.737,240,93
+"CGGA LGr(II/III)","4. + treatment (sens.)",1.37,1.09,1.71,0.00681,0.743,234,89
+"CGGA GBM(IV)","1. unadjusted",1.19,0.975,1.45,0.0869,0.517,133,110
+"CGGA GBM(IV)","3. + age + IDH",1.12,0.919,1.35,0.268,0.594,126,106

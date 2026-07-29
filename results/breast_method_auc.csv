@@ -1,0 +1,2 @@
+"pair","n_prognostic","replic_rate","AUC_ER","AUC_basal","AUC_effectsize"
+"TCGA-BRCA -> METABRIC",59,0.254,0.598,0.474,0.53

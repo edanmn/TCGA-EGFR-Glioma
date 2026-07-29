@@ -1,0 +1,6 @@
+"cohort","model","HR","CI_low","CI_high","p","C_index","n","events","normalization"
+"TCGA-LGG","1. unadjusted",1.5,1.22,1.84,0.000125,0.577,511,125,"VST"
+"TCGA-LGG","2. + age + grade",1.26,1.04,1.54,0.0204,0.784,454,106,"VST"
+"TCGA-LGG","3. + age + grade + IDH",1.11,0.944,1.31,0.205,0.829,452,105,"VST"
+"TCGA-GBM","1. unadjusted",0.945,0.829,1.08,0.397,0.524,282,227,"VST"
+"TCGA-GBM","3. + age + IDH",0.843,0.737,0.963,0.0122,0.641,265,214,"VST"

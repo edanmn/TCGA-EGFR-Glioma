@@ -1,0 +1,4 @@
+"cohort","n","grade_avail","idh_avail","subtype_avail","kps_avail"
+"TCGA-LGG",511,454,508,508,260
+"TCGA-GBM",282,282,265,257,214
+"LGG+GBM",793,736,773,765,474

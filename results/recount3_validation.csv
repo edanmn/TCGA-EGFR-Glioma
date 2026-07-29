@@ -1,0 +1,7 @@
+"cohort","model","HR","CI_low","CI_high","p","n","events"
+"TCGA-LGG","1. unadjusted",1.54,1.25,1.89,4.02e-05,509,125
+"TCGA-LGG","2. +age+grade",1.27,1.04,1.55,0.0211,452,106
+"TCGA-LGG","3. +age+grade+IDH",1.11,0.94,1.31,0.22,450,105
+"TCGA-GBM","1. unadjusted",0.906,0.755,1.09,0.289,154,122
+"TCGA-GBM","2. +age",0.853,0.712,1.02,0.0842,154,122
+"TCGA-GBM","3. +age+grade+IDH",0.813,0.677,0.977,0.0271,150,120

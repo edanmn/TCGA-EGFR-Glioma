@@ -1,0 +1,16 @@
+# Data files (too large for GitHub)
+data/
+GDCdata/
+*.rds
+*.RData
+
+# macOS
+.DS_Store
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Claude
+.claude/

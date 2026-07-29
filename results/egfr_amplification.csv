@@ -1,0 +1,6 @@
+"test","HR","CI_low","CI_high","p","n","events"
+"IDH-wt: amplified vs not (unadj)",1.2,0.843,1.71,0.31,166,127
+"IDH-wt: amplified +age",0.996,0.696,1.42,0.98,166,127
+"IDH-wt: amplified +age+grade",0.819,0.566,1.19,0.291,164,126
+"IDH-wt: CN (per SD, continuous)",1.1,0.925,1.31,0.283,166,127
+"IDH-wt GBM: amplified +age",0.766,0.507,1.16,0.204,114,98
