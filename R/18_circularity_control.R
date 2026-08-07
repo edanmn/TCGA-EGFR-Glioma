@@ -23,7 +23,8 @@ tcga <- function(){
   one<-function(p,gIV=FALSE){se<-load_se(p);cd<-as.data.frame(colData(se));k<-substr(colnames(se),14,15)=="01"
     e<-log2(assay(se,"tpm_unstrand")[,k]+1);rownames(e)<-rowData(se)$gene_name;e<-e[!duplicated(rownames(e)),]
     b<-.clinical_df(se,p);b<-b[match(colnames(e),b$barcode),]
-    g<-if(gIV) rep(4,ncol(e)) else ifelse(grepl("G3|III",cd$paper_Grade[k]),3,2)
+    gr<-as.character(cd$paper_Grade[k])
+    g<-if(gIV) ifelse(grepl("G4|IV",gr),4,NA) else ifelse(grepl("G3|III",gr),3,ifelse(grepl("G2| II",gr),2,NA))
     idh<-ifelse(cd$paper_IDH.status[k]=="Mutant",1,ifelse(cd$paper_IDH.status[k]=="WT",0,NA))
     keep<-!is.na(b$time)&b$time>0&!is.na(b$event)&!duplicated(b$patient)
     list(e=e[,keep],time=b$time[keep],event=b$event[keep],age=b$age[keep],grade=g[keep],idh=idh[keep])}

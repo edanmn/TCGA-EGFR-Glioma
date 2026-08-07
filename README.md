@@ -21,14 +21,37 @@ adjusting for age and tumor grade, or is it just a proxy for grade?
 | `LGG+GBM` | Combined | II–IV | ~670 |
 
 ## Pipeline
-| Script | What it does | Outputs |
-|--------|--------------|---------|
+| Script | What it does | Key outputs |
+|--------|--------------|-------------|
 | `R/00_setup.R` | Install/verify packages (auto-falls back to a Bioconductor mirror) | — |
 | `R/01_download.R` | Download RNA-seq + clinical from the GDC, cache as `data/*.rds` | `data/TCGA-*_expr_se.rds` |
-| `R/02_survival_km.R` | Kaplan–Meier + log-rank, EGFR median split, per cohort | `figures/KM_EGFR_*.pdf`, `results/km_logrank_summary.csv` |
+| `R/02_survival_km.R` | Kaplan–Meier + log-rank, EGFR median split, per cohort | `results/km_logrank_summary.csv` (Table S1) |
 | `R/03_cox_model.R` | Cox models: EGFR alone, then adjusted for age + grade | `results/cox_EGFR_summary.csv` |
-| `R/04_pathway_screen.R` | Screen EGFR pathway genes, BH/FDR-corrected | `results/pathway_screen.csv` |
+| `R/04_pathway_screen.R` | Screen 10 EGFR/RTK–PI3K genes, BH/FDR-corrected | `results/pathway_screen*.csv` (Table S2) |
+| `R/05_adjusted_analysis.R` | Nested confounder-adjusted Cox models, C-index, PH tests | `results/cox_EGFR_adjusted.csv` (**Table 1**) |
+| `R/06_vst_sensitivity.R` | Re-run key models on DESeq2 VST expression | `results/vst_sensitivity.csv` (Table S3) |
+| `R/07_cgga_validation.R` | Naive CGGA external-validation models | `results/cgga_validation.csv` (Table S8) |
+| `R/08_forest.R` | Exploratory forest plot — **not used in the manuscript** | `figures/forest_EGFR.png` (orphan) |
+| `R/09_cgga_diagnostics.R` | Positive-control QC of CGGA (clinical + expression controls) | `results/cgga_positive_controls.csv` |
+| `R/10_review_fixes.R` | Common-sample nested models, C-index CIs, LR test, Fisher r-to-z | `results/common_sample_cox.csv` |
+| `R/11_recount3_validation.R` | Independent Monorail raw-read reprocessing check | `results/recount3_validation.csv` (Table S5) |
+| `R/12_within_idhwt.R` | EGFR expression within IDH-wildtype glioma | `results/within_idhwt.csv` (**Table 3**) |
+| `R/13_systematic_method.R` | 500-gene positive-control-gated screen | `results/systematic_screen.csv`, `figures/systematic_method.png` (**Figure 2**) |
+| `R/14_egfr_amplification.R` | EGFR copy number vs survival within IDH-wildtype | `results/egfr_amplification.csv` |
+| `R/15_revisions.R` | Amplification power/thresholds, replication CIs + Fisher, QC sensitivity | `results/revisions_summary.txt` |
+| `R/16_method_framework.R` | Genome-scale framework: anchors vs detectability/precision baselines | `results/method_auc.csv` (**Table 4**), `figures/method_auc.png` (**Figure 3**) |
+| `R/17_breast_generalization.R` | Scope test in TCGA-BRCA ↔ METABRIC | `results/breast_method_auc.csv` |
+| `R/18_circularity_control.R` | Does the gate work beyond shared grade signal? | `results/circularity_control.csv` (Table S7) |
+| `R/19_overlap_and_baselines.R` | CGGA patient overlap + de-duplicated replication; precision baseline; PH sensitivity | `results/review_fixes.txt`, `results/dedup_array301.csv` |
+| `R/20_control_table.R` | Positive-control table by one method for all cohorts; ten-gene panel | `results/control_table.txt` (**Table 2**), `figures/positive_control_EGFR_grade.png` (**Figure 1**) |
+| `R/21_assertions.R` | **Verification:** rebuilds every cohort independently, asserts 28 reported counts | `results/assertions.txt` |
+| `R/22_stat_recompute.R` | **Verification:** refits every headline model independently, checks 14 statistics | `results/stat_recompute.txt` |
 | `R/_helpers.R` | Shared: SummarizedExperiment → tidy survival table | (sourced) |
+
+Scripts 21 and 22 share no code with the analysis pipeline; they exist to catch
+silent data-coercion errors (wrong transform, missing values coerced to a valid
+level) that produce plausible-looking numbers. Both should pass cleanly:
+`28 passed, 0 failed` and `14 passed, 0 failed`.
 
 ## Run it
 From this directory:

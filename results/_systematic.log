@@ -1,0 +1,11 @@
+Panel size: 500  (top-variable TCGA genes present in CGGA)
+
+=== Of genes prognostic in TCGA (FDR<0.05), replication in CGGA by QC status ===
+ qc_ok   n replicated_pct signflip_pct
+ FALSE  37           24.3          5.4
+  TRUE 429           92.8          0.0
+
+EGFR: prognostic_T=FALSE  QC_ok=FALSE  beta_T=0.07 beta_C=0.13  r_grade_T=0.18 r_grade_C=-0.03
+Overall QC pass rate in panel: 88.0% (440/500)
+
+wrote figures/systematic_method.png

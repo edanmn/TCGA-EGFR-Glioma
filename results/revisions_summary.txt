@@ -1,0 +1,59 @@
+=== A) EGFR amplification power (within IDH-wt) ===
+Binary amp: events=127, exposed=0.55 -> 80% power to detect HR >= 1.65 (or <= 0.61)
+            90% power -> HR >= 1.78
+
+=== C) amplification-threshold sensitivity (IDH-wt, +age) ===
+  CN>=5 (amp=97): HR=1.09 (0.76-1.57) p=0.627
+  CN>=6 (amp=92): HR=1.00 (0.70-1.42) p=0.980
+  CN>=7 (amp=79): HR=0.92 (0.65-1.32) p=0.662
+  continuous log2CN/SD: HR=1.00 (0.84-1.20) p=0.981
+
+=== D) PH test (within IDH-wt expression, +age+grade) ===
+  EGFR_z PH p=0.084 ; GLOBAL PH p=0.054
+
+=== B) method replication with CIs + Fisher (TCGA->CGGA-693) ===
+  QC=TRUE: n=429 replicated=92.8% (89.9-95.0)
+  QC=FALSE: n=37 replicated=24.3% (11.8-41.2)
+  Fisher exact (QC x replicated): p=4.87e-21 OR=39.2
+
+=== B) 2nd cohort pair (TCGA->CGGA-325) ===
+  QC=TRUE: n=439 replicated=95.4% (93.1-97.2)
+  QC=FALSE: n=26 replicated=19.2% (6.6-39.4)
+  Fisher exact: p=1.10e-20 OR=85.0
+
+=== B) QC |r| threshold sensitivity (693 pair; replication rate QC-pass vs fail) ===
+  |r|>0.05: QC-pass rep=91.0% (88.0-93.5) (n=446) ; QC-fail rep=5.0% (0.1-24.9) (n=20)
+  |r|>0.10: QC-pass rep=92.8% (89.9-95.0) (n=429) ; QC-fail rep=24.3% (11.8-41.2) (n=37)
+  |r|>0.20: QC-pass rep=96.2% (93.7-97.9) (n=369) ; QC-fail rep=53.6% (43.2-63.8) (n=97)
+
+=== B) benchmark: replication among 'detectable' genes, by grade-QC ===
+  no-QC baseline replication (all prognostic genes): 87.3% (84.0-90.2) (n=466)
+  -> grade-QC lifts replication from the baseline to ~93%% (QC-pass) and drops to ~24%% (QC-fail)
+
+=== E) GDC data release ===
+$commit
+[1] "8f7c2a51ab0084b216ad1b62a3fae8b945439c53"
+
+$data_release
+[1] "Data Release 45.0 - December 04, 2025"
+
+$data_release_version
+$data_release_version$major
+[1] 45
+
+$data_release_version$minor
+[1] 0
+
+$data_release_version$release_date
+[1] "2025-12-04"
+
+
+$status
+[1] "OK"
+
+$tag
+[1] "8.5.0"
+
+$version
+[1] 1
+

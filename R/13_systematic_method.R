@@ -22,7 +22,8 @@ tcga_one <- function(project, gradeIV=FALSE) {
   k <- substr(colnames(se),14,15)=="01"
   expr <- log2(assay(se,"tpm_unstrand")[,k]+1); rownames(expr) <- rowData(se)$gene_name
   b <- .clinical_df(se, project); b <- b[match(colnames(expr), b$barcode),]
-  g <- if (gradeIV) rep(4, ncol(expr)) else ifelse(grepl("G3|III", cd$paper_Grade[k]), 3, 2)
+  gr <- as.character(cd$paper_Grade[k])
+  g <- if (gradeIV) ifelse(grepl("G4|IV", gr), 4, NA) else ifelse(grepl("G3|III", gr), 3, ifelse(grepl("G2| II", gr), 2, NA))
   keep <- !is.na(b$time) & b$time>0 & !is.na(b$event) & !duplicated(b$patient)
   list(expr=expr[,keep], time=b$time[keep], event=b$event[keep], age=b$age[keep], grade=g[keep])
 }

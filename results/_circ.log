@@ -6,9 +6,9 @@ In coxph.fit(X, Y, istrat, offset, init, control, weights = weights,  :
   Loglik converged before variable  1 ; coefficient may be infinite. 
 
 === CIRCULARITY CONTROL (TCGA -> CGGA-693, grade-anchor QC) ===
-(0) unadjusted prognostic  n=6616  replic=0.63  AUC=0.822 (0.812-0.832)
-(1) subtype-ADJUSTED prog  n=412  replic=0.27  AUC=0.670 (0.609-0.726)   <-- key
-(2) low grade-corr (|r|<0.2) n=996 replic=0.51 AUC=0.759 (0.727-0.790)
-    high grade-corr(|r|>=0.2) n=5620 replic=0.65 AUC=0.847 (0.838-0.857)
+(0) unadjusted prognostic  n=6616  replic=0.63  AUC=0.819 (0.809-0.829)
+(1) subtype-ADJUSTED prog  n=183  replic=0.23  AUC=0.648 (0.559-0.735)   <-- key
+(2) low grade-corr (|r|<0.2) n=935 replic=0.51 AUC=0.752 (0.720-0.780)
+    high grade-corr(|r|>=0.2) n=5681 replic=0.65 AUC=0.843 (0.834-0.853)
 
 wrote results/circularity_control.csv

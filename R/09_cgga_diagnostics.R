@@ -34,7 +34,7 @@ lg <- load_se("TCGA-LGG"); gb <- load_se("TCGA-GBM")
 gm <- function(se){tpm<-assay(se,"tpm_unstrand"); k<-substr(colnames(se),14,15)=="01"
   m<-as.data.frame(t(log2(tpm[match(GENES,rowData(se)$gene_name),k]+1))); colnames(m)<-GENES; m}
 cdl <- as.data.frame(colData(lg)); kl <- substr(colnames(lg),14,15)=="01"
-L <- gm(lg); L$gnum <- ifelse(grepl("G3|III", cdl$paper_Grade[kl]), 3, 2)
+L <- gm(lg); L$gnum <- ifelse(grepl("G3|III", cdl$paper_Grade[kl]), 3, ifelse(grepl("G2| II", cdl$paper_Grade[kl]), 2, NA))
 L$idh <- cdl$paper_IDH.status[kl]
 G <- gm(gb); G$gnum <- 4; G$idh <- NA
 TC <- bind_rows(L, G)

@@ -1,0 +1,30 @@
+=== (A) EGFR positive control, one method for every cohort ===
+    Spearman r(EGFR expression, WHO grade); Fisher r-to-z vs TCGA;
+    IDH-mutant HR (univariable); grade IV vs grade II HR (grades II and IV only)
+
+  TCGA (reference)       r=+0.179  n=739  p_vs_TCGA=---       IDHmut HR=0.11  gradeIV-vs-II HR=14.8
+  CGGA-693 (RNA-seq)     r=-0.033  n=422  p_vs_TCGA=4.5e-04   IDHmut HR=0.23  gradeIV-vs-II HR=8.0
+  CGGA-325 (RNA-seq)     r=-0.097  n=229  p_vs_TCGA=2.5e-04   IDHmut HR=0.22  gradeIV-vs-II HR=9.3
+  CGGA-301 (microarray)  r=-0.086  n=264  p_vs_TCGA=2.0e-04   IDHmut HR=0.32  gradeIV-vs-II HR=7.3
+
+=== (B) EGFR high-level amplification (CN >= 6) by IDH status, TCGA LGG+GBM ===
+  IDH-wildtype n=167   amplified (CN>=6) =  92 (55.1%)
+  IDH-mutant   n=222   amplified (CN>=6) =   5 (2.3%)
+
+=== (C) per-grade counts (same sets as the table above) ===
+  TCGA                   grade 2: 216, grade 3: 241, grade 4: 282 (total 739)
+  CGGA-693               grade 2: 138, grade 3: 144, grade 4: 140 (total 422)
+
+  regenerated figures/positive_control_EGFR_grade.png from these data
+
+=== (D) ten-gene panel: expression-grade Spearman r, TCGA vs CGGA-693 ===
+  EGFR    TCGA +0.179   CGGA-693 -0.033
+  IDH1    TCGA +0.348   CGGA-693 +0.152
+  TP53    TCGA +0.099   CGGA-693 +0.113
+  CDKN2A  TCGA -0.131   CGGA-693 -0.076
+  NF1     TCGA -0.285   CGGA-693 -0.183
+  PTEN    TCGA -0.357   CGGA-693 -0.071
+  PDGFRA  TCGA -0.304   CGGA-693 -0.096
+  PIK3R1  TCGA -0.481   CGGA-693 -0.195
+  PIK3CA  TCGA -0.072   CGGA-693 -0.057
+  RB1     TCGA -0.057   CGGA-693 -0.023

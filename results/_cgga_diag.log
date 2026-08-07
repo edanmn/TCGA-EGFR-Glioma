@@ -1,0 +1,27 @@
+=== CGGA clinical positive controls (should be strong & correct) ===
+IDH-mutant HR = 0.226 (p=2.1e-22)  [expect <<1]
+Grade HR: III vs II = 2.39, IV vs II = 8.50  [expect rising >1]
+
+=== EGFR expression positive controls: TCGA (canonical) vs CGGA ===
+EGFR-grade Spearman r:  TCGA=+0.183   CGGA=-0.033  [expect positive]
+EGFR mean by grade -- TCGA:
+   2    3    4 
+6.33 6.89 7.40 
+EGFR mean by grade -- CGGA:
+   1    2    3 
+3.74 3.66 3.90 
+
+=== per-gene grade Spearman (TCGA vs CGGA) ===
+   gene r_grade_TCGA r_grade_CGGA
+   EGFR        0.183       -0.033
+ PDGFRA       -0.324       -0.096
+   PTEN       -0.384       -0.071
+    NF1       -0.325       -0.183
+ PIK3CA       -0.104       -0.057
+ PIK3R1       -0.514       -0.195
+    RB1       -0.075       -0.023
+ CDKN2A       -0.142       -0.076
+   TP53        0.085        0.113
+   IDH1        0.350        0.152
+
+wrote figures/positive_control_EGFR_grade.png

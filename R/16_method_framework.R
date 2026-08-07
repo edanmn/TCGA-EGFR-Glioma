@@ -26,7 +26,8 @@ tcga_mat <- function(){
     e<-log2(assay(se,"tpm_unstrand")[,k]+1); rownames(e)<-rowData(se)$gene_name
     e<-e[!duplicated(rownames(e)),]
     b<-.clinical_df(se,project); b<-b[match(colnames(e),b$barcode),]
-    g<-if(gradeIV) rep(4,ncol(e)) else ifelse(grepl("G3|III",cd$paper_Grade[k]),3,2)
+    gr<-as.character(cd$paper_Grade[k])
+    g<-if(gradeIV) ifelse(grepl("G4|IV",gr),4,NA) else ifelse(grepl("G3|III",gr),3,ifelse(grepl("G2| II",gr),2,NA))
     idh<-as.character(cd$paper_IDH.status[k])
     keep<-!is.na(b$time)&b$time>0&!is.na(b$event)&!duplicated(b$patient)
     list(e=e[,keep], time=b$time[keep], event=b$event[keep], age=b$age[keep],
@@ -38,8 +39,11 @@ tcga_mat <- function(){
        clin=data.frame(time=c(L$time,G$time),event=c(L$event,G$event),
                        age=c(L$age,G$age),grade=c(L$grade,G$grade),idh=c(L$idh,G$idh)))
 }
-cgga_mat <- function(gfile, cfile, cols){
-  ex<-rd(gfile); rownames(ex)<-ex[[1]]; ex[[1]]<-NULL; ex<-log2(as.matrix(ex)+1)
+# NOTE: mRNA-array_301 is already on a log-ratio scale and contains negative values;
+# log2(x+1) would give NaN for every value <= -1 and silently drop those samples.
+cgga_mat <- function(gfile, cfile, cols, logt=TRUE){
+  ex<-rd(gfile); rownames(ex)<-ex[[1]]; ex[[1]]<-NULL
+  ex<-if(logt) log2(as.matrix(ex)+1) else as.matrix(ex)
   cl<-read.delim(cfile,check.names=FALSE); names(cl)[cols]<-c("id","prs","grade","age","os","censor","idh")
   cl<-cl%>%filter(prs=="Primary")%>%mutate(time=as.numeric(os),event=as.integer(censor),age=as.numeric(age),
     grade=as.numeric(factor(grade,levels=c("WHO II","WHO III","WHO IV"))),
@@ -51,7 +55,7 @@ cgga_mat <- function(gfile, cfile, cols){
 TC<-tcga_mat()
 C693<-cgga_mat("data/cgga/CGGA.mRNAseq_693.RSEM-genes.20200506.txt","data/cgga/cgga_clinical.tsv", c(1,2,4,6,7,8,11))
 C325<-cgga_mat("data/cgga/CGGA.mRNAseq_325.RSEM-genes.20200506.txt","data/cgga/cgga325_clinical.tsv", c(1,2,4,6,7,8,11))
-CARR<-cgga_mat("data/cgga/CGGA.mRNA_array_301_gene_level.20200506.txt","data/cgga/cgga_array_clinical.tsv", c(1,3,5,7,8,9,12))
+CARR<-cgga_mat("data/cgga/CGGA.mRNA_array_301_gene_level.20200506.txt","data/cgga/cgga_array_clinical.tsv", c(1,3,5,7,8,9,12), logt=FALSE)
 
 ## ---------- gene universe: common, adequately expressed; cap for runtime ----------
 genes<-Reduce(intersect,list(rownames(TC$e),rownames(C693$e),rownames(C325$e),rownames(CARR$e)))
@@ -65,8 +69,8 @@ stats_cohort <- function(M, gs){
   do.call(rbind, lapply(gs, function(g){
     x<-e[g,]; z<-as.numeric(scale(x))
     m<-tryCatch(coxph(Surv(cl$time,cl$event)~z+cl$age), error=function(e) NULL)
-    bp<-if(is.null(m)) c(NA,NA) else summary(m)$coefficients["z",c("coef","Pr(>|z|)")]
-    data.frame(gene=g, beta=bp[1], p=bp[2],
+    bp<-if(is.null(m)) c(NA,NA,NA) else summary(m)$coefficients["z",c("coef","se(coef)","Pr(>|z|)")]
+    data.frame(gene=g, beta=bp[1], se=bp[2], p=bp[3],
                r_grade=suppressWarnings(cor(x,cl$grade,method="spearman",use="complete.obs")),
                r_idh=suppressWarnings(cor(x,cl$idh,method="spearman",use="complete.obs")),
                meanx=mean(x,na.rm=TRUE))
@@ -92,10 +96,12 @@ evaluate<-function(sR, lab){
   qc_grade<-D$r_grade_T*D$r_grade_R            # positive when grade-concordant
   qc_idh  <-D$r_idh_T*D$r_idh_R                # alternative biological anchor
   detect  <-pmin(D$meanx_T,D$meanx_R)          # naive detectability baseline
+  precis  <- -D$se_R                            # precision baseline (smaller SE = more precise)
   data.frame(cohort=lab, n=nrow(D), replic_rate=round(mean(replicated),3),
              AUC_grade=round(auc(qc_grade,replicated),3),
              AUC_idh=round(auc(qc_idh,replicated),3),
-             AUC_detect=round(auc(detect,replicated),3))
+             AUC_detect=round(auc(detect,replicated),3),
+             AUC_precision=round(auc(precis,replicated),3))
 }
 res<-rbind(evaluate(s6,"CGGA-693"), evaluate(s3,"CGGA-325"), evaluate(sA,"array-301"))
 write.csv(res,"results/method_auc.csv",row.names=FALSE)
@@ -113,11 +119,11 @@ write.csv(cbind(D[,c("gene","beta_T","p_BH","beta_R","p_R","r_grade_T","r_grade_
 
 ## ---------- figure: AUC by QC metric across replication cohorts ----------
 library(tidyr)
-pl<-res%>%select(cohort,AUC_grade,AUC_idh,AUC_detect)%>%
+pl<-res%>%select(cohort,AUC_grade,AUC_idh,AUC_detect,AUC_precision)%>%
   pivot_longer(-cohort,names_to="metric",values_to="AUC")%>%
-  mutate(metric=recode(metric,AUC_grade="Grade anchor",AUC_idh="IDH anchor",AUC_detect="Detectability"))
+  mutate(metric=recode(metric,AUC_grade="Grade anchor",AUC_idh="IDH anchor",AUC_detect="Detectability",AUC_precision="Precision (SE of coefficient)"))
 p<-ggplot(pl,aes(cohort,AUC,fill=metric))+geom_col(position="dodge")+
-  geom_hline(yintercept=0.5,linetype=2,colour="grey50")+coord_cartesian(ylim=c(0.4,1))+
+  geom_hline(yintercept=0.5,linetype=2,colour="grey50")+coord_cartesian(ylim=c(0,1))+
   labs(x=NULL,y="AUC for predicting cross-cohort replication",fill="Positive-control metric",
        title="Biological positive controls predict cross-cohort replication")+
   theme_bw(base_size=12)+theme(legend.position="top")

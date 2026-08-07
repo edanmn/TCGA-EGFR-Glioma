@@ -1,0 +1,43 @@
+=== TCGA cohort sizes (survival-evaluable, primary, one per patient) ===
+  [OK  ] TCGA-LGG patients / deaths                           got=511/125  paper=511/125
+  [OK  ] TCGA-GBM patients / deaths                           got=282/227  paper=282/227
+  [OK  ] pooled patients / deaths                             got=793/352  paper=793/352
+
+=== Table S9 category counts ===
+  [OK  ] LGG IDH Mutant/WT/unknown                            got=414/94/3  paper=414/94/3
+  [OK  ] GBM IDH Mutant/WT/unknown                            got=21/244/17  paper=21/244/17
+  [OK  ] LGG subtype codel/non-codel/wt                       got=166/248/94  paper=166/248/94
+  [OK  ] GBM subtype non-codel/wt                             got=19/238  paper=19/238
+  [OK  ] LGG histologic grade available                       got=454  paper=454
+  [OK  ] GBM histologic grade RECORDED                        got=281  paper=281
+
+=== nested-model sample sizes (Table 1) ===
+  [OK  ] LGG unadjusted / +age n                              got=511  paper=511
+  [OK  ] LGG +age+grade n / events                            got=454/106  paper=454/106
+  [OK  ] LGG +age+grade+IDH n / events                        got=452/105  paper=452/105
+  [OK  ] LGG +age+subtype n / events                          got=508/123  paper=508/123
+  [OK  ] GBM +age+IDH n / events                              got=265/214  paper=265/214
+  [OK  ] pooled +age+grade+IDH n / events                     got=717/319  paper=717/319
+
+=== within-IDH-wildtype (Table 3) ===
+  [OK  ] IDH-wt n / deaths                                    got=338/253  paper=338/253
+  [OK  ] IDH-wt +grade n / events                             got=330/246  paper=330/246
+  [OK  ] IDH-wt GBM n / events                                got=244/203  paper=244/203
+
+=== positive-control sets (Table 2, Figure 1) ===
+  [OK  ] TCGA graded primary tumours (Table 2 n)              got=739  paper=739
+  [OK  ] TCGA per-grade II/III/IV                             got=216/241/282  paper=216/241/282
+
+=== CGGA-693 (Table 2, §5) ===
+  [OK  ] primary tumours with grade                           got=422  paper=422
+  [OK  ] per-grade II/III/IV                                  got=138/144/140  paper=138/144/140
+  [OK  ] OS-evaluable                                         got=404  paper=404
+  [OK  ] lower-grade (II/III) n / deaths                      got=271/99  paper=271/99
+  [OK  ] glioblastoma (IV) n / deaths                         got=133/110  paper=133/110
+
+=== EGFR copy number (§6.6) ===
+  [OK  ] IDH-wt with CN / amplified %                         got=167/55.1  paper=167/55.1
+  [OK  ] IDH-mutant with CN / amplified %                     got=222/2.3  paper=222/2.3
+  [OK  ] IDH-wt CN + survival (Cox n / events)                got=166/127  paper=166/127
+
+=== 28 checks: 28 passed, 0 FAILED ===
