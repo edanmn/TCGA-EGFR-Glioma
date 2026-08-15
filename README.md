@@ -46,12 +46,35 @@ adjusting for age and tumor grade, or is it just a proxy for grade?
 | `R/20_control_table.R` | Positive-control table by one method for all cohorts; ten-gene panel | `results/control_table.txt` (**Table 2**), `figures/positive_control_EGFR_grade.png` (**Figure 1**) |
 | `R/21_assertions.R` | **Verification:** rebuilds every cohort independently, asserts 28 reported counts | `results/assertions.txt` |
 | `R/22_stat_recompute.R` | **Verification:** refits every headline model independently, checks 14 statistics | `results/stat_recompute.txt` |
+| `R/23_adjusted_replication.R` | 2×2 decomposition of the circularity control (discovery set × replication criterion) | `results/adjusted_replication.csv` |
+| `R/24_cgga_composition.R` | Cohort composition vs measurement as explanations for CGGA's EGFR failure | `results/cgga_composition.csv` |
+| `R/25_controlled_shift.R` | Controlled experiment: confounding-structure shift and permutation, known doses | `results/controlled_shift.csv` |
+| `R/26_transport_anchor.R` | Transport-adjusted anchor; decomposes discordance into composition vs residual | `results/transport_anchor.csv`, `results/pergene_cache.rds` |
+| `R/27_effectsize_baseline.R` | The effect-size baseline missing from the glioma evaluation; EGFR variance decomposition | `results/effectsize_baseline.csv` |
+| `R/28_matched_null.R` | **Superseded** (replicate t-tests; see `R/33`). Retained for provenance | `results/matched_null.csv` |
+| `R/29_breast_verify.R` | Reproduces every §6.10 breast number in both directions | `results/breast_verify.csv` |
+| `R/30_multisetting_null.R` | Matched null × 5 settings × 6 quality metrics, with rate-matching control | `results/multisetting_null.csv` |
+| `R/31_corruption_modes.R` | Five measurement failure modes injected at known doses | `results/corruption_modes.csv` (**Table 6**) |
+| `R/32_paper_audit.R` | **Verification:** asserts every revision figure against its source output | `results/paper_audit.txt` |
+| `R/33_gene_level_inference.R` | Gene-level paired bootstrap (2,000-gene robustness run) | `results/gene_level_inference.csv` |
+| `R/34_null_full_universe.R` | Matched null on Table 4's gene universe | `results/null_full_universe.csv` (**Table 5**) |
+| `R/35_cluster_bootstrap.R` | Co-expression cluster bootstrap: are the gene-level intervals valid? | `results/cluster_bootstrap.csv` |
 | `R/_helpers.R` | Shared: SummarizedExperiment → tidy survival table | (sourced) |
 
-Scripts 21 and 22 share no code with the analysis pipeline; they exist to catch
+Scripts 21, 22 and 32 share no code with the analysis pipeline; they exist to catch
 silent data-coercion errors (wrong transform, missing values coerced to a valid
-level) that produce plausible-looking numbers. Both should pass cleanly:
-`28 passed, 0 failed` and `14 passed, 0 failed`.
+level) that produce plausible-looking numbers, and to catch a manuscript figure
+drifting from the code that produced it. All three should pass cleanly:
+`28 passed, 0 failed`, `14 passed, 0 failed`, and `177 passed, 0 failed`.
+`run_all.R` stops non-zero if any of them reports a failure.
+
+**Scripts 23–35 were added in revision.** They exist because the original
+genome-scale claim (Table 4) was benchmarked only against baselines that measure
+noise. `R/30`/`R/34` calibrate it against a same-population null, `R/27` supplies
+the effect-size baseline it lacked, `R/31` establishes what the gate detects under
+injected ground truth, and `R/33`/`R/35` correct the inference (replicate t-tests →
+gene bootstrap → co-expression cluster bootstrap). See `QA_REVIEW.md` for the full
+audit trail, including the errors found in these scripts themselves.
 
 ## Run it
 From this directory:

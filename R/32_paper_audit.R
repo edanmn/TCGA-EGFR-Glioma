@@ -152,6 +152,23 @@ chk("max basal AUC (paper 0.54)",   max(bv$auc_basal), 0.542, 0.002)
 chk("ER concordance r (paper 0.84)", bv$anchor_concordance_er[1], 0.839, 0.002)
 chk("reverse effect-size baseline (paper 0.57)", bv$auc_effsize[2], 0.574, 0.002)
 
+
+## ---------------- cluster bootstrap (R/35), reported in §6.9 ----------------
+say("\n=== §6.9: co-expression cluster bootstrap (results/cluster_bootstrap.csv) ===\n")
+CB <- read.csv("results/cluster_bootstrap.csv")
+chk("median interval inflation (paper 2.2x)", median(CB$inflation), 2.23, 0.05)
+chk("min inflation (paper 1.6x)", min(CB$inflation), 1.63, 0.05)
+chk("max inflation (paper 2.7x)", max(CB$inflation), 2.69, 0.05)
+chk("difference form: glioma pairs still conclusive (paper 3)",
+    sum(CB$clust_excludes0[CB$metric=="absd"]), 3, 0)
+chk("product form: glioma pairs still conclusive (paper 3)",
+    sum(CB$clust_excludes0[CB$metric=="prod"]), 3, 0)
+cb693 <- CB[CB$setting=="glioma: TCGA->CGGA-693", ]
+chk("CGGA-693 difference cluster CI lo (paper +0.076)", cb693$clust_lo[cb693$metric=="absd"], 0.076, 0.012)
+chk("CGGA-693 difference cluster CI hi (paper +0.200)", cb693$clust_hi[cb693$metric=="absd"], 0.200, 0.012)
+chk("CGGA-693 product cluster CI lo (paper -0.115)", cb693$clust_lo[cb693$metric=="prod"], -0.115, 0.012)
+chk("CGGA-693 product cluster CI hi (paper -0.033)", cb693$clust_hi[cb693$metric=="prod"], -0.033, 0.012)
+
 say("\n=== %d checks: %d passed, %d FAILED ===\n", PASS + FAIL, PASS, FAIL)
 close(out)
 cat(sprintf("\n%d passed, %d failed -> results/paper_audit.txt\n", PASS, FAIL))

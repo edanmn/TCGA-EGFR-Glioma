@@ -182,4 +182,15 @@
   [OK  ] ER concordance r (paper 0.84)                        got=   0.8394  paper=   0.8390
   [OK  ] reverse effect-size baseline (paper 0.57)            got=   0.5741  paper=   0.5740
 
-=== 168 checks: 168 passed, 0 FAILED ===
+=== §6.9: co-expression cluster bootstrap (results/cluster_bootstrap.csv) ===
+  [OK  ] median interval inflation (paper 2.2x)               got=   2.2271  paper=   2.2300
+  [OK  ] min inflation (paper 1.6x)                           got=   1.6293  paper=   1.6300
+  [OK  ] max inflation (paper 2.7x)                           got=   2.6878  paper=   2.6900
+  [OK  ] difference form: glioma pairs still conclusive (paper 3) got=   3.0000  paper=   3.0000
+  [OK  ] product form: glioma pairs still conclusive (paper 3) got=   3.0000  paper=   3.0000
+  [OK  ] CGGA-693 difference cluster CI lo (paper +0.076)     got=   0.0759  paper=   0.0760
+  [OK  ] CGGA-693 difference cluster CI hi (paper +0.200)     got=   0.1996  paper=   0.2000
+  [OK  ] CGGA-693 product cluster CI lo (paper -0.115)        got=  -0.1154  paper=  -0.1150
+  [OK  ] CGGA-693 product cluster CI hi (paper -0.033)        got=  -0.0331  paper=  -0.0330
+
+=== 177 checks: 177 passed, 0 FAILED ===

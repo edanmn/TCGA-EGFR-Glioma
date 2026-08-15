@@ -43,7 +43,8 @@ steps <- c(
   "R/30_multisetting_null.R",     # matched null x 5 settings x 6 metrics -> Table 5
   "R/31_corruption_modes.R",      # five failure modes, ground truth      -> Table 6
   "R/33_gene_level_inference.R",  # gene-level bootstrap, 2,000-gene robustness run
-  "R/34_null_full_universe.R"     # matched null on Table 4 universe      -> Table 5
+  "R/34_null_full_universe.R",    # matched null on Table 4 universe      -> Table 5
+  "R/35_cluster_bootstrap.R"      # co-expression-aware interval check
 )
 
 for (s in steps) {

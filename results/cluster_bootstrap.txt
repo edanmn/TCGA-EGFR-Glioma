@@ -1,0 +1,30 @@
+loading cohorts...
+
+=== glioma: TCGA->CGGA-693 ===
+  genes=8000 discovery n=368 arms n=367
+  5495 genes in 200 clusters (median size 26)
+  prod  diff=-0.075 | gene CI (-0.093,-0.058) w=0.035 | cluster CI (-0.115,-0.033) w=0.082 | inflation 2.38x | still excludes 0
+  absd  diff=+0.138 | gene CI (+0.100,+0.176) w=0.076 | cluster CI (+0.076,+0.200) w=0.124 | inflation 1.63x | still excludes 0
+
+=== glioma: TCGA->CGGA-325 ===
+  genes=8000 discovery n=513 arms n=222
+  6045 genes in 200 clusters (median size 28)
+  prod  diff=+0.058 | gene CI (+0.044,+0.071) w=0.027 | cluster CI (+0.029,+0.086) w=0.056 | inflation 2.10x | still excludes 0
+  absd  diff=+0.212 | gene CI (+0.187,+0.239) w=0.052 | cluster CI (+0.155,+0.266) w=0.111 | inflation 2.14x | still excludes 0
+
+=== glioma: TCGA->array-301 ===
+  genes=8000 discovery n=487 arms n=248
+  6196 genes in 200 clusters (median size 29)
+  prod  diff=+0.103 | gene CI (+0.089,+0.116) w=0.027 | cluster CI (+0.073,+0.135) w=0.063 | inflation 2.32x | still excludes 0
+  absd  diff=+0.227 | gene CI (+0.202,+0.251) w=0.049 | cluster CI (+0.159,+0.290) w=0.132 | inflation 2.69x | still excludes 0
+
+
+=== VERDICT ===
+  median interval inflation from respecting co-expression blocks: 2.23x
+  range: 1.63x to 2.69x
+  difference form: 3 of 3 glioma pairs still exclude zero under the cluster bootstrap
+  product form:    3 of 3 still exclude zero
+
+  An inflation factor near 1 means the naive gene bootstrap was adequate despite
+  co-expression. A large factor, or any conclusion crossing zero, means §6.9's
+  intervals are optimistic and the manuscript must report the cluster version.
