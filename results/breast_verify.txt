@@ -1,0 +1,24 @@
+TCGA-BRCA: n=622 events=67 | METABRIC: n=1688 events=996
+shared genes: 15579
+
+computing per-gene statistics (both cohorts)...
+
+=== Genome-wide agreement of expression-anchor correlations ===
+  cor of expression-ER correlations,    TCGA-BRCA vs METABRIC: r=0.839   [paper: 0.84]
+  cor of expression-basal correlations, TCGA-BRCA vs METABRIC: r=0.841
+
+=== Both directions, both anchors, with effect-size baseline ===
+  TCGA-BRCA -> METABRIC      n=  59  replic=0.254
+      ER anchor      0.598 (0.436-0.740)
+      basal anchor   0.474 (0.296-0.667)
+      |beta_disc|    0.530 (0.356-0.686)
+  METABRIC -> TCGA-BRCA      n=2568  replic=0.147
+      ER anchor      0.556 (0.524-0.588)
+      basal anchor   0.542 (0.510-0.576)
+      |beta_disc|    0.574 (0.541-0.606)
+
+=== Verification against the paper's section 6.9 ===
+  [OK  ] forward ER AUC                                 got=0.598  paper=0.6
+  [OK  ] reverse ER AUC                                 got=0.556  paper=0.56
+  [OK  ] max basal AUC                                  got=0.542  paper=0.54
+  [OK  ] ER concordance r                               got=0.839  paper=0.84

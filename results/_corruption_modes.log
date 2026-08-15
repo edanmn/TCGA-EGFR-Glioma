@@ -1,0 +1,114 @@
+Cohort: n=716 patients, 319 events, 2000 genes, 6 (grade,IDH) strata
+
+Design: 15 mode x dose conditions, 4 replicates, 20% of genes corrupted in half B
+
+  [1/60] permute dose=0.25 rep=1
+  [2/60] permute dose=0.25 rep=2
+  [3/60] permute dose=0.25 rep=3
+  [4/60] permute dose=0.25 rep=4
+  [5/60] permute dose=0.50 rep=1
+  [6/60] permute dose=0.50 rep=2
+  [7/60] permute dose=0.50 rep=3
+  [8/60] permute dose=0.50 rep=4
+  [9/60] permute dose=0.75 rep=1
+  [10/60] permute dose=0.75 rep=2
+  [11/60] permute dose=0.75 rep=3
+  [12/60] permute dose=0.75 rep=4
+  [13/60] noise dose=0.50 rep=1
+  [14/60] noise dose=0.50 rep=2
+  [15/60] noise dose=0.50 rep=3
+  [16/60] noise dose=0.50 rep=4
+  [17/60] noise dose=1.00 rep=1
+  [18/60] noise dose=1.00 rep=2
+  [19/60] noise dose=1.00 rep=3
+  [20/60] noise dose=1.00 rep=4
+  [21/60] noise dose=2.00 rep=1
+  [22/60] noise dose=2.00 rep=2
+  [23/60] noise dose=2.00 rep=3
+  [24/60] noise dose=2.00 rep=4
+  [25/60] compress dose=0.75 rep=1
+  [26/60] compress dose=0.75 rep=2
+  [27/60] compress dose=0.75 rep=3
+  [28/60] compress dose=0.75 rep=4
+  [29/60] compress dose=0.50 rep=1
+  [30/60] compress dose=0.50 rep=2
+  [31/60] compress dose=0.50 rep=3
+  [32/60] compress dose=0.50 rep=4
+  [33/60] compress dose=0.25 rep=1
+  [34/60] compress dose=0.25 rep=2
+  [35/60] compress dose=0.25 rep=3
+  [36/60] compress dose=0.25 rep=4
+  [37/60] floor dose=0.25 rep=1
+  [38/60] floor dose=0.25 rep=2
+  [39/60] floor dose=0.25 rep=3
+  [40/60] floor dose=0.25 rep=4
+  [41/60] floor dose=0.50 rep=1
+  [42/60] floor dose=0.50 rep=2
+  [43/60] floor dose=0.50 rep=3
+  [44/60] floor dose=0.50 rep=4
+  [45/60] floor dose=0.75 rep=1
+  [46/60] floor dose=0.75 rep=2
+  [47/60] floor dose=0.75 rep=3
+  [48/60] floor dose=0.75 rep=4
+  [49/60] contaminate dose=0.25 rep=1
+  [50/60] contaminate dose=0.25 rep=2
+  [51/60] contaminate dose=0.25 rep=3
+  [52/60] contaminate dose=0.25 rep=4
+  [53/60] contaminate dose=0.50 rep=1
+  [54/60] contaminate dose=0.50 rep=2
+  [55/60] contaminate dose=0.50 rep=3
+  [56/60] contaminate dose=0.50 rep=4
+  [57/60] contaminate dose=0.75 rep=1
+  [58/60] contaminate dose=0.75 rep=2
+  [59/60] contaminate dose=0.75 rep=3
+  [60/60] contaminate dose=0.75 rep=4
+=== Detectability by failure mode (ground truth = genes actually corrupted) ===
+
+mode            dose repl corrupt  repl clean      AUC detect (sd) var frac after
+compress        0.25       0.430       0.926        0.848 (NA)          0.046
+compress        0.50       0.799       0.947        0.730 (NA)          0.136
+compress        0.75       0.909       0.955        0.639 (NA)          0.236
+contaminate     0.25       0.886       0.934        0.543 (NA)          0.308
+contaminate     0.50       0.622       0.951        0.667 (NA)          0.284
+contaminate     0.75       0.488       0.939        0.734 (NA)          0.329
+floor           0.25       0.937       0.948        0.498 (NA)          0.341
+floor           0.50       0.904       0.938        0.528 (NA)          0.263
+floor           0.75       0.816       0.945        0.599 (NA)          0.184
+noise           0.50       0.948       0.960        0.567 (NA)          0.268
+noise           1.00       0.818       0.936        0.653 (NA)          0.172
+noise           2.00       0.544       0.934        0.779 (NA)          0.079
+permute         0.25       0.919       0.969        0.630 (NA)          0.197
+permute         0.50       0.675       0.945        0.728 (NA)          0.098
+permute         0.75       0.240       0.955        0.858 (NA)          0.035
+
+  'var frac after' = share of a corrupted gene's variance explained by the
+  (grade, IDH) strata after corruption; uncorrupted baseline = 0.339.
+
+=== Which mode reproduces EGFR's signature in CGGA? ===
+  Observed for EGFR: variance share 0.106 (TCGA) -> 0.024-0.045 (CGGA),
+  a ratio of 0.23-0.42, with WITHIN-stratum SD essentially unchanged.
+
+mode            dose  var ratio     AUC detect
+permute         0.50      0.283          0.728   <-- matches EGFR
+compress        0.50      0.393          0.730   <-- matches EGFR
+noise           2.00      0.231          0.779   <-- matches EGFR
+compress        0.25      0.138          0.848
+noise           1.00      0.521          0.653
+floor           0.75      0.529          0.599
+permute         0.75      0.101          0.858
+permute         0.25      0.580          0.630
+compress        0.75      0.702          0.639
+floor           0.50      0.797          0.528
+noise           0.50      0.803          0.567
+contaminate     0.50      0.844          0.667
+contaminate     0.25      0.939          0.543
+contaminate     0.75      0.961          0.734
+floor           0.25      0.977          0.498
+
+  Closest match: permute at dose 0.50 (variance ratio 0.283), detected with AUC 0.728.
+  This is the number that says whether the gate could have caught the EGFR
+  failure -- as opposed to catching permutation, which is not what EGFR shows.
+
+wrote figures/corruption_modes.png
+
+wrote results/corruption_modes.csv and .txt

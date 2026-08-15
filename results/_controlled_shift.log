@@ -1,0 +1,89 @@
+Controlled-experiment cohort: n=716 patients, 319 events
+Genes: 2000 (most variable, TCGA SD>0.5)
+Baseline grade-IDH coupling in the full cohort: r=-0.700
+
+Design: 8 conditions x 6 replicates
+  composition sweep: delta=0,0.1,0.2,0.3,0.4 at frac=0
+  corruption sweep:  frac=0.25,0.50,0.75 at delta=0
+
+  [1/48] delta=0.0 frac=0.00 rep=1
+  [2/48] delta=0.0 frac=0.00 rep=2
+  [3/48] delta=0.0 frac=0.00 rep=3
+  [4/48] delta=0.0 frac=0.00 rep=4
+  [5/48] delta=0.0 frac=0.00 rep=5
+  [6/48] delta=0.0 frac=0.00 rep=6
+  [7/48] delta=0.1 frac=0.00 rep=1
+  [8/48] delta=0.1 frac=0.00 rep=2
+  [9/48] delta=0.1 frac=0.00 rep=3
+  [10/48] delta=0.1 frac=0.00 rep=4
+  [11/48] delta=0.1 frac=0.00 rep=5
+  [12/48] delta=0.1 frac=0.00 rep=6
+  [13/48] delta=0.2 frac=0.00 rep=1
+  [14/48] delta=0.2 frac=0.00 rep=2
+  [15/48] delta=0.2 frac=0.00 rep=3
+  [16/48] delta=0.2 frac=0.00 rep=4
+  [17/48] delta=0.2 frac=0.00 rep=5
+  [18/48] delta=0.2 frac=0.00 rep=6
+  [19/48] delta=0.3 frac=0.00 rep=1
+  [20/48] delta=0.3 frac=0.00 rep=2
+  [21/48] delta=0.3 frac=0.00 rep=3
+  [22/48] delta=0.3 frac=0.00 rep=4
+  [23/48] delta=0.3 frac=0.00 rep=5
+  [24/48] delta=0.3 frac=0.00 rep=6
+  [25/48] delta=0.4 frac=0.00 rep=1
+  [26/48] delta=0.4 frac=0.00 rep=2
+  [27/48] delta=0.4 frac=0.00 rep=3
+  [28/48] delta=0.4 frac=0.00 rep=4
+  [29/48] delta=0.4 frac=0.00 rep=5
+  [30/48] delta=0.4 frac=0.00 rep=6
+  [31/48] delta=0.0 frac=0.25 rep=1
+  [32/48] delta=0.0 frac=0.25 rep=2
+  [33/48] delta=0.0 frac=0.25 rep=3
+  [34/48] delta=0.0 frac=0.25 rep=4
+  [35/48] delta=0.0 frac=0.25 rep=5
+  [36/48] delta=0.0 frac=0.25 rep=6
+  [37/48] delta=0.0 frac=0.50 rep=1
+  [38/48] delta=0.0 frac=0.50 rep=2
+  [39/48] delta=0.0 frac=0.50 rep=3
+  [40/48] delta=0.0 frac=0.50 rep=4
+  [41/48] delta=0.0 frac=0.50 rep=5
+  [42/48] delta=0.0 frac=0.50 rep=6
+  [43/48] delta=0.0 frac=0.75 rep=1
+  [44/48] delta=0.0 frac=0.75 rep=2
+  [45/48] delta=0.0 frac=0.75 rep=3
+  [46/48] delta=0.0 frac=0.75 rep=4
+  [47/48] delta=0.0 frac=0.75 rep=5
+  [48/48] delta=0.0 frac=0.75 rep=6
+=== FACTOR 1: confounding-structure shift, no measurement problem ===
+  delta |coupling A-B|   n prog   replic    AUC replication
+    0.0        0.045     1730    0.957      0.943 (sd 0.021)
+    0.1        0.124     1796    0.909      0.926 (sd 0.024)
+    0.2        0.302     1810    0.858      0.884 (sd 0.049)
+    0.3        0.498     1813    0.843      0.842 (sd 0.076)
+    0.4        0.796     1841    0.450      0.609 (sd 0.109)
+
+  delta=0 is the exchangeable-cohorts FLOOR: the AUC the anchor earns from
+  signal strength alone, with no artifact of any kind present.
+
+=== FACTOR 2: measurement corruption, no composition shift (delta=0) ===
+   frac     replic  AUC repl. corrupt/clean AUC detect corrupt
+   0.25      0.939      0.925  0.89/0.95          0.615
+   0.50      0.892      0.887  0.66/0.95          0.733
+   0.75      0.799      0.933  0.23/0.94          0.859
+
+  AUC-detect is scored against the genes we actually corrupted (ground truth).
+
+=== VERDICT ===
+  floor (exchangeable cohorts)      AUC = 0.943
+  max composition shift, no noise   AUC = 0.943  (+0.000 over floor)
+  max corruption, no shift          AUC = 0.933  (-0.010 over floor)
+  corrupted-gene detection          AUC = 0.859
+
+  If both factors raise the AUC above the floor, the gate is a detector of
+  anchor-relationship discordance from EITHER cause -- it cannot be described
+  as a measurement-fidelity test, and the observational AUCs in Table 4 must
+  be read against the floor rather than against 0.5.
+
+wrote figures/controlled_shift.png
+
+wrote results/controlled_shift.csv and .txt

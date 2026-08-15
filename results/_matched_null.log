@@ -1,0 +1,59 @@
+TCGA (graded, OS-evaluable): n=735, events=333
+CGGA-693 (graded, OS-evaluable): n=403, events=209
+Genes: 2000
+
+Matched replication-cohort size for BOTH arms: n=403
+Discovery = the 332 TCGA patients not in the null replication set.
+
+  rep 1/10
+  rep 2/10
+  rep 3/10
+  rep 4/10
+  rep 5/10
+  rep 6/10
+  rep 7/10
+  rep 8/10
+  rep 9/10
+  rep 10/10
+Warning messages:
+1: In coxph.fit(X, Y, istrat, offset, init, control, weights = weights,  :
+  Loglik converged before variable  1 ; coefficient may be infinite. 
+2: In coxph.fit(X, Y, istrat, offset, init, control, weights = weights,  :
+  Loglik converged before variable  1 ; coefficient may be infinite. 
+3: In coxph.fit(X, Y, istrat, offset, init, control, weights = weights,  :
+  Loglik converged before variable  1 ; coefficient may be infinite. 
+4: In coxph.fit(X, Y, istrat, offset, init, control, weights = weights,  :
+  Loglik converged before variable  1 ; coefficient may be infinite. 
+5: In coxph.fit(X, Y, istrat, offset, init, control, weights = weights,  :
+  Loglik converged before variable  1 ; coefficient may be infinite. 
+6: In coxph.fit(X, Y, istrat, offset, init, control, weights = weights,  :
+  Loglik converged before variable  1 ; coefficient may be infinite. 
+7: In coxph.fit(X, Y, istrat, offset, init, control, weights = weights,  :
+  Loglik converged before variable  1 ; coefficient may be infinite. 
+8: In coxph.fit(X, Y, istrat, offset, init, control, weights = weights,  :
+  Loglik converged before variable  1 ; coefficient may be infinite. 
+9: In coxph.fit(X, Y, istrat, offset, init, control, weights = weights,  :
+  Loglik converged before variable  1 ; coefficient may be infinite. 
+10: In coxph.fit(X, Y, istrat, offset, init, control, weights = weights,  :
+  Loglik converged before variable  1 ; coefficient may be infinite. 
+=== Matched-size comparison (10 replicates) ===
+
+replication cohort       n prog replication rate           AUC anchor      AUC |beta_disc|
+null (held-out TCGA)       1604      0.956 (0.017)        0.936 (0.027)        0.894 (0.020)
+real (CGGA-693)            1604      0.845 (0.014)        0.881 (0.006)        0.760 (0.023)
+
+  anchor AUC, real minus null: -0.055 (Welch t-test p=9.12e-05)
+
+=== INTERPRETATION ===
+  The anchor performs WORSE against the real cohort than against a
+  same-population null of identical size. Its apparent ability to predict
+  replication is therefore NOT evidence that it detects cross-cohort
+  artefacts: an AUC of this magnitude arises with no artefact present at all.
+  Table 4's AUCs must be reported against this null, not against 0.5.
+
+  Note the replication RATE does separate the arms (0.956 null vs 0.845 real):
+  the cohorts genuinely differ. It is the ANCHOR'S AUC that fails to register it.
+
+wrote figures/matched_null.png
+
+wrote results/matched_null.csv and .txt

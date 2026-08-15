@@ -1,0 +1,64 @@
+Genes: 8000 (four-cohort intersection, TCGA SD>0.5)
+
+=== (A) Every predictor of replication, on identical footing ===
+  anchor      = r_grade(TCGA) * r_grade(replication)   [the paper's score]
+  |beta_T|    = discovery-cohort effect size            [THE MISSING BASELINE]
+  |z_T|       = discovery-cohort effect / its SE        [discovery signal-to-noise]
+  precision   = -SE of replication coefficient          [paper's baseline]
+  |r_grade_T| = discovery anchor strength ALONE, no replication-cohort data
+
+  CGGA-693   unadjusted  n=6512 replic=0.622
+      anchor      0.808 (0.797-0.818)
+      |beta_T|    0.783 (0.772-0.795)   <-- missing baseline
+      |z_T|       0.740 (0.728-0.752)
+      |r_grade_T| 0.615 (0.601-0.628)   (discovery only, no replication-cohort data)
+  CGGA-693   adjusted    n=6512 replic=0.203
+      anchor      0.691 (0.674-0.708)
+      |beta_T|    0.651 (0.633-0.669)   <-- missing baseline
+      |z_T|       0.595 (0.577-0.612)
+      |r_grade_T| 0.559 (0.541-0.576)   (discovery only, no replication-cohort data)
+  CGGA-325   unadjusted  n=6512 replic=0.701
+      anchor      0.935 (0.929-0.941)
+      |beta_T|    0.770 (0.758-0.781)   <-- missing baseline
+      |z_T|       0.729 (0.717-0.740)
+      |r_grade_T| 0.657 (0.643-0.672)   (discovery only, no replication-cohort data)
+  CGGA-325   adjusted    n=6512 replic=0.491
+      anchor      0.786 (0.775-0.796)
+      |beta_T|    0.707 (0.694-0.718)   <-- missing baseline
+      |z_T|       0.669 (0.655-0.681)
+      |r_grade_T| 0.608 (0.593-0.622)   (discovery only, no replication-cohort data)
+  array-301  unadjusted  n=6512 replic=0.684
+      anchor      0.934 (0.928-0.939)
+      |beta_T|    0.738 (0.726-0.751)   <-- missing baseline
+      |z_T|       0.728 (0.714-0.740)
+      |r_grade_T| 0.704 (0.691-0.717)   (discovery only, no replication-cohort data)
+  array-301  adjusted    n=6512 replic=0.253
+      anchor      0.744 (0.730-0.756)
+      |beta_T|    0.645 (0.629-0.661)   <-- missing baseline
+      |z_T|       0.649 (0.634-0.663)
+      |r_grade_T| 0.665 (0.651-0.681)   (discovery only, no replication-cohort data)
+
+=== (B) Incremental value of the anchor over discovery effect size ===
+  Logistic models for replication; nested LR test and AUC.
+
+  CGGA-693   unadjusted   AUC(eff)=0.783  AUC(eff+anchor)=0.817  gain=+0.035  LR p=2e-113
+  CGGA-693   adjusted     AUC(eff)=0.651  AUC(eff+anchor)=0.690  gain=+0.039  LR p=1.2e-37
+  CGGA-325   unadjusted   AUC(eff)=0.770  AUC(eff+anchor)=0.938  gain=+0.168  LR p=0
+  CGGA-325   adjusted     AUC(eff)=0.707  AUC(eff+anchor)=0.786  gain=+0.079  LR p=7.3e-194
+  array-301  unadjusted   AUC(eff)=0.738  AUC(eff+anchor)=0.937  gain=+0.199  LR p=0
+  array-301  adjusted     AUC(eff)=0.645  AUC(eff+anchor)=0.751  gain=+0.105  LR p=7e-145
+
+=== (C) EGFR: reconciling the matched conditional slope with the large
+        transport residual. If CGGA's WITHIN-STRATUM variance is inflated,
+        the same slope produces a much smaller marginal correlation.
+
+  cohort     EGFR between-stratum SD      EGFR within-stratum SD       between/total var
+  TCGA       0.6485                       1.8817                       0.106
+  CGGA-693   0.3997                       1.8352                       0.045
+  CGGA-325   0.3261                       1.8398                       0.030
+  CGGA-301   0.2897                       1.8448                       0.024
+
+  'between/total var' is the share of EGFR's variance explained by the six
+  (grade, IDH) strata. A collapse of this share in CGGA relative to TCGA means
+  the covariate structure explains far less of EGFR's variation there -- the
+  signature of added measurement noise, not of a different patient mix.

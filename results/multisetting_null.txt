@@ -1,0 +1,73 @@
+loading cohorts...
+
+=== glioma: TCGA->CGGA-693 ===
+  discovery cohort n=735 (events 333) | replication cohort n=403 (events 209)
+  matched replication size for both arms: n=367; discovery = 368
+
+=== glioma: TCGA->CGGA-325 ===
+  discovery cohort n=735 (events 333) | replication cohort n=222 (events 138)
+  matched replication size for both arms: n=222; discovery = 513
+
+=== glioma: TCGA->array-301 ===
+  discovery cohort n=735 (events 333) | replication cohort n=248 (events 157)
+  matched replication size for both arms: n=248; discovery = 487
+
+=== breast: BRCA->METABRIC ===
+  discovery cohort n=622 (events 67) | replication cohort n=1688 (events 996)
+  matched replication size for both arms: n=311; discovery = 311
+
+=== breast: METABRIC->BRCA ===
+  discovery cohort n=1688 (events 996) | replication cohort n=622 (events 67)
+  matched replication size for both arms: n=622; discovery = 1066
+
+
+=== NULL vs REAL, five settings x six metrics (8 replicates each) ===
+  positive difference = the metric discriminates BETTER against a real cohort
+  than against a same-population null, i.e. it registers genuine discordance.
+
+setting                    metric               null     real real-null         p
+glioma: TCGA->CGGA-693     anchor_product      0.931    0.874    -0.058  0.000791
+glioma: TCGA->CGGA-693     anchor_absdiff      0.606    0.654    +0.048    0.0529
+glioma: TCGA->CGGA-693     level_concord       0.486    0.588    +0.102    0.0339
+glioma: TCGA->CGGA-693     range_concord       0.539    0.553    +0.013     0.533
+glioma: TCGA->CGGA-693     coexpr_preserv      0.898    0.789    -0.109  8.16e-06
+glioma: TCGA->CGGA-693     effsize             0.885    0.773    -0.113  1.69e-06
+
+glioma: TCGA->CGGA-325     anchor_product      0.904    0.942    +0.037    0.0102
+glioma: TCGA->CGGA-325     anchor_absdiff      0.599    0.788    +0.189   0.00015
+glioma: TCGA->CGGA-325     level_concord       0.535    0.570    +0.035     0.227
+glioma: TCGA->CGGA-325     range_concord       0.519    0.707    +0.188  8.73e-07
+glioma: TCGA->CGGA-325     coexpr_preserv      0.842    0.874    +0.032     0.175
+glioma: TCGA->CGGA-325     effsize             0.900    0.733    -0.167   2.6e-09
+
+glioma: TCGA->array-301    anchor_product      0.888    0.935    +0.047  5.91e-05
+glioma: TCGA->array-301    anchor_absdiff      0.615    0.769    +0.154  7.53e-08
+glioma: TCGA->array-301    level_concord       0.492    0.429    -0.063    0.0677
+glioma: TCGA->array-301    range_concord       0.524    0.676    +0.152  3.93e-05
+glioma: TCGA->array-301    coexpr_preserv      0.809    0.928    +0.119  0.000518
+glioma: TCGA->array-301    effsize             0.890    0.731    -0.160  6.66e-10
+
+breast: BRCA->METABRIC     anchor_product      0.739    0.714    -0.025     0.911
+breast: BRCA->METABRIC     anchor_absdiff      0.738    0.543    -0.195     0.401
+breast: BRCA->METABRIC     level_concord       0.484    0.619    +0.135     0.437
+breast: BRCA->METABRIC     range_concord       0.498    0.515    +0.018     0.933
+breast: BRCA->METABRIC     coexpr_preserv      0.648    0.477    -0.170     0.271
+breast: BRCA->METABRIC     effsize             0.565    0.504    -0.061     0.828
+
+breast: METABRIC->BRCA     anchor_product      0.717    0.582    -0.135   0.00017
+breast: METABRIC->BRCA     anchor_absdiff      0.537    0.423    -0.114  0.000831
+breast: METABRIC->BRCA     level_concord       0.456    0.418    -0.039    0.0765
+breast: METABRIC->BRCA     range_concord       0.561    0.403    -0.158  8.64e-07
+breast: METABRIC->BRCA     coexpr_preserv      0.688    0.505    -0.183  2.54e-05
+breast: METABRIC->BRCA     effsize             0.635    0.566    -0.069  0.000554
+
+=== VERDICT ===
+  metric x setting combinations tested: 30
+  combinations where the null scores AT LEAST AS HIGH as the real cohort: 16 (53%)
+  anchor_product specifically: null >= real in 3 of 5 settings
+
+  A high proportion across metrics AND tumour types earns the general claim.
+  A result confined to the anchor in glioma requires the claim to be narrowed
+  to exactly that, which is how it will be written if this is what we see.
+
+wrote figures/multisetting_null.png

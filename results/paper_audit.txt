@@ -1,0 +1,185 @@
+=== Table 5: matched-null calibration (from results/null_full_universe.csv) ===
+  [OK  ] TCGA->CGGA-693 prod null                             got=   0.8998  paper=   0.9000
+  [OK  ] TCGA->CGGA-693 prod real                             got=   0.8244  paper=   0.8240
+  [OK  ] TCGA->CGGA-693 prod diff                             got=  -0.0754  paper=  -0.0750
+  [OK  ] TCGA->CGGA-693 prod CI lo                            got=  -0.0927  paper=  -0.0930
+  [OK  ] TCGA->CGGA-693 prod CI hi                            got=  -0.0580  paper=  -0.0580
+  [OK  ] TCGA->CGGA-693 prod n genes                          got=5495.0000  paper=5495.0000
+  [OK  ] TCGA->CGGA-693 absd null                             got=   0.5302  paper=   0.5300
+  [OK  ] TCGA->CGGA-693 absd real                             got=   0.6687  paper=   0.6690
+  [OK  ] TCGA->CGGA-693 absd diff                             got=   0.1384  paper=   0.1380
+  [OK  ] TCGA->CGGA-693 absd CI lo                            got=   0.1020  paper=   0.1020
+  [OK  ] TCGA->CGGA-693 absd CI hi                            got=   0.1760  paper=   0.1760
+  [OK  ] TCGA->CGGA-693 absd n genes                          got=5495.0000  paper=5495.0000
+  [OK  ] TCGA->CGGA-693 eff null                              got=   0.8200  paper=   0.8200
+  [OK  ] TCGA->CGGA-693 eff real                              got=   0.7850  paper=   0.7850
+  [OK  ] TCGA->CGGA-693 eff diff                              got=  -0.0349  paper=  -0.0350
+  [OK  ] TCGA->CGGA-693 eff CI lo                             got=  -0.0561  paper=  -0.0560
+  [OK  ] TCGA->CGGA-693 eff CI hi                             got=  -0.0127  paper=  -0.0130
+  [OK  ] TCGA->CGGA-693 eff n genes                           got=5495.0000  paper=5495.0000
+  [OK  ] TCGA->CGGA-325 prod null                             got=   0.8932  paper=   0.8930
+  [OK  ] TCGA->CGGA-325 prod real                             got=   0.9367  paper=   0.9370
+  [OK  ] TCGA->CGGA-325 prod diff                             got=   0.0435  paper=   0.0440
+  [OK  ] TCGA->CGGA-325 prod CI lo                            got=   0.0319  paper=   0.0320
+  [OK  ] TCGA->CGGA-325 prod CI hi                            got=   0.0554  paper=   0.0550
+  [OK  ] TCGA->CGGA-325 prod n genes                          got=6037.0000  paper=6037.0000
+  [OK  ] TCGA->CGGA-325 absd null                             got=   0.6111  paper=   0.6110
+  [OK  ] TCGA->CGGA-325 absd real                             got=   0.7958  paper=   0.7960
+  [OK  ] TCGA->CGGA-325 absd diff                             got=   0.1847  paper=   0.1850
+  [OK  ] TCGA->CGGA-325 absd CI lo                            got=   0.1595  paper=   0.1590
+  [OK  ] TCGA->CGGA-325 absd CI hi                            got=   0.2103  paper=   0.2100
+  [OK  ] TCGA->CGGA-325 absd n genes                          got=6037.0000  paper=6037.0000
+  [OK  ] TCGA->CGGA-325 eff null                              got=   0.8439  paper=   0.8440
+  [OK  ] TCGA->CGGA-325 eff real                              got=   0.7670  paper=   0.7670
+  [OK  ] TCGA->CGGA-325 eff diff                              got=  -0.0769  paper=  -0.0770
+  [OK  ] TCGA->CGGA-325 eff CI lo                             got=  -0.0934  paper=  -0.0930
+  [OK  ] TCGA->CGGA-325 eff CI hi                             got=  -0.0603  paper=  -0.0600
+  [OK  ] TCGA->CGGA-325 eff n genes                           got=6037.0000  paper=6037.0000
+  [OK  ] TCGA->array-301 prod null                            got=   0.7925  paper=   0.7930
+  [OK  ] TCGA->array-301 prod real                            got=   0.9245  paper=   0.9240
+  [OK  ] TCGA->array-301 prod diff                            got=   0.1319  paper=   0.1320
+  [OK  ] TCGA->array-301 prod CI lo                           got=   0.1199  paper=   0.1200
+  [OK  ] TCGA->array-301 prod CI hi                           got=   0.1444  paper=   0.1440
+  [OK  ] TCGA->array-301 prod n genes                         got=6381.0000  paper=6381.0000
+  [OK  ] TCGA->array-301 absd null                            got=   0.6126  paper=   0.6130
+  [OK  ] TCGA->array-301 absd real                            got=   0.7602  paper=   0.7600
+  [OK  ] TCGA->array-301 absd diff                            got=   0.1476  paper=   0.1480
+  [OK  ] TCGA->array-301 absd CI lo                           got=   0.1291  paper=   0.1290
+  [OK  ] TCGA->array-301 absd CI hi                           got=   0.1671  paper=   0.1670
+  [OK  ] TCGA->array-301 absd n genes                         got=6381.0000  paper=6381.0000
+  [OK  ] TCGA->array-301 eff null                             got=   0.7685  paper=   0.7680
+  [OK  ] TCGA->array-301 eff real                             got=   0.7327  paper=   0.7330
+  [OK  ] TCGA->array-301 eff diff                             got=  -0.0357  paper=  -0.0360
+  [OK  ] TCGA->array-301 eff CI lo                            got=  -0.0513  paper=  -0.0510
+  [OK  ] TCGA->array-301 eff CI hi                            got=  -0.0195  paper=  -0.0200
+  [OK  ] TCGA->array-301 eff n genes                          got=6381.0000  paper=6381.0000
+  [OK  ] METABRIC->BRCA prod null                             got=   0.7164  paper=   0.7160
+  [OK  ] METABRIC->BRCA prod real                             got=   0.5664  paper=   0.5660
+  [OK  ] METABRIC->BRCA prod diff                             got=  -0.1500  paper=  -0.1500
+  [OK  ] METABRIC->BRCA prod CI lo                            got=  -0.2070  paper=  -0.2070
+  [OK  ] METABRIC->BRCA prod CI hi                            got=  -0.0937  paper=  -0.0940
+  [OK  ] METABRIC->BRCA prod n genes                          got=1021.0000  paper=1021.0000
+  [OK  ] METABRIC->BRCA absd null                             got=   0.5445  paper=   0.5440
+  [OK  ] METABRIC->BRCA absd real                             got=   0.4872  paper=   0.4870
+  [OK  ] METABRIC->BRCA absd diff                             got=  -0.0573  paper=  -0.0570
+  [OK  ] METABRIC->BRCA absd CI lo                            got=  -0.1181  paper=  -0.1180
+  [OK  ] METABRIC->BRCA absd CI hi                            got=   0.0039  paper=   0.0040
+  [OK  ] METABRIC->BRCA absd n genes                          got=1021.0000  paper=1021.0000
+  [OK  ] METABRIC->BRCA eff null                              got=   0.6336  paper=   0.6340
+  [OK  ] METABRIC->BRCA eff real                              got=   0.5655  paper=   0.5660
+  [OK  ] METABRIC->BRCA eff diff                              got=  -0.0681  paper=  -0.0680
+  [OK  ] METABRIC->BRCA eff CI lo                             got=  -0.1254  paper=  -0.1250
+  [OK  ] METABRIC->BRCA eff CI hi                             got=  -0.0114  paper=  -0.0110
+  [OK  ] METABRIC->BRCA eff n genes                           got=1021.0000  paper=1021.0000
+
+  derived claims:
+  [OK  ] difference form: glioma pairs with CI excluding 0 (paper: 3 of 3) got=   3.0000  paper=   3.0000
+  [OK  ] product form: glioma pairs with CI excluding 0 (paper: 2 of 3) got=   2.0000  paper=   2.0000
+  [OK  ] product form inverted in CGGA-693 (diff<0)           got=   1.0000  paper=   1.0000
+  [OK  ] effect-size control negative in all evaluable (paper: 4) got=   4.0000  paper=   4.0000
+  [OK  ] product null AUC, glioma min (paper 0.79)            got=   0.7925  paper=   0.7930
+  [OK  ] product null AUC, glioma max (paper 0.90)            got=   0.8998  paper=   0.9000
+  [OK  ] difference null AUC, glioma min (paper 0.53)         got=   0.5302  paper=   0.5300
+  [OK  ] difference null AUC, glioma max (paper 0.61)         got=   0.6126  paper=   0.6130
+  [OK  ] BRCA->METABRIC prognostic genes at 8,000 universe (paper: none) got=   0.0000  paper=   0.0000
+
+  robustness check vs the 2,000-gene run (R/33):
+  [OK  ] 2,000-gene run: glioma difference-form CIs excluding 0 (paper: 2 of 3) got=   2.0000  paper=   2.0000
+  [OK  ] 2,000-gene CGGA-693 difference diff (paper +0.051)   got=   0.0513  paper=   0.0510
+  [OK  ] 2,000-gene CGGA-693 difference CI lo (paper -0.019)  got=  -0.0193  paper=  -0.0190
+  [OK  ] 2,000-gene BRCA->METABRIC gene count (paper 26)      got=  26.0000  paper=  26.0000
+
+=== Table 6: corruption modes (from results/corruption_modes.csv) ===
+  [OK  ] compress dose=0.25 AUC                               got=   0.8477  paper=   0.8480
+  [OK  ] compress dose=0.25 repl corrupt                      got=   0.4299  paper=   0.4300
+  [OK  ] compress dose=0.25 repl clean                        got=   0.9261  paper=   0.9300
+  [OK  ] compress dose=0.25 var share                         got=   0.0460  paper=   0.0460
+  [OK  ] compress dose=0.50 AUC                               got=   0.7298  paper=   0.7300
+  [OK  ] compress dose=0.50 repl corrupt                      got=   0.7991  paper=   0.8000
+  [OK  ] compress dose=0.50 repl clean                        got=   0.9467  paper=   0.9500
+  [OK  ] compress dose=0.50 var share                         got=   0.1362  paper=   0.1360
+  [OK  ] compress dose=0.75 AUC                               got=   0.6388  paper=   0.6390
+  [OK  ] compress dose=0.75 repl corrupt                      got=   0.9087  paper=   0.9100
+  [OK  ] compress dose=0.75 repl clean                        got=   0.9550  paper=   0.9600
+  [OK  ] compress dose=0.75 var share                         got=   0.2363  paper=   0.2360
+  [OK  ] permute dose=0.25 AUC                                got=   0.6300  paper=   0.6300
+  [OK  ] permute dose=0.25 repl corrupt                       got=   0.9188  paper=   0.9200
+  [OK  ] permute dose=0.25 repl clean                         got=   0.9686  paper=   0.9700
+  [OK  ] permute dose=0.25 var share                          got=   0.1972  paper=   0.1970
+  [OK  ] permute dose=0.50 AUC                                got=   0.7275  paper=   0.7280
+  [OK  ] permute dose=0.50 repl corrupt                       got=   0.6747  paper=   0.6800
+  [OK  ] permute dose=0.50 repl clean                         got=   0.9451  paper=   0.9500
+  [OK  ] permute dose=0.50 var share                          got=   0.0979  paper=   0.0980
+  [OK  ] permute dose=0.75 AUC                                got=   0.8577  paper=   0.8580
+  [OK  ] permute dose=0.75 repl corrupt                       got=   0.2405  paper=   0.2400
+  [OK  ] permute dose=0.75 repl clean                         got=   0.9553  paper=   0.9600
+  [OK  ] permute dose=0.75 var share                          got=   0.0347  paper=   0.0350
+  [OK  ] noise dose=0.50 AUC                                  got=   0.5665  paper=   0.5670
+  [OK  ] noise dose=0.50 repl corrupt                         got=   0.9482  paper=   0.9500
+  [OK  ] noise dose=0.50 repl clean                           got=   0.9596  paper=   0.9600
+  [OK  ] noise dose=0.50 var share                            got=   0.2678  paper=   0.2680
+  [OK  ] noise dose=2.00 AUC                                  got=   0.7793  paper=   0.7790
+  [OK  ] noise dose=2.00 repl corrupt                         got=   0.5441  paper=   0.5400
+  [OK  ] noise dose=2.00 repl clean                           got=   0.9343  paper=   0.9300
+  [OK  ] noise dose=2.00 var share                            got=   0.0787  paper=   0.0790
+  [OK  ] contaminate dose=0.25 AUC                            got=   0.5434  paper=   0.5430
+  [OK  ] contaminate dose=0.25 repl corrupt                   got=   0.8861  paper=   0.8900
+  [OK  ] contaminate dose=0.25 repl clean                     got=   0.9337  paper=   0.9300
+  [OK  ] contaminate dose=0.25 var share                      got=   0.3083  paper=   0.3080
+  [OK  ] contaminate dose=0.75 AUC                            got=   0.7338  paper=   0.7340
+  [OK  ] contaminate dose=0.75 repl corrupt                   got=   0.4877  paper=   0.4900
+  [OK  ] contaminate dose=0.75 repl clean                     got=   0.9386  paper=   0.9400
+  [OK  ] contaminate dose=0.75 var share                      got=   0.3285  paper=   0.3290
+  [OK  ] floor dose=0.25 AUC                                  got=   0.4978  paper=   0.4980
+  [OK  ] floor dose=0.25 repl corrupt                         got=   0.9368  paper=   0.9400
+  [OK  ] floor dose=0.25 repl clean                           got=   0.9480  paper=   0.9500
+  [OK  ] floor dose=0.25 var share                            got=   0.3415  paper=   0.3410
+  [OK  ] floor dose=0.75 AUC                                  got=   0.5992  paper=   0.5990
+  [OK  ] floor dose=0.75 repl corrupt                         got=   0.8163  paper=   0.8200
+  [OK  ] floor dose=0.75 repl clean                           got=   0.9449  paper=   0.9500
+  [OK  ] floor dose=0.75 var share                            got=   0.1835  paper=   0.1840
+  [OK  ] uncorrupted variance-share baseline (paper: 0.339)   got=   0.3388  paper=   0.3390
+  [OK  ] compress lambda=0.5 variance RATIO (paper: 0.40)     got=   0.4019  paper=   0.4010
+  [OK  ] flooring max AUC across doses (paper: <=0.60)        got=   0.5992  paper=   0.5990
+
+=== §6.4: composition and variance decomposition ===
+  [OK  ] TCGA grade-IV IDH-mutant fraction                    got=   0.0755  paper=   0.0800
+  [OK  ] CGGA-693 grade-IV IDH-mutant fraction                got=   0.1805  paper=   0.1800
+  [OK  ] CGGA-325 grade-IV IDH-mutant fraction                got=   0.1294  paper=   0.1300
+  [OK  ] CGGA-301 grade-IV IDH-mutant fraction                got=   0.1296  paper=   0.1300
+  [OK  ] CGGA-693 within-IDH-wt r(EGFR,grade)                 got=   0.1627  paper=   0.1630
+  [OK  ] CGGA-325 within-IDH-wt r(EGFR,grade)                 got=   0.0646  paper=   0.0650
+  [OK  ] CGGA-301 within-IDH-wt r(EGFR,grade)                 got=   0.0786  paper=   0.0790
+  [OK  ] TCGA EGFR variance share                             got=   0.1062  paper=   0.1060
+  [OK  ] TCGA EGFR within-stratum SD                          got=   1.8817  paper=   1.8800
+  [OK  ] CGGA-693 EGFR variance share                         got=   0.0453  paper=   0.0450
+  [OK  ] CGGA-693 EGFR within-stratum SD                      got=   1.8352  paper=   1.8400
+  [OK  ] CGGA-325 EGFR variance share                         got=   0.0305  paper=   0.0300
+  [OK  ] CGGA-325 EGFR within-stratum SD                      got=   1.8398  paper=   1.8400
+  [OK  ] CGGA-301 EGFR variance share                         got=   0.0241  paper=   0.0240
+  [OK  ] CGGA-301 EGFR within-stratum SD                      got=   1.8448  paper=   1.8400
+  [OK  ] composition share of discordance, min (paper 8%)     got=   0.0762  paper=   0.0800
+  [OK  ] composition share of discordance, max (paper 25%)    got=   0.2462  paper=   0.2500
+
+=== §6.9: effect-size baseline (results/effectsize_baseline.csv) ===
+  [OK  ] effect-size baseline, unadjusted min (paper 0.74)    got=   0.7384  paper=   0.7380
+  [OK  ] effect-size baseline, unadjusted max (paper 0.78)    got=   0.7826  paper=   0.7830
+  [OK  ] anchor increment over effect size, min (paper +0.035) got=   0.0348  paper=   0.0350
+  [OK  ] anchor increment over effect size, max (paper +0.199) got=   0.1988  paper=   0.1990
+
+=== §6.9: composition sweep (results/controlled_shift.csv) ===
+  [OK  ] delta=0 AUC (paper 0.943)                            got=   0.9431  paper=   0.9430
+  [OK  ] delta=0.4 AUC (paper 0.609)                          got=   0.6091  paper=   0.6090
+  [OK  ] delta=0 replication (paper 0.957)                    got=   0.9569  paper=   0.9570
+  [OK  ] delta=0.4 replication (paper 0.450)                  got=   0.4499  paper=   0.4500
+  [OK  ] delta=0 coupling diff (paper 0.045)                  got=   0.0451  paper=   0.0450
+  [OK  ] delta=0.4 coupling diff (paper 0.796)                got=   0.7961  paper=   0.7960
+
+=== §6.10: breast (results/breast_verify.csv) ===
+  [OK  ] forward ER AUC (paper 0.60)                          got=   0.5985  paper=   0.5980
+  [OK  ] reverse ER AUC (paper 0.56)                          got=   0.5559  paper=   0.5560
+  [OK  ] max basal AUC (paper 0.54)                           got=   0.5422  paper=   0.5420
+  [OK  ] ER concordance r (paper 0.84)                        got=   0.8394  paper=   0.8390
+  [OK  ] reverse effect-size baseline (paper 0.57)            got=   0.5741  paper=   0.5740
+
+=== 168 checks: 168 passed, 0 FAILED ===

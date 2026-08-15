@@ -1,0 +1,39 @@
+=== (A) IDH-mutant fraction by WHO grade (primary tumours with grade + IDH) ===
+    If CGGA grade IV is diluted with IDH-mutant (secondary) GBM, the grade-IV
+    column is where it must show.
+
+  cohort     grade II         grade III        grade IV        
+  TCGA       91% (n=214)      72% (n=241)      8% (n=265)      
+  CGGA-693   76% (n=126)      71% (n=124)      18% (n=133)     
+  CGGA-325   89% (n=93)       44% (n=50)       13% (n=85)      
+  CGGA-301   71% (n=112)      48% (n=42)       13% (n=108)     
+
+=== (B) Spearman r(EGFR, grade) WITHIN IDH strata ===
+    Composition prediction: within a single IDH stratum the mixing explanation
+    is exhausted, so CGGA should recover TCGA's positive EGFR-grade slope.
+    Measurement-artifact prediction: CGGA stays flat/negative even here.
+
+  cohort     IDH-wildtype             IDH-mutant              
+  TCGA       r=+0.056 n=331 (ref)     r=+0.000 n=389 (ref)    
+  CGGA-693   r=+0.163 n=175 p=2.5e-01 r=-0.094 n=208 p=2.8e-01
+  CGGA-325   r=+0.065 n=112 p=9.4e-01 r=-0.145 n=116 p=1.7e-01
+  CGGA-301   r=+0.079 n=148 p=8.2e-01 r=-0.247 n=114 p=1.9e-02
+
+=== (C) mean EGFR by IDH status, grade IV only (the secondary-GBM stratum) ===
+    Expected biology: EGFR higher in IDH-wildtype. A reversal here cannot be
+    produced by grade/IDH mixing, since grade is held fixed.
+
+  TCGA       IDH-wt   7.55 (n=245)   IDH-mut   6.27 (n= 20)   diff +1.28  Wilcoxon p=0.019
+  CGGA-693   IDH-wt   3.91 (n=109)   IDH-mut   4.06 (n= 24)   diff -0.16  Wilcoxon p=0.25
+  CGGA-325   IDH-wt   5.22 (n= 74)   IDH-mut   4.37 (n= 11)   diff +0.86  Wilcoxon p=0.62
+  CGGA-301   IDH-wt   0.23 (n= 94)   IDH-mut  -0.31 (n= 14)   diff +0.53  Wilcoxon p=0.8
+
+=== (D) EGFR vs the genome-wide attenuation background (CGGA-693 vs TCGA) ===
+    Uniform attenuation across all genes would favour a cohort-level effect;
+    EGFR sitting in the tail of the residual distribution favours a
+    gene-specific measurement problem.
+
+  genes analysed: 14678
+  overall attenuation slope (CGGA ~ TCGA): 0.416  (1.0 = no attenuation), R^2=0.632
+  correlation of the two correlation vectors: r=0.795
+  EGFR: r_TCGA=+0.179  r_CGGA=-0.033  residual z=-1.28  (10.0% of genes lie below it)

@@ -37,9 +37,10 @@ All analyses were performed in R version 4.6.0 (2026-04-24) on macOS Tahoe 26.5.
 \node[box, right=7mm of b] (c) {Expression\\ $\log_2(\cdot{+}1)$,\\ per-SD ($z$)};
 \node[box, right=7mm of c] (d) {Cox models\\ unadj.\ $\to$ +age\\ $\to$ +grade\\ $\to$ +IDH/subtype};
 \node[box, right=7mm of d] (e) {Robustness\\ VST norm.;\\ CGGA validation\\ + positive controls};
-\draw[arr] (a)--(b); \draw[arr] (b)--(c); \draw[arr] (c)--(d); \draw[arr] (d)--(e);
+\node[box, right=7mm of e] (f) {Calibration\\ matched null;\\ injected ground\\ truth};
+\draw[arr] (a)--(b); \draw[arr] (b)--(c); \draw[arr] (c)--(d); \draw[arr] (d)--(e); \draw[arr] (e)--(f);
 \end{tikzpicture}}\\[8pt]
-{\textbf{Figure S1.} Analysis pipeline. Standardized expression enters nested Cox models with progressive confounder adjustment, followed by VST-normalization sensitivity and a positive-control–gated CGGA external-validation attempt. Acquisition is cached separately from analysis.}
+{\textbf{Figure S1.} Analysis pipeline. Standardized expression enters nested Cox models with progressive confounder adjustment, followed by VST-normalization sensitivity and a positive-control–gated CGGA external-validation attempt, and finally the calibration stage added in revision: a matched same-population null and a controlled experiment with injected corruption at known doses (§6.9). Acquisition is cached separately from analysis.}
 \end{figure*}
 
 \begin{center}\includegraphics[width=\linewidth]{figures/KM_EGFR_TCGALGG.png}\end{center}

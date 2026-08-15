@@ -32,7 +32,18 @@ steps <- c(
   "R/17_breast_generalization.R", # scope test in breast
   "R/18_circularity_control.R",   # circularity control                -> Table S7
   "R/19_overlap_and_baselines.R", # CGGA overlap, de-duplication, precision baseline
-  "R/20_control_table.R"          # positive-control table             -> Table 2, Figure 1
+  "R/20_control_table.R",         # positive-control table             -> Table 2, Figure 1
+  "R/23_adjusted_replication.R",  # 2x2 circularity decomposition (slow, ~4 min)
+  "R/24_cgga_composition.R",      # composition vs measurement for the CGGA failure
+  "R/25_controlled_shift.R",      # composition sweep + permutation ground truth
+  "R/26_transport_anchor.R",      # transport-adjusted anchor; writes pergene_cache.rds
+  "R/27_effectsize_baseline.R",   # the missing effect-size baseline    -> §6.9
+  "R/28_matched_null.R",          # matched same-population null        -> §6.9
+  "R/29_breast_verify.R",         # reproduces every §6.10 number
+  "R/30_multisetting_null.R",     # matched null x 5 settings x 6 metrics -> Table 5
+  "R/31_corruption_modes.R",      # five failure modes, ground truth      -> Table 6
+  "R/33_gene_level_inference.R",  # gene-level bootstrap, 2,000-gene robustness run
+  "R/34_null_full_universe.R"     # matched null on Table 4 universe      -> Table 5
 )
 
 for (s in steps) {
@@ -56,5 +67,6 @@ verify <- function(script, results_file, label) {
 }
 verify("R/21_assertions.R",     "results/assertions.txt",     "Cohort assertions")
 verify("R/22_stat_recompute.R", "results/stat_recompute.txt", "Statistical recomputation")
+verify("R/32_paper_audit.R",    "results/paper_audit.txt",    "Revision-figure audit")
 
 cat("\nPipeline complete, verification passed. See results/ and figures/.\n")

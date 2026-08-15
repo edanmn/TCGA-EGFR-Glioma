@@ -1,0 +1,36 @@
+computed and cached per-gene statistics for 8000 genes
+Genes: 8000 (four-cohort intersection, TCGA SD>0.5)
+
+=== Does the transport prediction actually work? ===
+  correlation between PREDICTED and ACTUAL anchor r across 8000 genes:
+    CGGA-693    cor(pred, actual) = 0.868    vs cor(TCGA r, actual) = 0.882  [6 strata, 100% of R's patients]
+    CGGA-325    cor(pred, actual) = 0.815    vs cor(TCGA r, actual) = 0.812  [6 strata, 100% of R's patients]
+    array-301   cor(pred, actual) = 0.820    vs cor(TCGA r, actual) = 0.829  [6 strata, 100% of R's patients]
+
+  If cor(pred, actual) > cor(TCGA r, actual), transporting TCGA's conditional
+  structure to R's composition predicts R's anchor correlations better than
+  TCGA's raw correlations do -- i.e. composition shift is real and estimable.
+
+=== Decomposition of cross-cohort anchor discordance ===
+cohort      |r_R - r_T|    composition     residual %% composition
+CGGA-693         0.1951         0.0448       0.1733            23%
+CGGA-325         0.2025         0.0154       0.2012             8%
+array-301        0.1720         0.0423       0.1746            25%
+
+=== EGFR specifically ===
+  CGGA-693   r_TCGA=+0.220  r_predicted=+0.240  r_actual=+0.035  residual=-0.205 (64% of genes have a smaller residual)
+  CGGA-325   r_TCGA=+0.220  r_predicted=+0.234  r_actual=+0.027  residual=-0.207 (63% of genes have a smaller residual)
+  array-301  r_TCGA=+0.220  r_predicted=+0.278  r_actual=-0.007  residual=-0.285 (81% of genes have a smaller residual)
+
+=== Predicting replication: three scores ===
+cohort     criterion        n   replic  raw r_T*r_R            transport residual     expected shift (no R expr)
+CGGA-693   unadjusted    6512    0.622  0.808 (0.798-0.817)      0.671 (0.656-0.683)      0.527 (0.514-0.541)
+CGGA-693   adjusted      6512    0.203  0.691 (0.676-0.708)      0.607 (0.591-0.621)      0.612 (0.595-0.629)
+CGGA-325   unadjusted    6512    0.701  0.935 (0.929-0.941)      0.793 (0.782-0.805)      0.377 (0.362-0.392)
+CGGA-325   adjusted      6512    0.491  0.786 (0.775-0.796)      0.667 (0.652-0.680)      0.348 (0.336-0.362)
+array-301  unadjusted    6512    0.684  0.934 (0.928-0.939)      0.743 (0.730-0.758)      0.538 (0.522-0.553)
+array-301  adjusted      6512    0.253  0.744 (0.729-0.756)      0.610 (0.596-0.626)      0.527 (0.512-0.543)
+
+  'expected shift' uses TCGA expression and the replication cohort's CLINICAL
+  TABLE ONLY -- no replication-cohort expression. Any AUC above chance there is
+  a prospective capability the raw score does not have.
