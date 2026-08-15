@@ -1,0 +1,35 @@
+loading cohorts...
+
+=== TCGA->CGGA-693 ===  genes=8000 discovery=368 arms=367
+
+=== TCGA->CGGA-325 ===  genes=8000 discovery=513 arms=222
+
+=== TCGA->array-301 ===  genes=8000 discovery=487 arms=248
+
+
+=== Sign stability across the analyst-choice grid ===
+  manuscript reports: difference form POSITIVE in all 3 glioma pairs;
+  product form positive in CGGA-325 and array-301, NEGATIVE (inverted) in CGGA-693.
+
+setting            metric anchor    cells    sign +    sign - matches manuscript
+TCGA->CGGA-693     prod   grade         9         0         9   100%
+TCGA->CGGA-693     prod   idh           9         0         9   100%
+TCGA->CGGA-693     absd   grade         9         9         0   100%
+TCGA->CGGA-693     absd   idh           9         6         3    67%
+TCGA->CGGA-325     prod   grade         9         9         0   100%
+TCGA->CGGA-325     prod   idh           9         0         9     0%
+TCGA->CGGA-325     absd   grade         9         9         0   100%
+TCGA->CGGA-325     absd   idh           9         9         0   100%
+TCGA->array-301    prod   grade         9         9         0   100%
+TCGA->array-301    prod   idh           9         9         0   100%
+TCGA->array-301    absd   grade         9         9         0   100%
+TCGA->array-301    absd   idh           9         6         3    67%
+
+  overall: 93 of 108 grid cells agree with the manuscript's reported sign (86%)
+
+  by anchor: grade 100% agree, IDH 72% agree
+
+  A high agreement rate means the conclusions are not an artifact of our
+  particular thresholds. Cells that disagree are reported, not dropped.
+
+wrote results/threshold_sensitivity.csv and .txt

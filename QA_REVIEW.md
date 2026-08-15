@@ -1,3 +1,67 @@
+# Skeptical peer review — round 4 (20 passes)
+
+**Scope.** Rounds 1–3 are clean on re-run, so these 20 passes went after the largest
+untested surface: whether the conclusions survive the analyst choices made arbitrarily,
+plus the supplementary document (never machine-audited) and the validity of the
+revision's own intervals. Verification totals now **362 checks**: 28 assertions,
+14 recomputations, 183 revision-figure audits, 137 supplementary-table audits.
+
+## CRITICAL
+
+### C9. The conclusions are anchor-dependent, and only one anchor was calibrated
+`R/36` varies FDR ∈ {0.01, 0.05, 0.10} × replication p ∈ {0.01, 0.05, 0.10} × anchor ∈
+{grade, IDH} × metric, across the three glioma settings: 108 cells.
+
+- **Thresholds: fully robust.** All **54 of 54** grade-anchor cells reproduce the reported
+  sign. The conclusions are not an artifact of our cutoffs.
+- **Anchor: not robust.** Only **39 of 54** IDH-anchor cells agree, and CGGA-325's product
+  form inverts in **all 9** (0% agreement).
+
+§6.9's calibration used the grade anchor exclusively, so Table 4's IDH column is reported
+**uncalibrated**. Added to §6.9 and as limitation fourteen. **Confidence.** High.
+
+### C10. The gene bootstrap was anticonservative *(round-4 carryover, fixed)*
+Genes are co-expressed; resampling them independently treats correlated observations as
+independent. `R/35` re-runs as a cluster bootstrap over 200 co-expression clusters:
+intervals widen by a median **2.2×** (range 1.6–2.7×). Every conclusion survives. Reported
+in §6.9 and limitation twelve rather than silently substituted.
+
+## MAJOR
+
+- **M12. The supplement had never been machine-checked.** Tables S1–S8 carry ~60 hand-
+  transcribed numbers with no audit (R/21 covers only S9; R/22 only the main tables).
+  `R/37_supp_audit.R` added, gated in `run_all.R`: **137/137 pass.** No errors found — but
+  the exposure was real for four review rounds.
+- **M13. Split-to-split variability is not in the intervals.** Two independent splits gave
+  array-301 difference-form estimates of +0.148 and +0.227. Limitation twelve now says so.
+- **M14. README was stale for 13 scripts** and is the repo's entry point. Rewritten with the
+  full pipeline, all four verification suites and their expected totals.
+
+## MODERATE
+- **N13. Duplicate result files for the same quantity.** `pathway_screen.csv` (per-unit) vs
+  `pathway_screen_std.csv` (per-SD, the one Table S2 uses); `cgga_positive_controls.csv` vs
+  `panel_correlations.csv`. The manuscript uses the correct file each time, but a reader
+  opening the wrong one gets different numbers. `R/37` now prints both discrepancies
+  explicitly. Recommend deleting the superseded files before release. *Not applied.*
+- **N14.** Audit-script bug found and fixed during this round: the pathway-screen lookup
+  matched three cohorts and returned NA. Caught because the check failed loudly.
+
+## Passes returning clean
+Determinism (R/33 reproduces **bit-identically**); rounding uniformly 3 d.p. across all six
+main tables; provenance strings intact (GDC 45.0, CGGA 20200506, R 4.6.0, Zenodo DOI); every
+§6.9 figure traces to a source result file; no dangling § or table refs; all 29 references
+cited; balanced math delimiters; 9 supplementary tables and 5 supplementary figures all
+defined and cited; paper–supplement numeric agreement on shared quantities.
+
+## Confidence after round 4
+**High on arithmetic and internal consistency; moderate on the central claim, now with a
+sharper boundary.** The threshold grid materially raises confidence — 54/54 is a strong
+robustness result that no prior round had established. The anchor sensitivity lowers it in a
+specific, stated way: the calibration is a grade-anchor result. Residual risk remains
+concentrated in generalization, not correctness.
+
+---
+
 # Skeptical peer review — EGFR/glioma positive-control paper (round 3)
 
 **Round 3 scope.** Round 2's ten passes are now clean, so repeating them would be theatre.

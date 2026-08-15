@@ -1,0 +1,160 @@
+=== Table S1: unadjusted KM median split (km_logrank_summary.csv) ===
+  [OK  ] TCGA-LGG n_low                                     got=         256  paper=         256
+  [OK  ] TCGA-LGG n_high                                    got=         255  paper=         255
+  [OK  ] TCGA-LGG events                                    got=         125  paper=         125
+  [OK  ] TCGA-LGG median low                                got=        2988  paper=        2988
+  [OK  ] TCGA-LGG median high                               got=        2282  paper=        2282
+  [OK  ] TCGA-LGG logrank p                                 got=      0.0404  paper=        0.04
+  [OK  ] TCGA-GBM n_low                                     got=         141  paper=         141
+  [OK  ] TCGA-GBM n_high                                    got=         141  paper=         141
+  [OK  ] TCGA-GBM events                                    got=         227  paper=         227
+  [OK  ] TCGA-GBM median low                                got=         399  paper=         399
+  [OK  ] TCGA-GBM median high                               got=         448  paper=         448
+  [OK  ] TCGA-GBM logrank p                                 got=        0.99  paper=        0.99
+  [OK  ] pooled n_low/high                                  got=         397  paper=         397
+  [OK  ] pooled events                                      got=         352  paper=         352
+  [OK  ] pooled median low                                  got=        1491  paper=        1491
+  [OK  ] pooled median high                                 got=         883  paper=         883
+
+=== Table S2: pathway screen (pathway_screen_std.csv, per-SD) ===
+  [OK  ] RB1 HR (age)                                       got=        1.64  paper=        1.64
+  [OK  ] RB1 CI low                                         got=        1.34  paper=        1.34
+  [OK  ] RB1 CI high                                        got=           2  paper=           2
+  [OK  ] RB1 p_BH (age)                                     got=    1.59e-05  paper=    1.59e-05
+  [OK  ] RB1 p_BH (age+IDH)                                 got=      0.0311  paper=       0.031
+  [OK  ] IDH1 HR (age)                                      got=        1.46  paper=        1.46
+  [OK  ] IDH1 CI low                                        got=         1.2  paper=         1.2
+  [OK  ] IDH1 CI high                                       got=        1.78  paper=        1.78
+  [OK  ] IDH1 p_BH (age)                                    got=    0.000867  paper=    0.000867
+  [OK  ] IDH1 p_BH (age+IDH)                                got=      0.0327  paper=       0.033
+  [OK  ] EGFR HR (age)                                      got=        1.37  paper=        1.37
+  [OK  ] EGFR CI low                                        got=        1.14  paper=        1.14
+  [OK  ] EGFR CI high                                       got=        1.66  paper=        1.66
+  [OK  ] EGFR p_BH (age)                                    got=     0.00354  paper=     0.00354
+  [OK  ] EGFR p_BH (age+IDH)                                got=       0.178  paper=       0.178
+  [OK  ] TP53 HR (age)                                      got=        1.39  paper=        1.39
+  [OK  ] TP53 CI low                                        got=        1.13  paper=        1.13
+  [OK  ] TP53 CI high                                       got=        1.71  paper=        1.71
+  [OK  ] TP53 p_BH (age)                                    got=      0.0052  paper=      0.0052
+  [OK  ] TP53 p_BH (age+IDH)                                got=      0.0262  paper=       0.026
+  [OK  ] PIK3R1 HR (age)                                    got=       0.777  paper=       0.777
+  [OK  ] PIK3R1 CI low                                      got=       0.649  paper=       0.649
+  [OK  ] PIK3R1 CI high                                     got=       0.931  paper=       0.931
+  [OK  ] PIK3R1 p_BH (age)                                  got=      0.0125  paper=      0.0125
+  [OK  ] PIK3R1 p_BH (age+IDH)                              got=       0.876  paper=       0.876
+  [OK  ] PTEN HR (age)                                      got=         0.8  paper=         0.8
+  [OK  ] PTEN CI low                                        got=       0.666  paper=       0.666
+  [OK  ] PTEN CI high                                       got=       0.961  paper=       0.961
+  [OK  ] PTEN p_BH (age)                                    got=      0.0283  paper=      0.0283
+  [OK  ] PTEN p_BH (age+IDH)                                got=       0.506  paper=       0.506
+  [OK  ] CDKN2A HR (age)                                    got=       0.834  paper=       0.834
+  [OK  ] CDKN2A CI low                                      got=       0.691  paper=       0.691
+  [OK  ] CDKN2A CI high                                     got=        1.01  paper=        1.01
+  [OK  ] CDKN2A p_BH (age)                                  got=      0.0872  paper=      0.0872
+  [OK  ] CDKN2A p_BH (age+IDH)                              got=      0.0456  paper=       0.046
+  [OK  ] PIK3CA HR (age)                                    got=        1.13  paper=        1.13
+  [OK  ] PIK3CA CI low                                      got=        0.95  paper=        0.95
+  [OK  ] PIK3CA CI high                                     got=        1.34  paper=        1.34
+  [OK  ] PIK3CA p_BH (age)                                  got=       0.212  paper=       0.212
+  [OK  ] PIK3CA p_BH (age+IDH)                              got=      0.0456  paper=       0.046
+  [OK  ] PDGFRA HR (age)                                    got=       0.893  paper=       0.893
+  [OK  ] PDGFRA CI low                                      got=       0.752  paper=       0.752
+  [OK  ] PDGFRA CI high                                     got=        1.06  paper=        1.06
+  [OK  ] PDGFRA p_BH (age)                                  got=        0.22  paper=        0.22
+  [OK  ] PDGFRA p_BH (age+IDH)                              got=       0.594  paper=       0.594
+  [OK  ] NF1 HR (age)                                       got=       0.895  paper=       0.895
+  [OK  ] NF1 CI low                                         got=        0.75  paper=        0.75
+  [OK  ] NF1 CI high                                        got=        1.07  paper=        1.07
+  [OK  ] NF1 p_BH (age)                                     got=       0.222  paper=       0.222
+  [OK  ] NF1 p_BH (age+IDH)                                 got=      0.0848  paper=       0.085
+
+=== Table S3: VST normalization (vst_sensitivity.csv) ===
+  [OK  ] TCGA-LGG unadjusted HR                             got=         1.5  paper=         1.5
+  [OK  ] TCGA-LGG unadjusted C-index                        got=       0.577  paper=       0.577
+  [OK  ] TCGA-LGG age \+ grade HR                           got=        1.26  paper=        1.26
+  [OK  ] TCGA-LGG age \+ grade C-index                      got=       0.784  paper=       0.784
+  [OK  ] TCGA-LGG IDH HR                                    got=        1.11  paper=        1.11
+  [OK  ] TCGA-LGG IDH C-index                               got=       0.829  paper=       0.829
+  [OK  ] TCGA-GBM unadjusted HR                             got=       0.945  paper=       0.945
+  [OK  ] TCGA-GBM unadjusted C-index                        got=       0.524  paper=       0.524
+  [OK  ] TCGA-GBM IDH HR                                    got=       0.843  paper=       0.843
+  [OK  ] TCGA-GBM IDH C-index                               got=       0.641  paper=       0.641
+
+=== Table S4: panel correlations (panel_correlations.csv) ===
+  [OK  ] EGFR r TCGA                                        got=     0.17941  paper=       0.179
+  [OK  ] EGFR r CGGA                                        got=   -0.033466  paper=      -0.033
+  [OK  ] IDH1 r TCGA                                        got=     0.34758  paper=       0.348
+  [OK  ] IDH1 r CGGA                                        got=      0.1525  paper=       0.152
+  [OK  ] TP53 r TCGA                                        got=     0.09889  paper=       0.099
+  [OK  ] TP53 r CGGA                                        got=     0.11325  paper=       0.113
+  [OK  ] CDKN2A r TCGA                                      got=    -0.13143  paper=      -0.131
+  [OK  ] CDKN2A r CGGA                                      got=   -0.076037  paper=      -0.076
+  [OK  ] NF1 r TCGA                                         got=    -0.28514  paper=      -0.285
+  [OK  ] NF1 r CGGA                                         got=    -0.18268  paper=      -0.183
+  [OK  ] PTEN r TCGA                                        got=     -0.3573  paper=      -0.357
+  [OK  ] PTEN r CGGA                                        got=   -0.071331  paper=      -0.071
+  [OK  ] PDGFRA r TCGA                                      got=    -0.30431  paper=      -0.304
+  [OK  ] PDGFRA r CGGA                                      got=   -0.095512  paper=      -0.096
+  [OK  ] PIK3R1 r TCGA                                      got=    -0.48052  paper=      -0.481
+  [OK  ] PIK3R1 r CGGA                                      got=    -0.19469  paper=      -0.195
+  [OK  ] PIK3CA r TCGA                                      got=   -0.071868  paper=      -0.072
+  [OK  ] PIK3CA r CGGA                                      got=   -0.057196  paper=      -0.057
+  [OK  ] RB1 r TCGA                                         got=   -0.057163  paper=      -0.057
+  [OK  ] RB1 r CGGA                                         got=   -0.022574  paper=      -0.023
+
+=== Table S5: recount3 reprocessing (recount3_validation.csv) ===
+  [OK  ] TCGA-LGG unadjusted HR                             got=        1.54  paper=        1.54
+  [OK  ] TCGA-LGG unadjusted n                              got=         509  paper=         509
+  [OK  ] TCGA-LGG unadjusted ev                             got=         125  paper=         125
+  [OK  ] TCGA-LGG grade$ HR                                 got=        1.27  paper=        1.27
+  [OK  ] TCGA-LGG grade$ n                                  got=         452  paper=         452
+  [OK  ] TCGA-LGG grade$ ev                                 got=         106  paper=         106
+  [OK  ] TCGA-LGG IDH HR                                    got=        1.11  paper=        1.11
+  [OK  ] TCGA-LGG IDH n                                     got=         450  paper=         450
+  [OK  ] TCGA-LGG IDH ev                                    got=         105  paper=         105
+  [OK  ] TCGA-GBM unadjusted HR                             got=       0.906  paper=       0.906
+  [OK  ] TCGA-GBM unadjusted n                              got=         154  paper=         154
+  [OK  ] TCGA-GBM unadjusted ev                             got=         122  paper=         122
+  [OK  ] TCGA-GBM age$ HR                                   got=       0.853  paper=       0.853
+  [OK  ] TCGA-GBM age$ n                                    got=         154  paper=         154
+  [OK  ] TCGA-GBM age$ ev                                   got=         122  paper=         122
+  [OK  ] TCGA-GBM IDH HR                                    got=       0.813  paper=       0.813
+  [OK  ] TCGA-GBM IDH n                                     got=         150  paper=         150
+  [OK  ] TCGA-GBM IDH ev                                    got=         120  paper=         120
+
+=== Table S6: positive-control-gated screen (systematic_screen.csv) ===
+  [OK  ] QC-concordant genes                                got=         429  paper=         429
+  [OK  ] QC-discordant genes                                got=          37  paper=          37
+  [OK  ] QC-concordant replication %                        got=      92.774  paper=        92.8
+  [OK  ] QC-discordant replication %                        got=      24.324  paper=        24.3
+  [OK  ] sign flips, all QC-discordant                      got=           2  paper=           2
+
+=== Table S7: circularity control (circularity_control.csv) ===
+  [OK  ] unadjusted n                                       got=        6616  paper=        6616
+  [OK  ] unadjusted replication rate                        got=       0.632  paper=        0.63
+  [OK  ] unadjusted AUC                                     got=       0.819  paper=        0.82
+  [OK  ] subtype_adjusted n                                 got=         183  paper=         183
+  [OK  ] subtype_adjusted replication rate                  got=        0.23  paper=        0.23
+  [OK  ] subtype_adjusted AUC                               got=       0.648  paper=       0.648
+  [OK  ] low_grade_corr n                                   got=         935  paper=         935
+  [OK  ] low_grade_corr replication rate                    got=       0.509  paper=        0.51
+  [OK  ] low_grade_corr AUC                                 got=       0.752  paper=       0.752
+  [OK  ] high_grade_corr n                                  got=        5681  paper=        5681
+  [OK  ] high_grade_corr replication rate                   got=       0.653  paper=        0.65
+  [OK  ] high_grade_corr AUC                                got=       0.843  paper=       0.843
+
+=== Table S8: naive CGGA validation (cgga_validation.csv) ===
+  [OK  ] CGGA unadjusted HR                                 got=        1.17  paper=        1.17
+  [OK  ] CGGA unadjusted C-index                            got=        0.52  paper=        0.52
+  [OK  ] CGGA age \+ gra HR                                 got=        1.19  paper=        1.19
+  [OK  ] CGGA age \+ gra C-index                            got=       0.624  paper=       0.624
+  [OK  ] CGGA IDH HR                                        got=        1.44  paper=        1.44
+  [OK  ] CGGA IDH C-index                                   got=       0.737  paper=       0.737
+
+=== Superseded result files that disagree with the manuscript ===
+  (not failures -- the manuscript uses the correct file -- but they should be
+   removed or renamed before release, since a reader may open the wrong one)
+  pathway_screen.csv        RB1 HR=2.10 (per unit) vs Table S2's 1.64 (per SD)
+  cgga_positive_controls.csv EGFR r=0.183 vs Table S4's 0.179
+
+=== 137 checks: 137 passed, 0 FAILED ===

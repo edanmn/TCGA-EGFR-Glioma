@@ -193,4 +193,12 @@
   [OK  ] CGGA-693 product cluster CI lo (paper -0.115)        got=  -0.1154  paper=  -0.1150
   [OK  ] CGGA-693 product cluster CI hi (paper -0.033)        got=  -0.0331  paper=  -0.0330
 
-=== 177 checks: 177 passed, 0 FAILED ===
+=== §6.9: analyst-choice grid (results/threshold_sensitivity.csv) ===
+  [OK  ] grid cells evaluated (paper 108)                     got= 108.0000  paper= 108.0000
+  [OK  ] cells agreeing with reported sign (paper 93)         got=  93.0000  paper=  93.0000
+  [OK  ] grade-anchor cells agreeing (paper 54 of 54)         got=  54.0000  paper=  54.0000
+  [OK  ] grade-anchor cells total (paper 54)                  got=  54.0000  paper=  54.0000
+  [OK  ] IDH-anchor cells agreeing (paper 39 of 54)           got=  39.0000  paper=  39.0000
+  [OK  ] CGGA-325 product/IDH cells agreeing (paper 0 of 9)   got=   0.0000  paper=   0.0000
+
+=== 183 checks: 183 passed, 0 FAILED ===

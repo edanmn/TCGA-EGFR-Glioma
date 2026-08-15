@@ -169,6 +169,20 @@ chk("CGGA-693 difference cluster CI hi (paper +0.200)", cb693$clust_hi[cb693$met
 chk("CGGA-693 product cluster CI lo (paper -0.115)", cb693$clust_lo[cb693$metric=="prod"], -0.115, 0.012)
 chk("CGGA-693 product cluster CI hi (paper -0.033)", cb693$clust_hi[cb693$metric=="prod"], -0.033, 0.012)
 
+## ---------------- threshold / anchor sensitivity (R/36), reported in §6.9 ----------------
+say("\n=== §6.9: analyst-choice grid (results/threshold_sensitivity.csv) ===\n")
+TS <- read.csv("results/threshold_sensitivity.csv")
+TS <- TS[is.finite(TS$diff), ]
+exp_sign <- function(set, met) if (met=="prod" && grepl("693", set)) -1 else 1
+TS$agree <- mapply(function(s,m,d) sign(d)==exp_sign(s,m), TS$setting, TS$metric, TS$diff)
+chk("grid cells evaluated (paper 108)", nrow(TS), 108, 0)
+chk("cells agreeing with reported sign (paper 93)", sum(TS$agree), 93, 0)
+chk("grade-anchor cells agreeing (paper 54 of 54)", sum(TS$agree[TS$anchor=="grade"]), 54, 0)
+chk("grade-anchor cells total (paper 54)", sum(TS$anchor=="grade"), 54, 0)
+chk("IDH-anchor cells agreeing (paper 39 of 54)", sum(TS$agree[TS$anchor=="idh"]), 39, 0)
+chk("CGGA-325 product/IDH cells agreeing (paper 0 of 9)",
+    sum(TS$agree[TS$anchor=="idh" & TS$metric=="prod" & grepl("325", TS$setting)]), 0, 0)
+
 say("\n=== %d checks: %d passed, %d FAILED ===\n", PASS + FAIL, PASS, FAIL)
 close(out)
 cat(sprintf("\n%d passed, %d failed -> results/paper_audit.txt\n", PASS, FAIL))

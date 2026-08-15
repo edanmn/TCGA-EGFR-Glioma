@@ -44,7 +44,8 @@ steps <- c(
   "R/31_corruption_modes.R",      # five failure modes, ground truth      -> Table 6
   "R/33_gene_level_inference.R",  # gene-level bootstrap, 2,000-gene robustness run
   "R/34_null_full_universe.R",    # matched null on Table 4 universe      -> Table 5
-  "R/35_cluster_bootstrap.R"      # co-expression-aware interval check
+  "R/35_cluster_bootstrap.R",     # co-expression-aware interval check
+  "R/36_threshold_sensitivity.R"  # FDR x replication-p x anchor grid
 )
 
 for (s in steps) {
@@ -69,5 +70,6 @@ verify <- function(script, results_file, label) {
 verify("R/21_assertions.R",     "results/assertions.txt",     "Cohort assertions")
 verify("R/22_stat_recompute.R", "results/stat_recompute.txt", "Statistical recomputation")
 verify("R/32_paper_audit.R",    "results/paper_audit.txt",    "Revision-figure audit")
+verify("R/37_supp_audit.R",     "results/supp_audit.txt",     "Supplementary-table audit")
 
 cat("\nPipeline complete, verification passed. See results/ and figures/.\n")
