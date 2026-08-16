@@ -183,6 +183,30 @@ chk("IDH-anchor cells agreeing (paper 39 of 54)", sum(TS$agree[TS$anchor=="idh"]
 chk("CGGA-325 product/IDH cells agreeing (paper 0 of 9)",
     sum(TS$agree[TS$anchor=="idh" & TS$metric=="prod" & grepl("325", TS$setting)]), 0, 0)
 
+## ---------------- split-variance combination (R/38), reported in §6.9 ----------------
+say("\n=== §6.9: split + gene variance combination (results/split_variance.csv) ===\n")
+SV <- read.csv("results/split_variance.csv")
+gs <- function(set, met, col) SV[[col]][SV$setting == set & SV$metric == met]
+SVP <- list(list("TCGA->CGGA-693","prod",-0.097,-0.183,-0.011), list("TCGA->CGGA-693","absd",+0.063,-0.036,+0.162),
+            list("TCGA->CGGA-325","prod",+0.077,-0.015,+0.169), list("TCGA->CGGA-325","absd",+0.198,+0.091,+0.306),
+            list("TCGA->array-301","prod",+0.068,-0.019,+0.155), list("TCGA->array-301","absd",+0.170,-0.008,+0.348))
+for (r in SVP) {
+  lab <- sprintf("%s %s combined", sub("TCGA->","",r[[1]]), r[[2]])
+  chk(paste(lab,"est"), gs(r[[1]],r[[2]],"est"), r[[3]], 0.002)
+  chk(paste(lab,"lo"),  gs(r[[1]],r[[2]],"lo"),  r[[4]], 0.003)
+  chk(paste(lab,"hi"),  gs(r[[1]],r[[2]],"hi"),  r[[5]], 0.003)
+}
+sh <- SV$sd_between^2 / SV$sd_total^2
+chk("between-split share of variance, min (paper 77%)", min(sh), 0.765, 0.01)
+chk("between-split share of variance, max (paper 84%)", max(sh), 0.844, 0.01)
+chk("interval inflation min (paper 3.1x)", min(SV$inflation_vs_within), 3.06, 0.06)
+chk("interval inflation max (paper 8.2x)", max(SV$inflation_vs_within), 8.18, 0.06)
+ab <- SV[SV$metric=="absd", ]
+chk("difference form: glioma pairs excluding 0 after combining (paper 1 of 3)", sum(ab$excludes0), 1, 0)
+chk("difference form: all point estimates positive (paper 3 of 3)", sum(ab$est > 0), 3, 0)
+chk("split-level difference-form estimate range, min (paper +0.030)", min(ab$est_min), 0.030, 0.004)
+chk("split-level difference-form estimate range, max (paper +0.283)", max(ab$est_max), 0.283, 0.004)
+
 say("\n=== %d checks: %d passed, %d FAILED ===\n", PASS + FAIL, PASS, FAIL)
 close(out)
 cat(sprintf("\n%d passed, %d failed -> results/paper_audit.txt\n", PASS, FAIL))

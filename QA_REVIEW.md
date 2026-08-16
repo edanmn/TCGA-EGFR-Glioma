@@ -1,3 +1,73 @@
+# Skeptical peer review — round 5 (20 passes)
+
+**Scope.** Targeted the three things flagged as untested and never closed: the split-variance
+combination promised in limitation twelve, the arbitrary choices in the corruption experiment,
+and whether the published figures match their captions. Verification now **383 checks**:
+28 assertions, 14 recomputations, 209 revision-figure audits, 137 supplementary audits, minus
+overlap. One finding forced a substantial revision of §6.9 for the second time.
+
+## CRITICAL
+
+### C11. Split variability dominates, and it breaks the "all three" claim
+`R/38` runs K=6 independent splits per setting and combines within- and between-split variance
+by Rubin's rule. Result: **between-split variance is 77–84% of the total.** Which patients fall
+in which half matters far more than which genes are sampled. Combined intervals are **3.1–8.2×
+wider** (median 6.5×) than the single-split gene bootstrap, and split-level point estimates for
+the difference form range **+0.030 to +0.283**.
+
+| Setting | difference form, combined | verdict |
+|---|---|---|
+| CGGA-693 | +0.063 (−0.036, +0.162) | spans 0 |
+| CGGA-325 | **+0.198 (+0.091, +0.306)** | excludes 0 |
+| array-301 | +0.170 (−0.008, +0.348) | boundary |
+
+The manuscript claimed the difference form "exceeds its null in all three glioma pairs." With
+both variance sources counted, **only CGGA-325 is conclusive**. The direction is consistent —
+positive in all three settings and in all 18 split-level estimates — but the paper now claims a
+consistent direction rather than three significant results. Abstract, intro, §6.9, Discussion,
+Conclusion, limitation twelve and Table 5's caption all revised. **Confidence.** High.
+
+### C12. I mislabelled the variance share, and my own audit caught it
+Wrote "between-split variance accounts for 87–92%". That is the **SD** share; the **variance**
+share is 77–84%. Caught only because `R/32` asserts paper figures against source CSVs and
+failed on two checks. Fixed in four places in the paper and the ambiguous label removed from
+`R/38`'s output. This is the audit paying for itself.
+
+## MAJOR
+
+### M15. All three main figures contradicted their captions
+Reviewed visually for the first time:
+- **Figure 1** subtitle said CGGA is "flat". It is not: it *dips* II→III (−0.015 → −0.055) then
+  *rises* III→IV (→ +0.072), with overlapping standard errors. The near-zero Spearman r reflects
+  a **non-monotonic** pattern, not a level line.
+- **Figure 2**'s caption directs the reader to "the diagonal" — **no diagonal was drawn**. Its
+  subtitle asserted flagged genes are "measured inconsistently", the causal reading §6.4 has
+  since qualified.
+- **Figure 3** drew a dashed line at 0.5 labelled as chance, visually asserting exactly the
+  interpretation §6.9 retracts. It showed no matched null.
+
+All three redrawn (`R/39`): Figure 1 with an accurate subtitle, Figure 2 with the identity line
+and the fitted attenuation slope (0.55), Figure 3 with per-cohort matched-null levels (0.900,
+0.893, 0.793) so the correct comparison is the visible one. Captions rewritten to match.
+
+## Passes returning clean
+Threshold grid re-verified; determinism; all 6 tabular column specs; no dangling cross-refs;
+supplementary audit 137/137; rounding; provenance; reference completeness.
+
+## Confidence after round 5
+**High on arithmetic; the central claim is now materially weaker but honestly stated.**
+Rounds 3, 4 and 5 each found that an inference in the revision was too confident — replicate
+t-tests, then an anticonservative gene bootstrap, then an interval omitting the dominant
+variance component. Each correction moved the same direction: the evidence is weaker than the
+previous version claimed. That the direction is consistent across all 18 split-level estimates
+is the durable part; the significance of any individual cohort pair is not.
+
+The honest summary is that **cohorts of a few hundred patients per arm cannot resolve
+differences of this size with a matched-null design.** That is a statement about the data, not
+the method, and no further re-analysis changes it.
+
+---
+
 # Skeptical peer review — round 4 (20 passes)
 
 **Scope.** Rounds 1–3 are clean on re-run, so these 20 passes went after the largest

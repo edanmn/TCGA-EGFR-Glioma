@@ -201,4 +201,32 @@
   [OK  ] IDH-anchor cells agreeing (paper 39 of 54)           got=  39.0000  paper=  39.0000
   [OK  ] CGGA-325 product/IDH cells agreeing (paper 0 of 9)   got=   0.0000  paper=   0.0000
 
-=== 183 checks: 183 passed, 0 FAILED ===
+=== §6.9: split + gene variance combination (results/split_variance.csv) ===
+  [OK  ] CGGA-693 prod combined est                           got=  -0.0970  paper=  -0.0970
+  [OK  ] CGGA-693 prod combined lo                            got=  -0.1828  paper=  -0.1830
+  [OK  ] CGGA-693 prod combined hi                            got=  -0.0112  paper=  -0.0110
+  [OK  ] CGGA-693 absd combined est                           got=   0.0631  paper=   0.0630
+  [OK  ] CGGA-693 absd combined lo                            got=  -0.0355  paper=  -0.0360
+  [OK  ] CGGA-693 absd combined hi                            got=   0.1617  paper=   0.1620
+  [OK  ] CGGA-325 prod combined est                           got=   0.0770  paper=   0.0770
+  [OK  ] CGGA-325 prod combined lo                            got=  -0.0146  paper=  -0.0150
+  [OK  ] CGGA-325 prod combined hi                            got=   0.1686  paper=   0.1690
+  [OK  ] CGGA-325 absd combined est                           got=   0.1985  paper=   0.1980
+  [OK  ] CGGA-325 absd combined lo                            got=   0.0914  paper=   0.0910
+  [OK  ] CGGA-325 absd combined hi                            got=   0.3056  paper=   0.3060
+  [OK  ] array-301 prod combined est                          got=   0.0679  paper=   0.0680
+  [OK  ] array-301 prod combined lo                           got=  -0.0192  paper=  -0.0190
+  [OK  ] array-301 prod combined hi                           got=   0.1550  paper=   0.1550
+  [OK  ] array-301 absd combined est                          got=   0.1698  paper=   0.1700
+  [OK  ] array-301 absd combined lo                           got=  -0.0082  paper=  -0.0080
+  [OK  ] array-301 absd combined hi                           got=   0.3479  paper=   0.3480
+  [OK  ] between-split share of variance, min (paper 77%)     got=   0.7654  paper=   0.7650
+  [OK  ] between-split share of variance, max (paper 84%)     got=   0.8443  paper=   0.8440
+  [OK  ] interval inflation min (paper 3.1x)                  got=   3.0573  paper=   3.0600
+  [OK  ] interval inflation max (paper 8.2x)                  got=   8.1820  paper=   8.1800
+  [OK  ] difference form: glioma pairs excluding 0 after combining (paper 1 of 3) got=   1.0000  paper=   1.0000
+  [OK  ] difference form: all point estimates positive (paper 3 of 3) got=   3.0000  paper=   3.0000
+  [OK  ] split-level difference-form estimate range, min (paper +0.030) got=   0.0298  paper=   0.0300
+  [OK  ] split-level difference-form estimate range, max (paper +0.283) got=   0.2827  paper=   0.2830
+
+=== 209 checks: 209 passed, 0 FAILED ===

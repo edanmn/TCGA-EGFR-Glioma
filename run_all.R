@@ -45,7 +45,9 @@ steps <- c(
   "R/33_gene_level_inference.R",  # gene-level bootstrap, 2,000-gene robustness run
   "R/34_null_full_universe.R",    # matched null on Table 4 universe      -> Table 5
   "R/35_cluster_bootstrap.R",     # co-expression-aware interval check
-  "R/36_threshold_sensitivity.R"  # FDR x replication-p x anchor grid
+  "R/36_threshold_sensitivity.R", # FDR x replication-p x anchor grid
+  "R/38_split_variance.R",        # split + gene variance combination     -> §6.9
+  "R/39_refresh_figures.R"        # redraw Figures 1-3 to match the text
 )
 
 for (s in steps) {

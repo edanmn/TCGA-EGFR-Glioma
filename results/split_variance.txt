@@ -1,0 +1,21 @@
+loading cohorts...
+universe: 8000 genes; K=6 splits per setting; B=400 bootstrap per split
+
+TCGA->CGGA-693     prod   est=-0.097  within SD=0.0079  between SD=0.0399  combined SD=0.0438  95% CI (-0.183, -0.011)  excludes 0
+TCGA->CGGA-693     absd   est=+0.063  within SD=0.0165  between SD=0.0440  combined SD=0.0503  95% CI (-0.036, +0.162)  SPANS 0
+TCGA->CGGA-325     prod   est=+0.077  within SD=0.0057  between SD=0.0429  combined SD=0.0467  95% CI (-0.015, +0.169)  SPANS 0
+TCGA->CGGA-325     absd   est=+0.198  within SD=0.0111  between SD=0.0495  combined SD=0.0546  95% CI (+0.091, +0.306)  excludes 0
+TCGA->array-301    prod   est=+0.068  within SD=0.0060  between SD=0.0408  combined SD=0.0444  95% CI (-0.019, +0.155)  SPANS 0
+TCGA->array-301    absd   est=+0.170  within SD=0.0119  between SD=0.0834  combined SD=0.0908  95% CI (-0.008, +0.348)  SPANS 0
+
+
+=== VERDICT ===
+  Between-split SD as a share of total: 87%-92%
+  Interval inflation vs gene-bootstrap-only: 3.06x to 8.18x (median 6.46x)
+  difference form: 1 of 3 glioma pairs still exclude zero
+  product form:    1 of 3 still conclusive
+  point-estimate range across splits (difference form): +0.030 to +0.283
+
+  This is the interval limitation twelve says the manuscript does not report.
+  If the conclusions survive it, limitation twelve can be downgraded from an
+  unquantified caveat to a quantified one.
