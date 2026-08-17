@@ -215,3 +215,75 @@ Histologic grade recorded & 454 & 281 \\
 \end{tabular}
 \end{table}
 
+
+
+### Supplementary Tables (moved from the main text in revision)
+
+\begin{table*}[t]
+\centering
+\footnotesize
+{\textbf{Table S10.} Nested Cox models for EGFR expression in TCGA (HR per 1 SD), with Harrell's C-index and the PH test $p$-value for the EGFR term. Grade is omitted for glioblastoma.}\\[4pt]
+\begin{tabular}{lllllll}
+\toprule
+Cohort & Model & HR (95\% CI) & $p$ & C-index & PH $p$ (EGFR) & $n$ / events \\
+\midrule
+TCGA-LGG & Unadjusted            & 1.59 (1.30--1.94) & $6.85\times10^{-6}$ & 0.592 & 0.98  & 511 / 125 \\
+TCGA-LGG & $+$ age               & 1.37 (1.14--1.66) & $1.06\times10^{-3}$ & 0.744 & 0.88  & 511 / 125 \\
+TCGA-LGG & $+$ age, grade        & 1.31 (1.07--1.59) & $8.22\times10^{-3}$ & 0.786 & 0.23  & 454 / 106 \\
+TCGA-LGG & $+$ age, grade, IDH   & 1.13 (0.95--1.33) & 0.164               & 0.830 & 0.004 & 452 / 105 \\
+TCGA-LGG & $+$ age, subtype      & 1.14 (0.98--1.34) & 0.096               & 0.820 & 0.012 & 508 / 123 \\
+\midrule
+TCGA-GBM & Unadjusted            & 0.962 (0.845--1.09) & 0.552             & 0.523 & 0.19  & 282 / 227 \\
+TCGA-GBM & $+$ age, IDH          & 0.866 (0.761--0.986) & 0.030            & 0.639 & 0.40  & 265 / 214 \\
+\midrule
+Pooled   & Unadjusted            & 1.35 (1.20--1.51) & $1.98\times10^{-7}$ & 0.553 & 0.03  & 793 / 352 \\
+Pooled   & $+$ age, grade, IDH   & 0.921 (0.840--1.01) & 0.078             & 0.837 & 0.56  & 717 / 319 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\footnotesize
+{\textbf{Table S11.} EGFR positive control across TCGA and three CGGA datasets spanning two platforms, all computed by one method: Spearman correlation of EGFR expression with WHO grade among primary tumors with a recorded grade; Fisher $r$-to-$z$ against the TCGA reference; univariable IDH-mutant HR; and grade IV vs.\ grade II HR (grade II and IV patients only). The correlation is positive in TCGA but null/negative in every CGGA dataset, whereas clinical controls are strong and correct throughout. The expression-level failure is reproducible across batches and platforms; the clinical data are sound.}\\[4pt]
+\begin{tabular}{lccccc}
+\toprule
+Cohort & $r$(EGFR, grade) & $n$ & $p$ vs.\ TCGA & IDH-mutant HR & Grade IV vs.\ II HR \\
+\midrule
+TCGA (reference)        & $+0.179$ & 739 & --- & 0.11 & 14.8 \\
+CGGA-693 (RNA-seq)      & $-0.033$ & 422 & $4.5\times10^{-4}$ & 0.23 & 8.0 \\
+CGGA-325 (RNA-seq)      & $-0.097$ & 229 & $2.5\times10^{-4}$ & 0.22 & 9.3 \\
+CGGA-301 (microarray)   & $-0.086$ & 264 & $2.0\times10^{-4}$ & 0.32 & 7.3 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\footnotesize
+{\textbf{Table S12.} EGFR is not a within-subtype prognostic factor in IDH-wildtype glioma (TCGA). Expression (per 1 SD) shows a well-powered null; copy-number amplification shows no evidence of an effect (continuous, reasonably powered) and null across binary thresholds, though binary tests are underpowered (80\% power only for HR $\geq 1.65$). Grade is the pre-2021 histologic grade.}\\[4pt]
+\begin{tabular}{lllll}
+\toprule
+Marker & Model & HR (95\% CI) & $p$ & $n$ / events \\
+\midrule
+Expression   & Unadjusted                 & 1.00 (0.89--1.13) & 0.99 & 338 / 253 \\
+Expression   & $+$ age                    & 0.93 (0.82--1.05) & 0.22 & 338 / 253 \\
+Expression   & $+$ age, grade             & 0.90 (0.80--1.02) & 0.10 & 330 / 246 \\
+Expression   & IDH-wt GBM, $+$ age        & 0.87 (0.76--0.99) & 0.034 & 244 / 203 \\
+Amplification& $\log_2$ copy number (per SD), $+$age & 1.00 (0.84--1.20) & 0.98 & 166 / 127 \\
+Amplification& CN $\geq 5$ vs.\ not, $+$age & 1.09 (0.76--1.57) & 0.63 & 166 / 127 \\
+Amplification& CN $\geq 6$ vs.\ not, $+$age & 1.00 (0.70--1.42) & 0.98 & 166 / 127 \\
+Amplification& CN $\geq 7$ vs.\ not, $+$age & 0.92 (0.65--1.32) & 0.66 & 166 / 127 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+### Supplementary Figures (moved from the main text in revision)
+
+\begin{center}\includegraphics[width=0.68\linewidth]{figures/positive_control_EGFR_grade.png}\end{center}
+
+**Figure S6.** Positive control: standardized EGFR expression by WHO grade. EGFR rises monotonically with grade in TCGA (Spearman $r=+0.18$; canonical biology). In CGGA the relationship is *non-monotonic* rather than level—it falls from grade II to III ($-0.015\to-0.055$) and rises from III to IV ($\to+0.072$), with overlapping standard errors—so the near-zero rank correlation ($r=-0.03$) reflects the absence of a consistent gradient, not a flat line. Points are means, error bars ± standard error. The between-cohort difference is significant (Fisher $r$-to-$z$ $p=4.5\times10^{-4}$). TCGA $n=739$ (grade II: 216, III: 241, IV: 282); CGGA-693 $n=422$ (II: 138, III: 144, IV: 140).
+
+\begin{center}\includegraphics[width=0.64\linewidth]{figures/systematic_method.png}\end{center}
+
+**Figure S7.** Cross-cohort expression QC for TCGA-prognostic genes. Each point is a gene; axes are its expression–grade correlation in TCGA (x) and CGGA (y). The dashed line is the identity; the solid line is the fitted slope of $0.55$, showing that CGGA correlations are attenuated relative to TCGA's across the whole panel. Flagged genes (orange), including EGFR, are those sitting near zero on the CGGA axis, and are where cross-cohort prognostic replication breaks down. The flag marks discordance, not a demonstrated cause (§6.4).

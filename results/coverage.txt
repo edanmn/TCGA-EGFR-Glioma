@@ -1,0 +1,73 @@
+=== manuscript coverage of audited values ===
+  [OK  ] ground truth: compression          0.848
+  [OK  ] ground truth: compression          0.73
+  [OK  ] ground truth: compression          0.639
+  [OK  ] ground truth: flooring             0.498
+  [OK  ] ground truth: flooring             0.528
+  [OK  ] ground truth: flooring             0.599
+  [OK  ] ground truth: variance base        0.339
+  [OK  ] ground truth: variance base        0.136
+  [OK  ] matched null: product              0.9
+  [OK  ] matched null: product              0.893
+  [OK  ] matched null: product              0.793
+  [OK  ] matched null: difference           0.53
+  [OK  ] matched null: difference           0.611
+  [OK  ] matched null: difference           0.613
+  [OK  ] combined CIs                       0.063
+  [OK  ] combined CIs                       0.198
+  [OK  ] combined CIs                       0.17
+  [OK  ] combined CIs                       0.091
+  [OK  ] combined CIs                       0.306
+  [OK  ] cluster bootstrap                  2.2
+  [OK  ] cluster bootstrap                  1.6
+  [OK  ] cluster bootstrap                  2.7
+  [OK  ] effect-size baseline               0.738
+  [OK  ] effect-size baseline               0.783
+  [OK  ] anchor increment                   0.035
+  [OK  ] anchor increment                   0.199
+  [OK  ] genome-scale AUC                   0.815
+  [OK  ] genome-scale AUC                   0.931
+  [OK  ] genome-scale AUC                   0.924
+  [OK  ] genome-scale AUC                   0.771
+  [OK  ] genome-scale AUC                   0.842
+  [OK  ] gated screen                       92.8
+  [OK  ] gated screen                       24.3
+  [OK  ] gated screen                       39.2
+  [OK  ] gated screen                       87.3
+  [OK  ] EGFR nested Cox                    1.59
+  [OK  ] EGFR nested Cox                    1.31
+  [OK  ] EGFR nested Cox                    1.13
+  [OK  ] EGFR nested Cox                    0.834
+  [OK  ] EGFR nested Cox                    0.83
+  [OK  ] EGFR nested Cox                    1.98
+  [OK  ] EGFR within IDH-wt                 1
+  [OK  ] EGFR within IDH-wt                 0.89
+  [OK  ] EGFR within IDH-wt                 338
+  [OK  ] EGFR within IDH-wt                 253
+  [OK  ] EGFR within IDH-wt                 1.19
+  [OK  ] EGFR copy number                   55
+  [OK  ] EGFR copy number                   2.3
+  [OK  ] EGFR copy number                   167
+  [OK  ] EGFR copy number                   222
+  [OK  ] CGGA controls                      0.033
+  [OK  ] CGGA controls                      0.097
+  [OK  ] CGGA controls                      0.086
+  [OK  ] CGGA controls                      0.179
+  [OK  ] EGFR variance collapse             0.106
+  [OK  ] EGFR variance collapse             0.045
+  [OK  ] EGFR variance collapse             0.03
+  [OK  ] EGFR variance collapse             0.024
+  [OK  ] EGFR variance collapse             1.88
+  [OK  ] EGFR variance collapse             1.84
+  [OK  ] breast                             0.598
+  [OK  ] breast                             0.556
+  [OK  ] breast                             0.542
+  [OK  ] breast                             0.84
+  [OK  ] cohort sizes                       511
+  [OK  ] cohort sizes                       125
+  [OK  ] cohort sizes                       282
+  [OK  ] cohort sizes                       227
+  [OK  ] cohort sizes                       422
+  [OK  ] cohort sizes                       404
+
+=== 70 checks: 70 passed, 0 FAILED ===

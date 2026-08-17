@@ -47,7 +47,7 @@ steps <- c(
   "R/35_cluster_bootstrap.R",     # co-expression-aware interval check
   "R/36_threshold_sensitivity.R", # FDR x replication-p x anchor grid
   "R/38_split_variance.R",        # split + gene variance combination     -> §6.9
-  "R/39_refresh_figures.R"        # redraw Figures 1-3 to match the text
+  "R/39_refresh_figures.R"        # redraw the figures to match the text
 )
 
 for (s in steps) {
@@ -73,5 +73,6 @@ verify("R/21_assertions.R",     "results/assertions.txt",     "Cohort assertions
 verify("R/22_stat_recompute.R", "results/stat_recompute.txt", "Statistical recomputation")
 verify("R/32_paper_audit.R",    "results/paper_audit.txt",    "Revision-figure audit")
 verify("R/37_supp_audit.R",     "results/supp_audit.txt",     "Supplementary-table audit")
+verify("R/40_manuscript_coverage.R", "results/coverage.txt",   "Manuscript coverage")
 
 cat("\nPipeline complete, verification passed. See results/ and figures/.\n")
