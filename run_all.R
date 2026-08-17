@@ -17,36 +17,36 @@ steps <- c(
   "R/02_survival_km.R",           # Kaplan-Meier + log-rank            -> Table S1
   "R/03_cox_model.R",             # Cox, adjusted for age + grade
   "R/04_pathway_screen.R",        # pathway screen with FDR correction -> Table S2
-  "R/05_adjusted_analysis.R",     # nested confounder-adjusted models  -> Table 1
+  "R/05_adjusted_analysis.R",     # nested confounder-adjusted models  -> Table S10
   "R/06_vst_sensitivity.R",       # VST normalization sensitivity      -> Table S3
   "R/07_cgga_validation.R",       # naive CGGA external validation     -> Table S8
   "R/08_forest.R",                # exploratory forest plot (not used in the paper)
   "R/09_cgga_diagnostics.R",      # CGGA positive-control QC
   "R/10_review_fixes.R",          # common-sample models, C-index CIs, LR test
   "R/11_recount3_validation.R",   # independent raw-read reprocessing  -> Table S5
-  "R/12_within_idhwt.R",          # EGFR within IDH-wildtype           -> Table 3
-  "R/13_systematic_method.R",     # 500-gene gated screen              -> Figure 2
+  "R/12_within_idhwt.R",          # EGFR within IDH-wildtype           -> Table S12
+  "R/13_systematic_method.R",     # 500-gene gated screen              -> Figure S7
   "R/14_egfr_amplification.R",    # copy number vs survival
   "R/15_revisions.R",             # power, thresholds, replication CIs
-  "R/16_method_framework.R",      # genome-scale framework             -> Table 4, Figure 3
+  "R/16_method_framework.R",      # genome-scale framework             -> Table 3, Figure 1
   "R/17_breast_generalization.R", # scope test in breast
   "R/18_circularity_control.R",   # circularity control                -> Table S7
   "R/19_overlap_and_baselines.R", # CGGA overlap, de-duplication, precision baseline
-  "R/20_control_table.R",         # positive-control table             -> Table 2, Figure 1
+  "R/20_control_table.R",         # positive-control table             -> Table S11, Figure S6
   "R/23_adjusted_replication.R",  # 2x2 circularity decomposition (slow, ~4 min)
   "R/24_cgga_composition.R",      # composition vs measurement for the CGGA failure
   "R/25_controlled_shift.R",      # composition sweep + permutation ground truth
   "R/26_transport_anchor.R",      # transport-adjusted anchor; writes pergene_cache.rds
-  "R/27_effectsize_baseline.R",   # the missing effect-size baseline    -> §6.9
-  "R/28_matched_null.R",          # matched same-population null        -> §6.9
-  "R/29_breast_verify.R",         # reproduces every §6.10 number
-  "R/30_multisetting_null.R",     # matched null x 5 settings x 6 metrics -> Table 5
-  "R/31_corruption_modes.R",      # five failure modes, ground truth      -> Table 6
+  "R/27_effectsize_baseline.R",   # the missing effect-size baseline    -> §4.2
+  "R/28_matched_null.R",          # matched same-population null (superseded by R/34)
+  "R/29_breast_verify.R",         # reproduces every breast number (§4.5)
+  "R/30_multisetting_null.R",     # matched null x 5 settings x 6 metrics
+  "R/31_corruption_modes.R",      # five failure modes, ground truth      -> Table 1
   "R/33_gene_level_inference.R",  # gene-level bootstrap, 2,000-gene robustness run
-  "R/34_null_full_universe.R",    # matched null on Table 4 universe      -> Table 5
+  "R/34_null_full_universe.R",    # matched null on Table 3 universe      -> Table 2
   "R/35_cluster_bootstrap.R",     # co-expression-aware interval check
   "R/36_threshold_sensitivity.R", # FDR x replication-p x anchor grid
-  "R/38_split_variance.R",        # split + gene variance combination     -> §6.9
+  "R/38_split_variance.R",        # split + gene variance combination     -> §4.2
   "R/39_refresh_figures.R"        # redraw the figures to match the text
 )
 
