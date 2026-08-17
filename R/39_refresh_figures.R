@@ -73,9 +73,10 @@ g1 <- ggplot(S, aes(grade, m, colour = cohort, group = cohort)) +
   geom_errorbar(aes(ymin = m-se, ymax = m+se), width = 0.12) +
   labs(x = "WHO grade", y = "EGFR expression (per-SD units)", colour = "Cohort",
        title = "Positive control: EGFR expression vs grade",
-       subtitle = sprintf("monotonic in TCGA (Spearman r = %+.2f); non-monotonic and attenuated in CGGA (r = %+.2f)", rT, rC)) +
-  theme_bw(base_size = 12) + theme(legend.position = "top")
-ggsave("figures/positive_control_EGFR_grade.png", g1, width = 6.6, height = 4.3, dpi = 300)
+       subtitle = sprintf("monotonic in TCGA (Spearman r = %+.2f);\nnon-monotonic and attenuated in CGGA (r = %+.2f)", rT, rC)) +
+  theme_bw(base_size = 12) +
+  theme(legend.position = "top", plot.subtitle = element_text(size = 10))
+ggsave("figures/positive_control_EGFR_grade.png", g1, width = 7.0, height = 4.6, dpi = 300)
 cat(sprintf("Figure 1 redrawn. TCGA r=%+.3f, CGGA r=%+.3f; CGGA means by grade: %s\n",
     rT, rC, paste(sprintf("%.3f", S$m[S$cohort=="CGGA (RSEM)"]), collapse=", ")))
 
@@ -94,9 +95,10 @@ g2 <- ggplot(ss, aes(r_grade_T, r_grade_C, colour = QC)) +
   labs(x = "Expression–grade correlation (TCGA)", y = "Expression–grade correlation (CGGA)",
        colour = "Positive control",
        title = "Cross-cohort expression QC for TCGA-prognostic genes",
-       subtitle = "flagged genes sit near zero on the CGGA axis; CGGA correlations are attenuated overall") +
-  theme_bw(base_size = 12) + theme(legend.position = "top")
-ggsave("figures/systematic_method.png", g2, width = 7, height = 5, dpi = 300)
+       subtitle = "flagged genes sit near zero on the CGGA axis;\nCGGA correlations are attenuated overall") +
+  theme_bw(base_size = 12) +
+  theme(legend.position = "top", plot.subtitle = element_text(size = 10))
+ggsave("figures/systematic_method.png", g2, width = 7.4, height = 5.3, dpi = 300)
 cat(sprintf("Figure 2 redrawn. Attenuation slope = %.3f; flagged genes: %d of %d\n",
     coef(fit)[2], sum(!ss$qc_ok), nrow(ss)))
 
