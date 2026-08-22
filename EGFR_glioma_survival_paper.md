@@ -24,6 +24,9 @@ header-includes:
 Prognostic gene associations from one cohort frequently fail to replicate in another, and it is hard to know in advance which will. A natural safeguard is a *biological positive control*: trust a cross-cohort comparison only if both cohorts measure the gene faithfully, checked by whether its expression tracks a known covariate consistently. We ask two questions about such a gate---what it actually detects, and how its performance should be scored---and answer both with controlled experiments rather than observational agreement. **Under injected ground truth**, with corruption applied to known genes at known doses in one half of TCGA, detectability is strongly mode-dependent: compression of between-stratum signal is caught at AUC $0.85$--$0.64$, permutation at $0.63$--$0.86$, additive noise at $0.57$--$0.78$, and **flooring essentially not at all ($\leq0.60$)**---a documented blind spot. **Against a matched null**---a held-out, same-population cohort in which no artifact can exist---the score such gates are usually assessed with, the anchor product $r_D r_R$, still reaches AUC $0.79$--$0.90$, so its distance from chance carries no information; the discovery effect size, a baseline the design is apt to omit, reaches $0.74$--$0.78$ alone. Scoring disagreement directly, as $-|r_D-r_R|$, drops the null to $0.53$--$0.61$ and is positive in all three glioma pairs, though between-split variance supplies $77$--$84\%$ of total uncertainty and only one pair is conclusive once that is counted. Applied to EGFR in glioma, the gate flags a gene that is prognostic in TCGA only until *IDH* is modeled (HR $1.31\to1.13$, $p=0.16$), carries no within-IDH-wildtype signal (HR $1.00$, $0.89$--$1.13$), and in three CGGA datasets shows a $2$--$4\times$ collapse in the variance explained by grade and *IDH* that cohort composition does not account for.
 
 
+**Keywords:** cross-cohort validation; prognostic gene expression; positive controls; calibration; glioma; EGFR; *IDH*; TCGA; CGGA.
+
+
 ## 1. Introduction
 
 Cross-study irreproducibility of transcriptomic prognostic signatures is well documented [24, 25], and validating a discovery cohort's finding in a second cohort is now routine---TCGA$\to$CGGA is among the most used such pairs in glioma [29]. That design carries an assumption rarely tested: that both cohorts measure each gene faithfully enough for disagreement to be informative. A *biological positive control* makes the assumption checkable. Because tumor grade and *IDH* status have known relationships to expression for many genes, a cohort that measures a gene faithfully should reproduce that relationship; one that does not is a cohort whose disagreement means little.
@@ -51,7 +54,7 @@ Against that background our contribution is less the gate than the demonstration
 
 **The gate.** For a gene, the anchor correlation is its Spearman correlation with the anchor covariate (grade, or *IDH*) within a cohort. The *product* score is $r_D r_R$ and the *difference* score is $-|r_D-r_R|$, where $D$ and $R$ index discovery and replication. A gene is *prognostic* if its age-adjusted Cox coefficient is significant at BH-FDR $<0.05$ in discovery, and *replicated* if the replication cohort's coefficient has the same sign at $p<0.05$. Performance is the AUC for predicting replication (Mann--Whitney estimator).
 
-**Ground truth (§4.1).** TCGA was split in half and a random $20\%$ of genes corrupted in one half only, at three doses each of five modes: permutation of a fraction of values; additive Gaussian noise at $k$ SD; compression of the between-stratum component toward the grand mean by $\lambda$ (lowering between-stratum variance while preserving within-stratum variance); flooring below the $q$th quantile; and contamination with a scale-matched unrelated gene at weight $w$. The gate was scored against the genes actually corrupted (2,000 most-variable genes, 4 replicates per cell, no composition shift). A separate arm biased the split so grade and *IDH* couple more tightly in one half ($\delta=0$--$0.4$).
+**Ground truth (§4.1).** TCGA was split in half and a random $20\%$ of genes corrupted in one half only, at three doses each of five modes: permutation of a fraction of values; additive Gaussian noise at $k$ SD; compression of the between-stratum component toward the grand mean by $\lambda$ (lowering between-stratum variance while preserving within-stratum variance); flooring below the $q$th quantile; and contamination, replacing a fraction $w$ of the gene by a scale-matched *donor* drawn at random from the same 2,000-gene set. The donor is a real gene and therefore carries its own (grade, *IDH*) structure, which is why contamination leaves the stratum-explained variance share near baseline while destroying the gene's identity (Table 1); it models a mixed or mis-mapped feature rather than dilution by noise. Donors are drawn from the working matrix as corruption proceeds, so a donor may itself already be corrupted; at a 20\% corruption rate this affects about one donor in five and does not bear on the detection scores, which are computed against the known corruption assignment. The gate was scored against the genes actually corrupted (2,000 most-variable genes, 4 replicates per cell, no composition shift). A separate arm biased the split so grade and *IDH* couple more tightly in one half ($\delta=0$--$0.4$).
 
 **Matched null (§4.2).** Within each cohort pair, one discovery set was evaluated against two replication cohorts of identical size: a disjoint, held-out subsample of the discovery cohort, and the real replication cohort subsampled to match. Five settings were run (TCGA$\to$CGGA-693, -325, array-301; TCGA-BRCA$\leftrightarrow$METABRIC) with five quality metrics and $|\beta_D|$ as a negative control, on the gene universe of §4.3. Intervals are paired bootstraps over genes; a cluster bootstrap over 200 co-expression clusters tests the independence assumption; and $K=6$ splits per setting combine within- and between-split variance by $\mathrm{Var}_{\text{total}} = \overline{\mathrm{Var}}_{\text{within}} + (1+1/K)\,\mathrm{Var}_{\text{between}}$.
 
@@ -59,7 +62,7 @@ Against that background our contribution is less the gate than the demonstration
 
 **EGFR analysis (§4.4).** Nested Cox models added covariates stepwise (unadjusted; $+$age; $+$grade; $+$*IDH*; $+$subtype), reporting HR per SD, C-index [16] and the PH test [13], refit on a common *IDH*-complete subset. Within IDH-wildtype tumors we fit expression and gene-level copy number (ASCAT3; high-level amplification pre-specified at CN $\geq6$). Robustness used DESeq2 VST [18] and an independent Monorail reprocessing from recount3 [19]. Cross-cohort discordance was decomposed into a composition component and a residual by transporting TCGA's within-(grade, *IDH*)-stratum means and variances onto each replication cohort's stratum weights.
 
-**Reproducibility.** Analyses used R 4.6.0 [15] with `TCGAbiolinks` 2.40.0 [4], `survival` 3.8-6 [13], `survminer` 0.5.2 [14] and `DESeq2` [18]. The pipeline is deterministic except for the resampling analyses, which are seeded. All thresholds ($|r|>0.1$; CN $\geq6$) were pre-specified from biology. Analysis scripts (steps 00--39), console outputs and session information are at https://github.com/edanmn/TCGA-EGFR-Glioma. Four verification suites share no code with the analysis pipeline and reconstruct every reported sample size, refit every headline model, and assert every figure transcribed into the manuscript against its source output; `run_all.R` stops non-zero if any fails.
+**Reproducibility.** Analyses used R 4.6.0 [15] with `TCGAbiolinks` 2.40.0 [4], `survival` 3.8-6 [13], `survminer` 0.5.2 [14] and `DESeq2` [18]. The pipeline is deterministic except for the resampling analyses, which are seeded. All thresholds ($|r|>0.1$; CN $\geq6$) were pre-specified from biology. Analysis scripts (steps 00--40), console outputs and session information are at https://github.com/edanmn/TCGA-EGFR-Glioma, on branch `revision/calibration-and-ground-truth`; steps 23--40, which produce every result in §4.1--4.3, are on that branch and not on the default one. Five verification suites share no code with the analysis pipeline: they reconstruct every reported sample size, refit every headline model, assert every figure transcribed into the manuscript against its source output, and — since a value silently *dropped* from the manuscript would pass all of those — check that each audited value still appears in the manuscript text. `run_all.R` stops non-zero if any fails.
 
 
 ## 4. Results
@@ -75,23 +78,26 @@ Injecting a *confounding-structure shift* instead does not raise the gate's AUC;
 \begin{table*}[t]
 \centering
 \footnotesize
-\caption{Controlled experiment with known ground truth: five mechanistically distinct measurement failure modes, injected into a random 20\% of genes in one half of TCGA only (2,000 most-variable genes, 4 replicates per cell, no composition shift). AUC is scored against the genes actually corrupted. ``Variance share'' is the fraction of a corrupted gene's variance explained by the six (grade, \emph{IDH}) strata afterwards; the uncorrupted baseline is 0.339. Compression---the signature EGFR shows in CGGA---is the best-detected mode; flooring is a blind spot. Replicate SDs of the AUC are 0.004--0.026 throughout.}
+\caption{Controlled experiment with known ground truth: five mechanistically distinct measurement failure modes, injected into a random 20\% of genes in one half of TCGA only (2,000 most-variable genes, 4 replicates per cell, no composition shift). \textbf{All fifteen mode $\times$ dose cells are shown}; none is omitted. AUC is scored against the genes actually corrupted. ``Variance share'' is the fraction of a corrupted gene's variance explained by the six (grade, \emph{IDH}) strata afterwards; the uncorrupted baseline is 0.339. Compression---the signature EGFR shows in CGGA---is the best-detected mode; flooring is a blind spot. Contamination is the one mode whose variance share barely moves (0.28--0.33 against the 0.339 baseline) while its replication collapses: the donor is another gene from the same variable set, which carries its own (grade, \emph{IDH}) structure, so the stratum-explained \emph{quantity} is preserved while the gene's \emph{identity} is destroyed. Its row should therefore not be read as a variance-share signature (\S3). Replicate SDs of the AUC are 0.004--0.026 throughout.}
 \begin{tabular}{llcccc}
 \toprule
 Failure mode & Mechanism & Dose & Corrupt / clean replication & Variance share & AUC (detect corrupted) \\
 \midrule
 Compression   & shrink between-stratum signal by $\lambda$ & $\lambda=0.25$ & 0.43 / 0.93 & 0.046 & \textbf{0.848} \\
 Compression   &                                            & $\lambda=0.50$ & 0.80 / 0.95 & 0.136 & \textbf{0.730} \\
-Compression   &                                            & $\lambda=0.75$ & 0.91 / 0.96 & 0.236 & 0.639 \\
+Compression   &                                            & $\lambda=0.75$ & 0.91 / 0.95 & 0.236 & 0.639 \\
 Permutation   & shuffle a fraction of values               & 25\%           & 0.92 / 0.97 & 0.197 & 0.630 \\
-Permutation   &                                            & 50\%           & 0.68 / 0.95 & 0.098 & 0.728 \\
+Permutation   &                                            & 50\%           & 0.67 / 0.95 & 0.098 & 0.728 \\
 Permutation   &                                            & 75\%           & 0.24 / 0.96 & 0.035 & 0.858 \\
 Additive noise& $x+N(0,k\,\mathrm{sd})$                    & $k=0.5$        & 0.95 / 0.96 & 0.268 & 0.567 \\
+Additive noise&                                            & $k=1.0$        & 0.82 / 0.94 & 0.172 & 0.653 \\
 Additive noise&                                            & $k=2.0$        & 0.54 / 0.93 & 0.079 & 0.779 \\
-Contamination & mix in an unrelated gene at weight $w$     & $w=0.25$       & 0.89 / 0.93 & 0.308 & 0.543 \\
+Contamination & mix in a donor gene at weight $w$          & $w=0.25$       & 0.89 / 0.93 & 0.308 & 0.543 \\
+Contamination &                                            & $w=0.50$       & 0.62 / 0.95 & 0.284 & 0.667 \\
 Contamination &                                            & $w=0.75$       & 0.49 / 0.94 & 0.329 & 0.734 \\
 Flooring      & censor below the $q$th quantile            & $q=0.25$       & 0.94 / 0.95 & 0.341 & \textbf{0.498} \\
-Flooring      &                                            & $q=0.75$       & 0.82 / 0.95 & 0.184 & \textbf{0.599} \\
+Flooring      &                                            & $q=0.50$       & 0.90 / 0.94 & 0.263 & \textbf{0.528} \\
+Flooring      &                                            & $q=0.75$       & 0.82 / 0.94 & 0.184 & \textbf{0.599} \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -100,7 +106,7 @@ Flooring      &                                            & $q=0.75$       & 0.
 
 An AUC is interpretable only against the right null, and chance is not it. Giving one discovery set two replication cohorts of identical size---one a disjoint, held-out subsample of the discovery cohort itself, in which no cross-cohort artifact can exist---shows the anchor *product* is **severely confounded**: against that null it still reaches AUC $0.79$--$0.90$ in glioma and $0.72$ in the one evaluable breast direction (Table 2). It does not follow that nothing was detected: for CGGA-693 the null exceeds the real cohort ($-0.075$), but for CGGA-325 and array-301 the real cohort exceeds the null ($+0.044$, $+0.132$). Tightening the null arm's threshold until its replication rate matches the real arm's changes nothing ($0.931\to0.921$), so this is not a base-rate artifact.
 
-**The confound is in the functional form.** The product $r_D r_R$ is large when *both* correlations are large, so it rewards anchor magnitude---which tracks effect size---as much as agreement. The difference $-|r_D-r_R|$ scores only disagreement, and its null AUC is $0.53$--$0.61$ rather than $0.79$--$0.90$. On a single split its point estimate exceeds the null in all three glioma pairs ($+0.138$, $+0.185$, $+0.148$), recovering the setting the product form gets backwards. The anchor is also not redundant with effect size: adding it to a logistic model already containing $|\beta_D|$ raises the model AUC by $+0.035$ to $+0.199$ (all likelihood-ratio $p<10^{-37}$). The discovery effect size, which by construction cannot carry cross-cohort information, favors the null in every evaluable setting ($-0.035$ to $-0.077$)---the expected behavior of a negative control, and what licenses reading the difference form's separation as genuine.
+**The confound is in the functional form.** The product $r_D r_R$ is large when *both* correlations are large, so it rewards anchor magnitude---which tracks effect size---as much as agreement. The difference $-|r_D-r_R|$ scores only disagreement, and its null AUC is $0.53$--$0.61$ rather than $0.79$--$0.90$. The argument for preferring it is mechanical rather than empirical---a product of two correlations cannot separate *agreement* from *magnitude*, whichever data it is applied to---but the choice was nonetheless made after seeing the product form's null on these three cohort pairs, and its advantage is then reported on the same three. We had no fourth glioma pair to hold out. Readers should treat the size of the difference form's margin over the product form as an in-sample quantity; what does not depend on the selection is the null level of each form, which is a property of the statistic. On a single split its point estimate exceeds the null in all three glioma pairs ($+0.138$, $+0.185$, $+0.148$), recovering the setting the product form gets backwards. The anchor is also not redundant with effect size: adding it to a logistic model already containing $|\beta_D|$ raises the model AUC by $+0.035$ to $+0.199$ (all likelihood-ratio $p<10^{-37}$). The discovery effect size, which by construction cannot carry cross-cohort information, favors the null in every evaluable setting ($-0.035$ to $-0.077$)---the expected behavior of a negative control, and what licenses reading the difference form's separation as genuine.
 
 **The intervals must be much wider than they first appear.** Two sources of variability sit outside a single-split gene bootstrap. Co-expression first: resampling genes independently treats correlated observations as independent, and a cluster bootstrap over 200 co-expression clusters (median 26--29 genes) widens intervals by a median $2.2\times$ (range $1.6$--$2.7$). Split variability second, and it dominates: over $K=6$ splits per setting, **between-split variance is $77$--$84\%$ of the total**, combined intervals are $3.1$--$8.2\times$ wider (median $6.5\times$), and difference-form estimates range $+0.030$ to $+0.283$ across splits. Under that accounting the difference form stays positive in all three glioma pairs ($+0.063$, $+0.198$, $+0.170$, and in all 18 split-level estimates) but only CGGA-325 excludes zero ($+0.091$ to $+0.306$); array-301 is on the boundary ($-0.008$ to $+0.348$) and CGGA-693 spans it. The product form is conclusive only in CGGA-693, where it is inverted ($-0.183$ to $-0.011$). **We therefore claim a consistent direction, not three significant results.** With a few hundred patients per arm, a matched null cannot resolve differences of this size.
 
@@ -147,7 +153,7 @@ A gated screen over the 500 most-variable shared genes shows what the flag buys 
 \begin{table*}[t]
 \centering
 \footnotesize
-\caption{Genome-scale evaluation: a gene's biological positive-control concordance ranks whether its TCGA prognostic association replicates in a separate cohort (AUC). \textbf{These AUCs must be read against the same-population null of $0.89$--$0.93$ established in §4.2, not against chance}, and against a discovery effect-size baseline of $0.74$--$0.78$ that is not shown here; the detectability and precision columns measure noise rather than signal and are not the informative comparison. The three replication datasets come from one resource and are not fully independent (§4.3 quantifies and controls for patient overlap). $n=6,512$ TCGA-prognostic genes (FDR $<0.05$); AUCs are given to three decimals here and rounded to two in the text. Bootstrap 95\% CIs are tight given $n\approx6,500$ (CGGA-693 grade anchor: $0.815$, $0.81$--$0.83$); Table S7 gives the circularity control, Table 2 the matched-null calibration, and Table 1 the controlled experiment.}
+\caption{Genome-scale evaluation: a gene's biological positive-control concordance ranks whether its TCGA prognostic association replicates in a separate cohort (AUC). \textbf{Chance is not the appropriate null for these AUCs}: §4.2 shows the same product-form score reaches $0.79$--$0.90$ against a same-population null in which no cross-cohort artifact can exist, and the discovery effect size alone reaches $0.74$--$0.78$. Neither of those figures may be subtracted from this table's, because the matched-null design halves the discovery cohort and so changes both the prognostic gene set and the AUC scale; the licensed comparison is within a row of Table 2, and what this table's numbers require is the \emph{qualitative} correction that a value near $0.9$ here is not evidence of detection. The detectability and precision columns measure noise rather than signal and are not the informative comparison. The three replication datasets come from one resource and are not fully independent (§4.3 quantifies and controls for patient overlap). $n=6,512$ TCGA-prognostic genes (FDR $<0.05$); AUCs are given to three decimals here and rounded to two in the text. Bootstrap 95\% CIs are tight given $n\approx6,500$ (CGGA-693 grade anchor: $0.815$, $0.81$--$0.83$); Table S7 gives the circularity control, Table 2 the matched-null calibration, and Table 1 the controlled experiment.}
 \begin{tabular}{lccccc}
 \toprule
 Replication cohort & Replication rate & AUC (grade) & AUC (IDH) & AUC (detectability) & AUC (precision) \\
@@ -161,7 +167,7 @@ CGGA-301 (microarray) & 0.684 & 0.924 & 0.842 & 0.525 & 0.505 \\
 
 \begin{center}\includegraphics[width=0.64\linewidth]{figures/method_auc.png}\end{center}
 
-**Figure 1.** Anchor scores for predicting replication of TCGA-prognostic genes in each CGGA cohort, by metric. The grade and IDH anchors exceed both the detectability and estimation-precision baselines and the dotted chance line at $0.5$—but chance is not the appropriate null. Red segments mark the same-population matched null for the product-form anchor (§4.2): $0.900$, $0.893$, $0.793$. The grade anchor clears its null in CGGA-325 and array-301 and falls short of it in CGGA-693, which is the comparison the figure is drawn to make.
+**Figure 1.** Anchor scores for predicting replication of TCGA-prognostic genes in each CGGA cohort, by metric. The grade and IDH anchors exceed both the detectability and estimation-precision baselines and the dotted chance line at $0.5$—but chance is not the appropriate null, which is the point the figure exists to make. Red segments mark the same-population matched null for the product-form anchor (§4.2): $0.900$, $0.893$, $0.793$. **They are drawn as a reference level, not as a subtractable baseline**: the matched-null design splits the discovery cohort, so its absolute AUCs are on a different scale from the bars (Table 2). What the figure shows is that the null sits in the same range as the reported performance—not that any particular bar clears or fails it. The within-row contrasts of Table 2, and the combined intervals of §4.2, are where that question is settled.
 
 ### 4.4 Worked example: EGFR in glioma
 
@@ -201,6 +207,38 @@ The five that bear on the main claim; the remainder, including cohort-specific c
 Cross-cohort prognostic replication in transcriptomics is unreliable, and a biological positive control does detect the subset of discordances that stem from faulty measurement---but establishing that required discarding the evidence we first assembled for it. Under injected ground truth the gate identifies compressed genes at AUC $0.73$--$0.85$ and floored genes not at all. Against a same-population null the score usually used for such gates reaches $0.79$--$0.90$ where nothing is wrong, so its distance from chance is uninformative; scoring disagreement directly drops that null to $0.53$--$0.61$ and is positive in all three glioma pairs, though with cohorts of this size only one is conclusive once split variability is counted. Run the gate in its difference form, calibrate it against a split-half null rather than against chance, and do not rely on it where saturation is the suspected failure. Applied to EGFR, it correctly flags a comparison that cannot adjudicate the gene: EGFR is a marker of the IDH-wildtype state, not an independent prognostic factor.
 
 
+## Declarations
+
+**Data availability.** All data analysed here are public and previously
+published. TCGA RNA-sequencing, clinical and copy-number data were obtained
+from the Genomic Data Commons (GDC Data Release 45.0, 2025-12-04) via
+`TCGAbiolinks`; the three CGGA datasets (mRNAseq_693, mRNAseq_325,
+mRNA-array_301, release 20200506) from http://www.cgga.org.cn; TCGA-BRCA and
+METABRIC expression and subtype labels from the processed deposit of ref. 20,
+with survival from cBioPortal (ref. 21); and the recount3 reprocessing from
+ref. 19. No new data were generated.
+
+**Code availability.** Analysis scripts, console logs and session information
+are at https://github.com/edanmn/TCGA-EGFR-Glioma (branch
+`revision/calibration-and-ground-truth`). Steps 23--40, which produce §4.1--4.3,
+are on that branch only.
+
+**Ethics.** This is a secondary analysis of de-identified, publicly released
+human subjects data obtained under the data-use terms of each resource. No
+institutional review board approval was required and no participants were
+recruited. The methods are retrospective and are not validated for clinical use.
+
+**Funding.** This research received no specific grant from any funding agency in
+the public, commercial, or not-for-profit sectors.
+
+**Competing interests.** The author declares no competing interests.
+
+**Author contributions.** R.K. designed the study, implemented the pipeline and
+the verification suites, performed all analyses, and wrote the manuscript.
+
+**Corresponding author.** Rishik Kondadadi (konda052@umn.edu).
+
+
 ## References
 
 \footnotesize
@@ -224,7 +262,7 @@ Cross-cohort prognostic replication in transcriptomics is unreliable, and a biol
 17. Zhao Z, Zhang KN, Wang Q, et al. Chinese Glioma Genome Atlas (CGGA): a resource with functional genomic data from Chinese glioma patients. *Genomics Proteomics Bioinformatics*. 2021;19(1):1–12.
 18. Love MI, Huber W, Anders S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. *Genome Biol*. 2014;15(12):550.
 19. Wilks C, Zheng SC, Chen FY, et al. recount3: summaries and queries for large-scale RNA-seq expression and splicing. *Genome Biol*. 2021;22(1):323.
-20. Processed TCGA-BRCA and METABRIC datasets (Moanna). Zenodo; doi:10.5281/zenodo.4326602.
+20. Lupat R, Loi S, Li J. Processed TCGA BRCA and METABRIC datasets used in the Moanna manuscript (v0.1.0). *Zenodo*. 2020. doi:10.5281/zenodo.4326602.
 21. Cerami E, Gao J, Dogrusoz U, et al. The cBio Cancer Genomics Portal: an open platform for exploring multidimensional cancer genomics data. *Cancer Discov*. 2012;2(5):401–404.
 22. Curtis C, Shah SP, Chin SF, et al. The genomic and transcriptomic architecture of 2,000 breast tumours reveals novel subgroups. *Nature*. 2012;486(7403):346–352.
 23. Cancer Genome Atlas Network. Comprehensive molecular portraits of human breast tumours. *Nature*. 2012;490(7418):61–70.

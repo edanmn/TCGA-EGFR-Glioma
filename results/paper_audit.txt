@@ -90,54 +90,66 @@
   [OK  ] 2,000-gene BRCA->METABRIC gene count (paper 26)      got=  26.0000  paper=  26.0000
 
 === Table 6: corruption modes (from results/corruption_modes.csv) ===
-  [OK  ] compress dose=0.25 AUC                               got=   0.8477  paper=   0.8480
-  [OK  ] compress dose=0.25 repl corrupt                      got=   0.4299  paper=   0.4300
-  [OK  ] compress dose=0.25 repl clean                        got=   0.9261  paper=   0.9300
+  [OK  ] compress dose=0.25 AUC                               got=   0.8480  paper=   0.8480
+  [OK  ] compress dose=0.25 repl corrupt                      got=   0.4300  paper=   0.4300
+  [OK  ] compress dose=0.25 repl clean                        got=   0.9300  paper=   0.9300
   [OK  ] compress dose=0.25 var share                         got=   0.0460  paper=   0.0460
-  [OK  ] compress dose=0.50 AUC                               got=   0.7298  paper=   0.7300
-  [OK  ] compress dose=0.50 repl corrupt                      got=   0.7991  paper=   0.8000
-  [OK  ] compress dose=0.50 repl clean                        got=   0.9467  paper=   0.9500
-  [OK  ] compress dose=0.50 var share                         got=   0.1362  paper=   0.1360
-  [OK  ] compress dose=0.75 AUC                               got=   0.6388  paper=   0.6390
-  [OK  ] compress dose=0.75 repl corrupt                      got=   0.9087  paper=   0.9100
-  [OK  ] compress dose=0.75 repl clean                        got=   0.9550  paper=   0.9600
-  [OK  ] compress dose=0.75 var share                         got=   0.2363  paper=   0.2360
+  [OK  ] compress dose=0.50 AUC                               got=   0.7300  paper=   0.7300
+  [OK  ] compress dose=0.50 repl corrupt                      got=   0.8000  paper=   0.8000
+  [OK  ] compress dose=0.50 repl clean                        got=   0.9500  paper=   0.9500
+  [OK  ] compress dose=0.50 var share                         got=   0.1360  paper=   0.1360
+  [OK  ] compress dose=0.75 AUC                               got=   0.6390  paper=   0.6390
+  [OK  ] compress dose=0.75 repl corrupt                      got=   0.9100  paper=   0.9100
+  [OK  ] compress dose=0.75 repl clean                        got=   0.9500  paper=   0.9500
+  [OK  ] compress dose=0.75 var share                         got=   0.2360  paper=   0.2360
   [OK  ] permute dose=0.25 AUC                                got=   0.6300  paper=   0.6300
-  [OK  ] permute dose=0.25 repl corrupt                       got=   0.9188  paper=   0.9200
-  [OK  ] permute dose=0.25 repl clean                         got=   0.9686  paper=   0.9700
-  [OK  ] permute dose=0.25 var share                          got=   0.1972  paper=   0.1970
-  [OK  ] permute dose=0.50 AUC                                got=   0.7275  paper=   0.7280
-  [OK  ] permute dose=0.50 repl corrupt                       got=   0.6747  paper=   0.6800
-  [OK  ] permute dose=0.50 repl clean                         got=   0.9451  paper=   0.9500
-  [OK  ] permute dose=0.50 var share                          got=   0.0979  paper=   0.0980
-  [OK  ] permute dose=0.75 AUC                                got=   0.8577  paper=   0.8580
-  [OK  ] permute dose=0.75 repl corrupt                       got=   0.2405  paper=   0.2400
-  [OK  ] permute dose=0.75 repl clean                         got=   0.9553  paper=   0.9600
-  [OK  ] permute dose=0.75 var share                          got=   0.0347  paper=   0.0350
-  [OK  ] noise dose=0.50 AUC                                  got=   0.5665  paper=   0.5670
-  [OK  ] noise dose=0.50 repl corrupt                         got=   0.9482  paper=   0.9500
-  [OK  ] noise dose=0.50 repl clean                           got=   0.9596  paper=   0.9600
-  [OK  ] noise dose=0.50 var share                            got=   0.2678  paper=   0.2680
-  [OK  ] noise dose=2.00 AUC                                  got=   0.7793  paper=   0.7790
-  [OK  ] noise dose=2.00 repl corrupt                         got=   0.5441  paper=   0.5400
-  [OK  ] noise dose=2.00 repl clean                           got=   0.9343  paper=   0.9300
-  [OK  ] noise dose=2.00 var share                            got=   0.0787  paper=   0.0790
-  [OK  ] contaminate dose=0.25 AUC                            got=   0.5434  paper=   0.5430
-  [OK  ] contaminate dose=0.25 repl corrupt                   got=   0.8861  paper=   0.8900
-  [OK  ] contaminate dose=0.25 repl clean                     got=   0.9337  paper=   0.9300
-  [OK  ] contaminate dose=0.25 var share                      got=   0.3083  paper=   0.3080
-  [OK  ] contaminate dose=0.75 AUC                            got=   0.7338  paper=   0.7340
-  [OK  ] contaminate dose=0.75 repl corrupt                   got=   0.4877  paper=   0.4900
-  [OK  ] contaminate dose=0.75 repl clean                     got=   0.9386  paper=   0.9400
-  [OK  ] contaminate dose=0.75 var share                      got=   0.3285  paper=   0.3290
-  [OK  ] floor dose=0.25 AUC                                  got=   0.4978  paper=   0.4980
-  [OK  ] floor dose=0.25 repl corrupt                         got=   0.9368  paper=   0.9400
-  [OK  ] floor dose=0.25 repl clean                           got=   0.9480  paper=   0.9500
-  [OK  ] floor dose=0.25 var share                            got=   0.3415  paper=   0.3410
-  [OK  ] floor dose=0.75 AUC                                  got=   0.5992  paper=   0.5990
-  [OK  ] floor dose=0.75 repl corrupt                         got=   0.8163  paper=   0.8200
-  [OK  ] floor dose=0.75 repl clean                           got=   0.9449  paper=   0.9500
-  [OK  ] floor dose=0.75 var share                            got=   0.1835  paper=   0.1840
+  [OK  ] permute dose=0.25 repl corrupt                       got=   0.9200  paper=   0.9200
+  [OK  ] permute dose=0.25 repl clean                         got=   0.9700  paper=   0.9700
+  [OK  ] permute dose=0.25 var share                          got=   0.1970  paper=   0.1970
+  [OK  ] permute dose=0.50 AUC                                got=   0.7280  paper=   0.7280
+  [OK  ] permute dose=0.50 repl corrupt                       got=   0.6700  paper=   0.6700
+  [OK  ] permute dose=0.50 repl clean                         got=   0.9500  paper=   0.9500
+  [OK  ] permute dose=0.50 var share                          got=   0.0980  paper=   0.0980
+  [OK  ] permute dose=0.75 AUC                                got=   0.8580  paper=   0.8580
+  [OK  ] permute dose=0.75 repl corrupt                       got=   0.2400  paper=   0.2400
+  [OK  ] permute dose=0.75 repl clean                         got=   0.9600  paper=   0.9600
+  [OK  ] permute dose=0.75 var share                          got=   0.0350  paper=   0.0350
+  [OK  ] noise dose=0.50 AUC                                  got=   0.5670  paper=   0.5670
+  [OK  ] noise dose=0.50 repl corrupt                         got=   0.9500  paper=   0.9500
+  [OK  ] noise dose=0.50 repl clean                           got=   0.9600  paper=   0.9600
+  [OK  ] noise dose=0.50 var share                            got=   0.2680  paper=   0.2680
+  [OK  ] noise dose=1.00 AUC                                  got=   0.6530  paper=   0.6530
+  [OK  ] noise dose=1.00 repl corrupt                         got=   0.8200  paper=   0.8200
+  [OK  ] noise dose=1.00 repl clean                           got=   0.9400  paper=   0.9400
+  [OK  ] noise dose=1.00 var share                            got=   0.1720  paper=   0.1720
+  [OK  ] noise dose=2.00 AUC                                  got=   0.7790  paper=   0.7790
+  [OK  ] noise dose=2.00 repl corrupt                         got=   0.5400  paper=   0.5400
+  [OK  ] noise dose=2.00 repl clean                           got=   0.9300  paper=   0.9300
+  [OK  ] noise dose=2.00 var share                            got=   0.0790  paper=   0.0790
+  [OK  ] contaminate dose=0.25 AUC                            got=   0.5430  paper=   0.5430
+  [OK  ] contaminate dose=0.25 repl corrupt                   got=   0.8900  paper=   0.8900
+  [OK  ] contaminate dose=0.25 repl clean                     got=   0.9300  paper=   0.9300
+  [OK  ] contaminate dose=0.25 var share                      got=   0.3080  paper=   0.3080
+  [OK  ] contaminate dose=0.50 AUC                            got=   0.6670  paper=   0.6670
+  [OK  ] contaminate dose=0.50 repl corrupt                   got=   0.6200  paper=   0.6200
+  [OK  ] contaminate dose=0.50 repl clean                     got=   0.9500  paper=   0.9500
+  [OK  ] contaminate dose=0.50 var share                      got=   0.2840  paper=   0.2840
+  [OK  ] contaminate dose=0.75 AUC                            got=   0.7340  paper=   0.7340
+  [OK  ] contaminate dose=0.75 repl corrupt                   got=   0.4900  paper=   0.4900
+  [OK  ] contaminate dose=0.75 repl clean                     got=   0.9400  paper=   0.9400
+  [OK  ] contaminate dose=0.75 var share                      got=   0.3290  paper=   0.3290
+  [OK  ] floor dose=0.25 AUC                                  got=   0.4980  paper=   0.4980
+  [OK  ] floor dose=0.25 repl corrupt                         got=   0.9400  paper=   0.9400
+  [OK  ] floor dose=0.25 repl clean                           got=   0.9500  paper=   0.9500
+  [OK  ] floor dose=0.25 var share                            got=   0.3410  paper=   0.3410
+  [OK  ] floor dose=0.50 AUC                                  got=   0.5280  paper=   0.5280
+  [OK  ] floor dose=0.50 repl corrupt                         got=   0.9000  paper=   0.9000
+  [OK  ] floor dose=0.50 repl clean                           got=   0.9400  paper=   0.9400
+  [OK  ] floor dose=0.50 var share                            got=   0.2630  paper=   0.2630
+  [OK  ] floor dose=0.75 AUC                                  got=   0.5990  paper=   0.5990
+  [OK  ] floor dose=0.75 repl corrupt                         got=   0.8200  paper=   0.8200
+  [OK  ] floor dose=0.75 repl clean                           got=   0.9400  paper=   0.9400
+  [OK  ] floor dose=0.75 var share                            got=   0.1840  paper=   0.1840
   [OK  ] uncorrupted variance-share baseline (paper: 0.339)   got=   0.3388  paper=   0.3390
   [OK  ] compress lambda=0.5 variance RATIO (paper: 0.40)     got=   0.4019  paper=   0.4010
   [OK  ] flooring max AUC across doses (paper: <=0.60)        got=   0.5992  paper=   0.5990
@@ -229,4 +241,4 @@
   [OK  ] split-level difference-form estimate range, min (paper +0.030) got=   0.0298  paper=   0.0300
   [OK  ] split-level difference-form estimate range, max (paper +0.283) got=   0.2827  paper=   0.2830
 
-=== 209 checks: 209 passed, 0 FAILED ===
+=== 221 checks: 221 passed, 0 FAILED ===

@@ -79,18 +79,36 @@ cm <- read.csv("results/corruption_modes.csv") %>% group_by(mode, dose) %>%
   summarise(auc = mean(auc_detect), rc = mean(replic_corrupt), rl = mean(replic_clean),
             vf = mean(var_frac_corrupted), vpre = mean(var_frac_uncorrupted), .groups = "drop")
 gv <- function(m, ds, col) cm[[col]][cm$mode == m & abs(cm$dose - ds) < 1e-9]
+## All FIFTEEN mode x dose cells, matching the manuscript, which previously
+## printed twelve of them while the text quoted a thirteenth.
+##
+## These compare the value AS ROUNDED FOR PRINT against the paper, not the raw
+## mean against the paper within a tolerance. The old form used tol = 0.006,
+## which is wider than the largest possible rounding error (0.005), so it could
+## not distinguish a correctly rounded cell from a wrong one: three cells shipped
+## as 0.68/0.96/0.95 where the data rounds to 0.67/0.95/0.94 and the audit
+## passed on all three. A guard whose tolerance exceeds the quantity it checks
+## is not a guard.
 T6 <- list(
   list("compress",0.25,0.848,0.43,0.93,0.046), list("compress",0.50,0.730,0.80,0.95,0.136),
-  list("compress",0.75,0.639,0.91,0.96,0.236), list("permute",0.25,0.630,0.92,0.97,0.197),
-  list("permute",0.50,0.728,0.68,0.95,0.098),  list("permute",0.75,0.858,0.24,0.96,0.035),
-  list("noise",0.50,0.567,0.95,0.96,0.268),    list("noise",2.00,0.779,0.54,0.93,0.079),
-  list("contaminate",0.25,0.543,0.89,0.93,0.308), list("contaminate",0.75,0.734,0.49,0.94,0.329),
-  list("floor",0.25,0.498,0.94,0.95,0.341),    list("floor",0.75,0.599,0.82,0.95,0.184))
+  list("compress",0.75,0.639,0.91,0.95,0.236), list("permute",0.25,0.630,0.92,0.97,0.197),
+  list("permute",0.50,0.728,0.67,0.95,0.098),  list("permute",0.75,0.858,0.24,0.96,0.035),
+  list("noise",0.50,0.567,0.95,0.96,0.268),    list("noise",1.00,0.653,0.82,0.94,0.172),
+  list("noise",2.00,0.779,0.54,0.93,0.079),
+  list("contaminate",0.25,0.543,0.89,0.93,0.308), list("contaminate",0.50,0.667,0.62,0.95,0.284),
+  list("contaminate",0.75,0.734,0.49,0.94,0.329),
+  list("floor",0.25,0.498,0.94,0.95,0.341),    list("floor",0.50,0.528,0.90,0.94,0.263),
+  list("floor",0.75,0.599,0.82,0.94,0.184))
+stopifnot(length(T6) == 15L)
 for (r in T6) {
-  chk(sprintf("%s dose=%.2f AUC", r[[1]], r[[2]]), gv(r[[1]], r[[2]], "auc"), r[[3]])
-  chk(sprintf("%s dose=%.2f repl corrupt", r[[1]], r[[2]]), gv(r[[1]], r[[2]], "rc"), r[[4]], 0.006)
-  chk(sprintf("%s dose=%.2f repl clean",   r[[1]], r[[2]]), gv(r[[1]], r[[2]], "rl"), r[[5]], 0.006)
-  chk(sprintf("%s dose=%.2f var share",    r[[1]], r[[2]]), gv(r[[1]], r[[2]], "vf"), r[[6]], 0.006)
+  chk(sprintf("%s dose=%.2f AUC", r[[1]], r[[2]]),
+      round(gv(r[[1]], r[[2]], "auc"), 3), r[[3]], 1e-9)
+  chk(sprintf("%s dose=%.2f repl corrupt", r[[1]], r[[2]]),
+      round(gv(r[[1]], r[[2]], "rc"), 2), r[[4]], 1e-9)
+  chk(sprintf("%s dose=%.2f repl clean",   r[[1]], r[[2]]),
+      round(gv(r[[1]], r[[2]], "rl"), 2), r[[5]], 1e-9)
+  chk(sprintf("%s dose=%.2f var share",    r[[1]], r[[2]]),
+      round(gv(r[[1]], r[[2]], "vf"), 3), r[[6]], 1e-9)
 }
 chk("uncorrupted variance-share baseline (paper: 0.339)", mean(cm$vpre), 0.339, 0.002)
 chk("compress lambda=0.5 variance RATIO (paper: 0.40)", gv("compress",0.50,"vf")/mean(cm$vpre), 0.401, 0.004)
