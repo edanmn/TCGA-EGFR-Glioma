@@ -1,11 +1,15 @@
 # 22_stat_recompute.R -- independent recomputation of the manuscript's headline
 # STATISTICS (not just sample sizes): every Table 1 row, the common-sample refit,
 # the likelihood-ratio test, the C-index comparison, and every Table 3 row.
-# Uses its own cohort construction and model fitting; shares no code with 05/12/14.
+# Uses its own cohort construction and model fitting; shares no code with the
+# analysis pipeline. That was NOT true until round 9, when this script still
+# sourced R/_helpers.R for load_se()/.clinical_df() -- the same clinical parsing
+# 31 pipeline scripts use, so a defect there would have been re-derived here and
+# scored as a match. Now uses R/_verify_clinical.R. Do not repoint at _helpers.R.
 #
 # Run from project root:  Rscript R/22_stat_recompute.R -> results/stat_recompute.txt
 suppressPackageStartupMessages({ library(SummarizedExperiment); library(dplyr); library(survival) })
-source("R/_helpers.R")
+source("R/_verify_clinical.R")
 out <- file("results/stat_recompute.txt", open="wt")
 say <- function(...) { cat(sprintf(...), file=out); cat(sprintf(...)) }
 P <- 0; F <- 0
@@ -22,8 +26,8 @@ chk <- function(lbl, hr, lo, hi, pv, ci, paper){
 }
 
 build <- function(project, gradeIV=FALSE){
-  se <- load_se(project); cd <- as.data.frame(colData(se)); k <- substr(colnames(se),14,15)=="01"
-  b  <- .clinical_df(se, project); b <- b[match(colnames(se)[k], b$barcode),]
+  se <- vload_se(project); cd <- as.data.frame(colData(se)); k <- substr(colnames(se),14,15)=="01"
+  b  <- vclinical(se); b <- b[match(colnames(se)[k], b$barcode),]
   gr <- as.character(cd$paper_Grade[k])
   g  <- if (gradeIV) rep("IV", sum(k)) else ifelse(grepl("G3|III",gr),"III",ifelse(grepl("G2| II",gr),"II",NA))
   tpm<- assay(se,"tpm_unstrand")[,k]; gn <- rowData(se)$gene_name

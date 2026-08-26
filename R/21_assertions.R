@@ -2,9 +2,15 @@
 # category count the manuscript asserts. Rebuilds cohorts from the cached objects
 # WITHOUT reusing any analysis script's helper logic, then checks each claim.
 #
+# "Without reusing" is load-bearing and was NOT true until round 9: this script
+# used to source R/_helpers.R and call its load_se()/.clinical_df(), the same
+# functions 31 analysis scripts use. A defect in that parsing would have been
+# reproduced here and reported as agreement. It now uses R/_verify_clinical.R,
+# which shares no code with the pipeline. Do not repoint this at _helpers.R.
+#
 # Run from project root:  Rscript R/21_assertions.R  -> results/assertions.txt
 suppressPackageStartupMessages({ library(SummarizedExperiment); library(dplyr) })
-source("R/_helpers.R")
+source("R/_verify_clinical.R")
 out <- file("results/assertions.txt", open="wt")
 say <- function(...) { cat(sprintf(...), file=out); cat(sprintf(...)) }
 PASS <- 0; FAIL <- 0
@@ -16,9 +22,9 @@ chk <- function(label, got, want){
 
 ## ---- canonical rebuild: primary tumours, one per patient ----
 build <- function(project, gradeIV=FALSE){
-  se <- load_se(project); cd <- as.data.frame(colData(se))
+  se <- vload_se(project); cd <- as.data.frame(colData(se))
   k  <- substr(colnames(se),14,15)=="01"
-  b  <- .clinical_df(se, project); b <- b[match(colnames(se)[k], b$barcode),]
+  b  <- vclinical(se); b <- b[match(colnames(se)[k], b$barcode),]
   gr <- as.character(cd$paper_Grade[k])
   g  <- if (gradeIV) ifelse(grepl("G4|IV",gr),4,NA) else ifelse(grepl("G3|III",gr),3,ifelse(grepl("G2| II",gr),2,NA))
   idh<- as.character(cd$paper_IDH.status[k])
