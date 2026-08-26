@@ -19,7 +19,7 @@
 #     axis) rather than its presumed cause.
 #
 #   Figure 3 (method_auc.png)
-#     Draws a dashed reference line at 0.5 labelled as chance. Section 6.9 shows
+#     Draws a dashed reference line at 0.5 labelled as chance. Section 4.2 shows
 #     0.5 is the WRONG null: a same-population cohort reaches 0.79-0.90 with the
 #     same product-form score. As drawn, the figure visually asserts exactly the
 #     interpretation the paper retracts. Redrawn with the matched-null level
@@ -121,14 +121,20 @@ g3 <- ggplot(pl, aes(cohort, AUC, fill = metric)) +
   geom_segment(data = nl, aes(x = as.numeric(cohort) - 0.45, xend = as.numeric(cohort) + 0.45,
                               y = auc_null, yend = auc_null), inherit.aes = FALSE,
                colour = "#c0392b", linewidth = 0.9) +
-  annotate("text", x = 0.55, y = 0.985, hjust = 0, size = 3.1, colour = "#c0392b",
-           label = "red bar = same-population null (§6.9): the correct comparison") +
-  annotate("text", x = 0.55, y = 0.44, hjust = 0, size = 3.0, colour = "grey45",
-           label = "dotted 0.5 = chance, which is NOT the appropriate null here") +
+  # Round 8. Three defects, all visible only in the rendered PNG:
+  #  (a) "(§6.9)" is pre-restructure numbering -- that section is now §4.2;
+  #  (b) "the correct comparison" contradicts the caption, which demotes these
+  #      segments to a reference level because the matched null splits the
+  #      discovery cohort and so is not on this panel's scale;
+  #  (c) the grey annotation at y = 0.44 ran across the CGGA-325 and array-301
+  #      bars and was partly illegible. It duplicated the caption, so it is
+  #      dropped rather than relocated.
+  annotate("text", x = 0.55, y = 0.985, hjust = 0, size = 3.0, colour = "#c0392b",
+           label = "red line = product-form matched null (\u00a74.2), half-size split: a reference level, not a threshold") +
   coord_cartesian(ylim = c(0, 1.02)) +
   labs(x = NULL, y = "AUC for predicting cross-cohort replication", fill = "Positive-control metric",
        title = "Anchor scores against chance and against a same-population null",
-       subtitle = "bars exceed chance; the product-form anchor does not exceed\nits matched null in CGGA-693") +
+       subtitle = "bars are the grade and IDH anchors; the red lines are the product-form null.\nThey sit on different scales -- compare within a row of Table 2, not across.") +
   theme_bw(base_size = 11) +
   theme(legend.position = "top", legend.text = element_text(size = 8),
         legend.title = element_text(size = 9), plot.subtitle = element_text(size = 9)) +
