@@ -25,6 +25,7 @@ adjusting for age and tumor grade, or is it just a proxy for grade?
 |--------|--------------|-------------|
 | `R/00_setup.R` | Install/verify packages (auto-falls back to a Bioconductor mirror) | — |
 | `R/01_download.R` | Download RNA-seq + clinical from the GDC, cache as `data/*.rds` | `data/TCGA-*_expr_se.rds` |
+| `R/01b_download_cnv.R` | Download gene-level copy number (ASCAT3) from the GDC | `data/TCGA-*_cnv.rds` |
 | `R/02_survival_km.R` | Kaplan–Meier + log-rank, EGFR median split, per cohort | `results/km_logrank_summary.csv` (Table S1) |
 | `R/03_cox_model.R` | Cox models: EGFR alone, then adjusted for age + grade | `results/cox_EGFR_summary.csv` |
 | `R/04_pathway_screen.R` | Screen 10 EGFR/RTK–PI3K genes, BH/FDR-corrected | `results/pathway_screen*.csv` (Table S2) |
@@ -95,6 +96,13 @@ Rscript R/04_pathway_screen.R
 
 The download step is slow (hundreds of MB per cohort) and runs once — later runs
 reuse the cached `data/*.rds`. The GDC download also creates a `GDCdata/` folder here.
+
+⚠️ **Rebuilding `data/` from scratch does not reproduce every published number.**
+The GDC is queried live with no pinned release, and TCGA-GBM expression has since
+been re-quantified: cohort counts reproduce exactly, four GBM/pooled regression
+coefficients do not. CGGA cannot be downloaded by any script here at all. Read
+[`REPRODUCING_FROM_SCRATCH.md`](REPRODUCING_FROM_SCRATCH.md) before rebuilding —
+it records what reproduces, what does not, and why.
 
 ## How to read the results
 - **`km_logrank_summary.csv`** — group sizes, median survival (days) per group, and
